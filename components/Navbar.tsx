@@ -16,6 +16,7 @@ export default function Navbar() {
     { label: 'Sponsors & Partners', href: '/schedule' },
     { label: 'News & Updates', href: '/schedule' },
     { label: 'Contact', href: '/schedule' },
+    { label: 'Contact', href: '/schedule' },
   ]
 
   const linkStyle = useMemo(() => ({
