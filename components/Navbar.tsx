@@ -16,7 +16,6 @@ export default function Navbar() {
     { label: 'Sponsors & Partners', href: '/schedule' },
     { label: 'News & Updates', href: '/schedule' },
     { label: 'Contact', href: '/schedule' },
-    { label: 'Contact', href: '/schedule' },
   ]
 
   const linkStyle = useMemo(() => ({
@@ -29,7 +28,12 @@ export default function Navbar() {
     whiteSpace: 'nowrap',
   }), [])
 
-  const NavLink = ({ href, children }) => (
+  type NavLinkProps = {
+    href: string
+    children: React.ReactNode
+  }
+
+  const NavLink = ({ href, children }: NavLinkProps) => (
     <a href={href} style={linkStyle}>{children}</a>
   )
 
@@ -165,3 +169,4 @@ export default function Navbar() {
     </nav>
   )
 }
+
