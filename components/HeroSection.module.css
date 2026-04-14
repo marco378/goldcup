@@ -1,0 +1,289 @@
+.heroFrame {
+  position: relative;
+  width: calc(100% - 24px);
+  margin: 12px auto 0;
+  height: calc(100vh - 24px);
+  min-height: 720px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 18px;
+  background: #0b0d0f;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background: url('/images/hero-bg.png') center/cover no-repeat;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg,
+    rgba(0, 0, 0, 0.88) 0%,
+    rgba(0, 0, 0, 0.65) 35%,
+    rgba(0, 0, 0, 0.3) 60%,
+    rgba(0, 0, 0, 0.08) 100%
+  );
+  pointer-events: none;
+}
+
+.heroBottomFade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.2) 30%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.heroDeco {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 55%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.heroDecoCircle {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.c1 {
+  width: 420px;
+  height: 420px;
+  right: -80px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 1px solid rgba(255, 200, 50, 0.06);
+}
+
+.c2 {
+  width: 280px;
+  height: 280px;
+  right: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: radial-gradient(ellipse, rgba(255, 180, 20, 0.04) 0%, transparent 70%);
+  border: 1px solid rgba(255, 200, 50, 0.04);
+}
+
+.heroDecoLine {
+  position: absolute;
+  background: rgba(255, 200, 50, 0.08);
+  transform-origin: left center;
+}
+
+.l1 {
+  width: 100%;
+  height: 1px;
+  right: 0;
+  top: 50%;
+  transform: rotate(-15deg);
+}
+
+.l2 {
+  width: 70%;
+  height: 1px;
+  right: 0;
+  top: 50%;
+  transform: rotate(-15deg) translateY(60px);
+}
+
+.goldLine {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, transparent 10%, #ffb812 45%, #fdeb7f 55%, transparent 90%);
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  padding: 0 52px 72px;
+  width: min(560px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.contentTop {
+  display: flex;
+  flex-direction: column;
+}
+
+.eyebrow {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  background: linear-gradient(90deg, #fdeb7f 0%, #ffb812 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  margin-bottom: 18px;
+}
+
+.headline {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(58px, 8vw, 92px);
+  line-height: 0.9;
+  text-transform: uppercase;
+  color: #fff;
+  letter-spacing: -0.01em;
+  margin-bottom: 28px;
+}
+
+.tagline {
+  font-family: 'Barlow', sans-serif;
+  font-size: clamp(16px, 1.6vw, 20px);
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 460px;
+}
+
+.ctaRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btnWatch,
+.btnSponsor {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: filter 0.25s ease, transform 0.25s ease;
+}
+
+.btnWatch {
+  width: 165px;
+  height: 44px;
+  padding: 0 18px;
+}
+
+.btnSponsor {
+  width: 193px;
+  height: 44px;
+  padding: 0 20px;
+}
+
+.btnWatchBg,
+.btnSponsorBg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+.btnWatchContent,
+.btnSponsorContent {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: 'Barlow', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.btnWatchContent {
+  color: #fff;
+}
+
+.btnSponsorContent {
+  color: #111;
+}
+
+.btnIcon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  flex-shrink: 0;
+}
+
+.btnWatch:hover,
+.btnSponsor:hover {
+  transform: translateY(-2px);
+}
+
+.statsRow {
+  position: absolute;
+  bottom: 32px;
+  right: 52px;
+  display: flex;
+  gap: 40px;
+  z-index: 2;
+}
+
+.stat {
+  text-align: right;
+}
+
+.statNum {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 36px;
+  line-height: 1;
+  color: #fff;
+}
+
+.statLabel {
+  font-family: 'Barlow', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin-top: 4px;
+}
+
+.stat + .stat {
+  padding-left: 40px;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+@media (max-width: 768px) {
+  .heroFrame {
+    width: calc(100% - 16px);
+    margin: 8px auto 0;
+    min-height: 600px;
+    border-radius: 14px;
+  }
+
+  .content {
+    padding: 0 28px 44px;
+    gap: 36px;
+  }
+
+  .eyebrow {
+    font-size: 22px;
+  }
+
+  .statsRow {
+    display: none;
+  }
+}
