@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Barlow:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap');
 
 @font-face {
-  font-family: 'Coluna';
+  font-family: var(--font-coluna);
   src: url('/fonts/Coluna.otf') format('opentype');
   font-style: normal;
   font-weight: 700;
@@ -28,6 +28,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 88px;
 }
 
 body {
@@ -36,6 +37,23 @@ body {
   font-family: 'Barlow', sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  overscroll-behavior-y: none;
+}
+
+body.is-loading {
+  overflow: hidden;
+  touch-action: none;
+}
+
+.homePageShell {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.45s ease, visibility 0.45s ease;
+}
+
+.homePageShell.isReady {
+  opacity: 1;
+  visibility: visible;
 }
 
 h1, h2, h3, h4, h5 {

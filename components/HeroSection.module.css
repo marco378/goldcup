@@ -1,7 +1,7 @@
 .heroFrame {
   position: relative;
-  width: calc(100% - 24px);
-  margin: 12px auto 0;
+  width: calc(100% - 32px);
+  margin: 16px auto 0;
   height: calc(100vh - 24px);
   min-height: 720px;
   overflow: hidden;
@@ -10,12 +10,61 @@
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 18px;
   background: #0b0d0f;
+  isolation: isolate;
+  perspective: 1600px;
+  transform-style: preserve-3d;
 }
 
-.heroBg {
+.heroFrame::before,
+.heroFrame::after {
+  content: '';
+  position: absolute;
+  inset: auto;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.heroFrame::before {
+  top: -18%;
+  right: -6%;
+  width: 38vw;
+  height: 38vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.18) 0%, rgba(201, 168, 76, 0.06) 28%, transparent 68%);
+  filter: blur(28px);
+  animation: ambientFloat 10s ease-in-out infinite;
+}
+
+.heroFrame::after {
+  left: 18%;
+  bottom: -22%;
+  width: 44%;
+  height: 44%;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 34px 34px;
+  mask-image: radial-gradient(circle at center, black 42%, transparent 78%);
+  opacity: 0.18;
+  transform: rotateX(74deg) rotateZ(-12deg) translateZ(-120px);
+}
+
+.heroMedia {
   position: absolute;
   inset: 0;
-  background: url('/images/hero-bg.png') center/cover no-repeat;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+/* ── BACKGROUND: reveal only, no drift ───────────────────────────────────── */
+.heroImage {
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.06);
+  filter: saturate(0.92) contrast(1.02);
+  will-change: transform;
+  animation: heroImageReveal 1.25s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  /* heroImageDrift removed — background is now static */
 }
 
 .heroOverlay {
@@ -49,11 +98,14 @@
   width: 55%;
   pointer-events: none;
   overflow: hidden;
+  transform-style: preserve-3d;
+  animation: decoOrbit 12s ease-in-out infinite;
 }
 
 .heroDecoCircle {
   position: absolute;
   border-radius: 50%;
+  will-change: transform;
 }
 
 .c1 {
@@ -61,8 +113,10 @@
   height: 420px;
   right: -80px;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) translateZ(-90px) rotate(0deg);
   border: 1px solid rgba(255, 200, 50, 0.06);
+  box-shadow: inset 0 0 80px rgba(255, 200, 50, 0.04);
+  animation: ringFloatLarge 14s ease-in-out infinite;
 }
 
 .c2 {
@@ -70,15 +124,17 @@
   height: 280px;
   right: 60px;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) translateZ(40px);
   background: radial-gradient(ellipse, rgba(255, 180, 20, 0.04) 0%, transparent 70%);
   border: 1px solid rgba(255, 200, 50, 0.04);
+  animation: ringFloatSmall 10s ease-in-out infinite;
 }
 
 .heroDecoLine {
   position: absolute;
   background: rgba(255, 200, 50, 0.08);
   transform-origin: left center;
+  will-change: transform, opacity;
 }
 
 .l1 {
@@ -86,7 +142,8 @@
   height: 1px;
   right: 0;
   top: 50%;
-  transform: rotate(-15deg);
+  transform: rotate(-15deg) translateZ(-80px);
+  animation: linePulse 8s ease-in-out infinite;
 }
 
 .l2 {
@@ -94,7 +151,8 @@
   height: 1px;
   right: 0;
   top: 50%;
-  transform: rotate(-15deg) translateY(60px);
+  transform: rotate(-15deg) translateY(60px) translateZ(40px);
+  animation: linePulse 8s ease-in-out -2s infinite;
 }
 
 .goldLine {
@@ -109,22 +167,27 @@
 .content {
   position: relative;
   z-index: 2;
-  padding: 0 52px 72px;
-  width: min(560px, 100%);
+  padding: 0 0 151px 34px;
+  width: 530px;
   display: flex;
   flex-direction: column;
-  gap: 56px;
+  gap: 60px;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
 }
 
 .contentTop {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 }
 
+/* ── TEXT & BUTTON ANIMATIONS: all bottom → up ───────────────────────────── */
+
 .eyebrow {
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: var(--font-coluna);
   font-weight: 700;
-  font-size: 28px;
+  font-size: 32px;
   line-height: 1.1;
   letter-spacing: 0.01em;
   background: linear-gradient(90deg, #fdeb7f 0%, #ffb812 100%);
@@ -132,33 +195,70 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  margin-bottom: 18px;
+  margin-bottom: 0px;
+  opacity: 20;
+  animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
 }
 
 .headline {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 900;
-  font-size: clamp(58px, 8vw, 92px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  font-family: var(--font-coluna);
+  font-weight: 700;
+  font-size: 90px;
   line-height: 0.9;
   text-transform: uppercase;
   color: #fff;
-  letter-spacing: -0.01em;
-  margin-bottom: 28px;
+  letter-spacing: -1.8px;
+  margin-bottom: 10px;
+  text-shadow: 0 14px 30px rgba(0, 0, 0, 0.24);
+  padding-top: 10px;
+}
+
+.headlineClip {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 16px;
+}
+
+/* Each headline line slides up from below its clip container */
+.headlineLine {
+  display: block;
+  white-space: nowrap;
+  padding-top: 8px;
+  background: linear-gradient(196deg, #FFFBF2 53.32%, #999691 135%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform: translateY(60%) skewY(5deg);
+  opacity: 0;
+  animation: lineReveal 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.38s forwards;
+}
+
+.headlineClip:last-child .headlineLine {
+  animation-delay: 0.5s;
 }
 
 .tagline {
-  font-family: 'Barlow', sans-serif;
-  font-size: clamp(16px, 1.6vw, 20px);
-  line-height: 1.45;
-  color: rgba(255, 255, 255, 0.8);
-  max-width: 460px;
+  font-family: var(--font-manrope);
+  font-size: 18px;
+  line-height: 84%;
+  letter-spacing: -0.18px;
+  color: #FFFBF2;
+  max-width: 500px;
+  opacity: 0;
+  animation: fadeUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.68s forwards;
 }
 
+/* CTA row: buttons slide up together, slightly after tagline */
 .ctaRow {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
   flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.86s forwards;
 }
 
 .btnWatch,
@@ -170,7 +270,9 @@
   border: none;
   background: transparent;
   cursor: pointer;
-  transition: filter 0.25s ease, transform 0.25s ease;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: filter 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .btnWatch {
@@ -193,6 +295,7 @@
   height: 100%;
   display: block;
   pointer-events: none;
+  transition: transform 0.35s ease;
 }
 
 .btnWatchContent,
@@ -202,12 +305,13 @@
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  font-family: 'Barlow', sans-serif;
+  font-family: var(--font-manrope);
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   white-space: nowrap;
+  transition: transform 0.25s ease, letter-spacing 0.25s ease;
 }
 
 .btnWatchContent {
@@ -225,11 +329,41 @@
   flex-shrink: 0;
 }
 
-.btnWatch:hover,
-.btnSponsor:hover {
-  transform: translateY(-2px);
+.btnWatch::after,
+.btnSponsor::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  background: linear-gradient(105deg, transparent 20%, rgba(255, 255, 255, 0.28) 50%, transparent 80%);
+  transform: translateX(-130%);
+  transition: transform 0.55s ease;
+  pointer-events: none;
 }
 
+.btnWatch:hover,
+.btnSponsor:hover {
+  transform: translateY(-4px) rotateX(10deg);
+  filter: brightness(1.04);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.26);
+}
+
+.btnWatch:hover::after,
+.btnSponsor:hover::after {
+  transform: translateX(130%);
+}
+
+.btnWatch:hover .btnWatchBg,
+.btnSponsor:hover .btnSponsorBg {
+  transform: translateZ(18px) scale(1.015);
+}
+
+.btnWatch:hover .btnWatchContent,
+.btnSponsor:hover .btnSponsorContent {
+  transform: translateY(-1px) translateZ(18px);
+  letter-spacing: 0.06em;
+}
+
+/* Stats also fade up, last in the sequence */
 .statsRow {
   position: absolute;
   bottom: 32px;
@@ -237,6 +371,9 @@
   display: flex;
   gap: 40px;
   z-index: 2;
+  transform: translateZ(70px);
+  opacity: 0;
+  animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1.05s forwards;
 }
 
 .stat {
@@ -244,7 +381,7 @@
 }
 
 .statNum {
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: var(--font-coluna);
   font-weight: 900;
   font-size: 36px;
   line-height: 1;
@@ -252,7 +389,7 @@
 }
 
 .statLabel {
-  font-family: 'Barlow', sans-serif;
+  font-family: var(--font-manrope);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -266,6 +403,121 @@
   border-left: 1px solid rgba(255, 255, 255, 0.12);
 }
 
+/* Hover effects on text remain subtle */
+.contentTop:hover .eyebrow {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.contentTop:hover .tagline {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* Background stays put on hover — only subtle element shifts */
+.heroFrame:hover .c1 {
+  transform: translateY(-50%) translateZ(-30px);
+}
+
+.heroFrame:hover .c2 {
+  transform: translateY(-50%) translateZ(70px) scale(1.04);
+}
+
+.heroFrame:hover .l1 {
+  transform: rotate(-13deg) translateZ(-20px);
+}
+
+.heroFrame:hover .l2 {
+  transform: rotate(-14deg) translateY(54px) translateZ(68px);
+}
+
+/* ── KEYFRAMES ───────────────────────────────────────────────────────────── */
+
+@keyframes heroImageReveal {
+  from {
+    opacity: 0;
+    transform: scale(1.12);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+/* heroImageDrift removed entirely */
+
+@keyframes lineReveal {
+  from {
+    opacity: 0;
+    transform: translateY(60%) skewY(5deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) skewY(0deg);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+
+@keyframes ambientFloat {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%       { transform: translate3d(0, 24px, 0) scale(1.08); }
+}
+
+@keyframes decoOrbit {
+  0%, 100% { transform: rotateY(0deg) rotateX(0deg); }
+  50%       { transform: rotateY(-8deg) rotateX(4deg); }
+}
+
+@keyframes ringFloatLarge {
+  0%, 100% { transform: translateY(-50%) translateZ(-90px) rotate(0deg); }
+  50%       { transform: translateY(calc(-50% - 14px)) translateZ(-40px) rotate(7deg); }
+}
+
+@keyframes ringFloatSmall {
+  0%, 100% { transform: translateY(-50%) translateZ(40px) scale(1); }
+  50%       { transform: translateY(calc(-50% + 18px)) translateZ(88px) scale(1.06); }
+}
+
+@keyframes linePulse {
+  0%, 100% { opacity: 0.2; }
+  50%       { opacity: 0.6; }
+}
+
+/* ── REDUCED MOTION ──────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .heroFrame::before,
+  .heroImage,
+  .heroDeco,
+  .heroDecoCircle,
+  .heroDecoLine,
+  .eyebrow,
+  .headlineLine,
+  .tagline,
+  .ctaRow,
+  .statsRow {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ── MOBILE ──────────────────────────────────────────────────────────────── */
+
 @media (max-width: 768px) {
   .heroFrame {
     width: calc(100% - 16px);
@@ -275,15 +527,53 @@
   }
 
   .content {
-    padding: 0 28px 44px;
-    gap: 36px;
-  }
-
-  .eyebrow {
-    font-size: 22px;
+    padding: 0 28px 44px 28px;
+    gap: 32px;
+    transform: none;
+    width: 100%;
   }
 
   .statsRow {
     display: none;
+  }
+
+  .heroDeco {
+    width: 72%;
+    opacity: 0.7;
+  }
+
+  .eyebrow {
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
+
+  .headline {
+    gap: 0;
+    font-size: clamp(52px, 15vw, 82px);
+    margin-bottom: 18px;
+    line-height: 0.95;
+  }
+
+  .headlineClip {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 4px;
+  }
+
+  .headlineLine {
+    white-space: normal;
+  }
+
+  .tagline {
+    max-width: 100%;
+    font-size: 16px;
+  }
+
+  .heroFrame:hover .heroImage,
+  .heroFrame:hover .c1,
+  .heroFrame:hover .c2,
+  .heroFrame:hover .l1,
+  .heroFrame:hover .l2 {
+    transform: none;
   }
 }

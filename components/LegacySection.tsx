@@ -1,15 +1,67 @@
 'use client'
 
+import { useEffect, useRef, useState } from 'react'
+
+const stats = [
+  { number: '42', label: 'Years of Legacy' },
+  { number: '31', label: 'Total Matches' },
+  { number: '16', label: 'Competing Teams' },
+  { number: '100+', label: 'Alumni Players' },
+]
+
 export default function LegacySection() {
-  const stats = [
-    { number: '42', label: 'Years of Legacy' },
-    { number: '31', label: 'Total Matches' },
-    { number: '16', label: 'Competing Teams' },
-    { number: '100+', label: 'Alumni Players' },
-  ]
+  const sectionRef = useRef<HTMLElement | null>(null)
+  const [counts, setCounts] = useState(() => stats.map(() => 0))
+
+  useEffect(() => {
+    const node = sectionRef.current
+    if (!node) {
+      return
+    }
+
+    let frameId = 0
+    let hasAnimated = false
+
+    const runCounter = () => {
+      const startedAt = performance.now()
+      const duration = 1400
+      const targets = stats.map((stat) => Number.parseInt(stat.number, 10))
+
+      const tick = (now: number) => {
+        const progress = Math.min((now - startedAt) / duration, 1)
+        const eased = 1 - Math.pow(1 - progress, 3)
+
+        setCounts(targets.map((target) => Math.round(target * eased)))
+
+        if (progress < 1) {
+          frameId = window.requestAnimationFrame(tick)
+        }
+      }
+
+      frameId = window.requestAnimationFrame(tick)
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          hasAnimated = true
+          runCounter()
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.35 }
+    )
+
+    observer.observe(node)
+
+    return () => {
+      observer.disconnect()
+      window.cancelAnimationFrame(frameId)
+    }
+  }, [])
 
   return (
-    <section className="legacySection">
+    <section ref={sectionRef} className="legacySection">
       <h2 className="headline">
         A platform that shaped legends like{' '}
         <span>MS Dhoni</span>
@@ -21,7 +73,10 @@ export default function LegacySection() {
       <div className="statsGrid">
         {stats.map((stat, i) => (
           <div key={i} className="stat">
-            <div className="statNumber">{stat.number}</div>
+            <div className="statNumber">
+              {counts[i]}
+              {stat.number.includes('+') ? '+' : ''}
+            </div>
             <div className="statLabel">{stat.label}</div>
           </div>
         ))}
@@ -31,10 +86,12 @@ export default function LegacySection() {
         .legacySection {
           background: var(--bg);
           padding: 72px 80px 80px;
+          position: relative;
+          overflow: hidden;
         }
 
         .headline {
-          font-family: 'Barlow Condensed', sans-serif;
+          font-family: var(--font-coluna);
           font-weight: 900;
           font-size: clamp(32px, 4.5vw, 58px);
           line-height: 1.05;
@@ -43,6 +100,7 @@ export default function LegacySection() {
           color: #fff;
           max-width: 1100px;
           margin-bottom: 48px;
+          animation: legacyReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
 
         .headline span {
@@ -54,6 +112,8 @@ export default function LegacySection() {
           height: 1px;
           background: rgba(255, 255, 255, 0.85);
           margin-bottom: 34px;
+          transform-origin: left center;
+          animation: dividerGrow 1s ease 0.15s both;
         }
 
         .statsGrid {
@@ -68,22 +128,84 @@ export default function LegacySection() {
         .stat {
           border-left: 4px solid var(--gold);
           padding: 0 16px 0 20px;
+          transform: translateY(28px);
+          opacity: 0;
+          animation: statRise 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+          transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .stat:nth-child(1) { animation-delay: 0.2s; }
+        .stat:nth-child(2) { animation-delay: 0.32s; }
+        .stat:nth-child(3) { animation-delay: 0.44s; }
+        .stat:nth-child(4) { animation-delay: 0.56s; }
+
+        .stat:hover {
+          transform: translateY(-6px);
+          border-color: var(--gold-light);
         }
 
         .statNumber {
-          font-family: 'Barlow Condensed', sans-serif;
+          font-family: var(--font-coluna);
           font-weight: 900;
-          font-size: clamp(48px, 5vw, 82px);
+          font-size: 60px;
           line-height: 1;
           color: #fff;
           margin-bottom: 10px;
+          text-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
         }
 
         .statLabel {
-          font-family: 'Barlow', sans-serif;
+          font-family: var(--font-manrope);
           font-size: 14px;
           line-height: 1.2;
           color: rgba(255, 255, 255, 0.9);
+        }
+
+        @keyframes legacyReveal {
+          from {
+            opacity: 0;
+            transform: translateY(26px);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes dividerGrow {
+          from {
+            opacity: 0;
+            transform: scaleX(0.2);
+          }
+
+          to {
+            opacity: 1;
+            transform: scaleX(1);
+          }
+        }
+
+        @keyframes statRise {
+          from {
+            opacity: 0;
+            transform: translateY(28px);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .headline,
+          .divider,
+          .stat {
+            animation: none;
+            opacity: 1;
+            transform: none;
+            transition: none;
+          }
         }
 
         @media (max-width: 900px) {

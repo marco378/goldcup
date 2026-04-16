@@ -1,7 +1,31 @@
+# dependencies
 node_modules/
+
+# next.js
 .next/
+.next_stale_*/
+
+# builds
 dist/
 build/
+
+# logs
 *.log
+
+# TypeScript
 *.tsbuildinfo
+
+# env
 .env
+.env.local
+.env.production
+.env.development
+
+# OS / IDE
+.DS_Store
+.vscode/
+
+# misc
+*.pem
+
+CLAUDE.md

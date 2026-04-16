@@ -1,11 +1,35 @@
 'use client'
 
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 
 export default function Footer() {
+  const [isVisible, setIsVisible] = useState(false)
+  const footerRef = useRef<HTMLElement | null>(null)
+
+  useEffect(() => {
+    const node = footerRef.current
+    if (!node) {
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting)
+      },
+      { threshold: 0.22 }
+    )
+
+    observer.observe(node)
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <footer className="footer">
-      
+    <footer ref={footerRef} className={`footer ${isVisible ? 'isVisible' : ''}`}>
+      <div className="watermarkWrap">
+        <h1 className="watermark">Gold Cup: 42nd Edition</h1>
+      </div>
 
       <div className="row">
         <div className="links">
@@ -44,20 +68,49 @@ export default function Footer() {
           overflow: hidden;
         }
 
-        
+        .watermarkWrap {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          overflow: hidden;
+          padding: 20px 40px 20px;
+        }
+
+        .watermark {
+          color: rgba(255, 255, 255, 0.1);
+          font-family: var(--font-coluna),'Coluna', 'Barlow Condensed', sans-serif;
+          font-size: min(9.15vw, 172px);
+          font-style: normal;
+          font-weight: 700;
+          line-height: 0.86;
+          letter-spacing: -0.001em;
+          margin: 0;
+          text-align: center;
+          white-space: nowrap;
+          max-width: 100%;
+          opacity: 0;
+          transform: translateY(115%) skewY(4deg);
+          transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s ease;
+        }
+
         .row {
           position: relative;
           z-index: 1;
-          padding: 40px 80px 20px;
+          padding: 52px 80px 28px;
           display: flex;
           align-items: center;
           justify-content: space-between;
+          gap: 52px;
           border-top: 1px solid rgba(255, 255, 255, 0.08);
+          opacity: 0;
+          transform: translateY(32px);
+          transition: transform 0.65s ease, opacity 0.65s ease;
         }
 
         .links {
           display: flex;
-          gap: 40px;
+          gap: 48px;
           align-items: center;
         }
 
@@ -65,7 +118,7 @@ export default function Footer() {
           display: flex;
           justify-content: center;
           min-width: 80px;
-          font-family: 'Barlow Condensed', sans-serif;
+          font-family: var(--font-manrope);
           font-size: 14px;
           letter-spacing: 0.24em;
           color: #fff;
@@ -75,24 +128,48 @@ export default function Footer() {
           position: relative;
           z-index: 1;
           text-align: center;
-          padding: 0 80px 68px;
+          padding: 26px 80px 88px;
+          opacity: 0;
+          transform: translateY(24px);
+          transition: transform 0.6s ease 0.08s, opacity 0.6s ease 0.08s;
         }
 
         p {
-          font-family: 'Barlow', sans-serif;
+          font-family: var(--font-manrope);
           font-size: 12px;
           color: rgba(255, 255, 255, 0.52);
           letter-spacing: 0.02em;
         }
 
+        .isVisible .watermark {
+          opacity: 1;
+          transform: translateY(0) skewY(0deg);
+        }
+
+        .isVisible .row,
+        .isVisible .copyWrap {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .watermark,
+          .row,
+          .copyWrap {
+            opacity: 1;
+            transform: none;
+            transition: none;
+          }
+        }
+
         @media (max-width: 900px) {
           .row {
-            padding: 26px 18px 10px;
-            gap: 12px;
+            padding: 34px 18px 16px;
+            gap: 18px;
           }
 
           .links {
-            gap: 14px;
+            gap: 18px;
           }
 
           .links.right {
@@ -100,12 +177,16 @@ export default function Footer() {
           }
 
           .copyWrap {
-            padding: 0 18px 30px;
+            padding: 18px 18px 38px;
+          }
+
+          .watermarkWrap {
+            padding: 34px 18px 26px;
           }
 
           .watermark {
-            font-size: clamp(36px, 10vw, 68px);
-            bottom: -2px;
+            font-size: min(11.4vw, 72px);
+            white-space: normal;
           }
         }
       `}</style>

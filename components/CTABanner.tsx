@@ -49,14 +49,18 @@ export default function CTABanner() {
           align-items: center;
           justify-content: center;
           text-align: center;
+          box-shadow: 0 28px 56px rgba(0, 0, 0, 0.24);
+          animation: ctaReveal 0.95s cubic-bezier(0.22, 1, 0.36, 1) both;
+          transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
         .ctaBg {
           position: absolute;
           inset: 0;
-          background: url('/images/untitled folder 3/DSC_2050.JPG') lightgray 50% / cover no-repeat;
+          background: url('/images/optimized/cta-banner-bg.jpg') lightgray 50% / cover no-repeat;
           filter: brightness(0.65);
           z-index: 0;
+          transition: transform 0.5s ease, filter 0.5s ease;
         }
 
         .ctaOverlay {
@@ -74,15 +78,16 @@ export default function CTABanner() {
           position: relative;
           z-index: 2;
           padding: 58px 24px;
+          transform: translateZ(30px);
         }
 
         h2 {
           text-align: center;
-          font-family: 'Coluna', 'Barlow Condensed', sans-serif;
+          font-family: var(--font-coluna),'Coluna', 'Barlow Condensed', sans-serif;
           font-size: 80px;
           font-style: normal;
           font-weight: 700;
-          line-height: 86%;
+          line-height: 1;
           letter-spacing: -1.6px;
           background: linear-gradient(
             181deg,
@@ -94,13 +99,15 @@ export default function CTABanner() {
           -webkit-text-fill-color: transparent;
           color: transparent;
           margin-bottom: 14px;
+          animation: ctaTextReveal 0.8s ease 0.14s both;
         }
 
         p {
-          font-family: 'Barlow', sans-serif;
+          font-family: var(--font-manrope);
           font-size: 15px;
           color: rgba(255, 255, 255, 0.85);
-          margin-bottom: 32px;
+          margin-bottom: 44px;
+          animation: ctaTextReveal 0.8s ease 0.24s both;
         }
 
         .ctaActions {
@@ -108,6 +115,7 @@ export default function CTABanner() {
           gap: 16px;
           justify-content: center;
           flex-wrap: wrap;
+          animation: ctaTextReveal 0.8s ease 0.34s both;
         }
 
         .btnPrimary,
@@ -128,7 +136,7 @@ export default function CTABanner() {
           border: none;
           background: transparent;
           overflow: visible;
-          transition: transform 0.25s ease, filter 0.25s ease;
+          transition: transform 0.25s ease, filter 0.25s ease, box-shadow 0.25s ease;
           cursor: pointer;
         }
 
@@ -160,7 +168,7 @@ export default function CTABanner() {
           display: inline-flex;
           align-items: center;
           gap: 9px;
-          font-family: 'Barlow', sans-serif;
+          font-family: var(--font-manrope);
           font-size: 13px;
           font-weight: 700;
           letter-spacing: 0.04em;
@@ -178,7 +186,53 @@ export default function CTABanner() {
 
         .btnPrimary:hover,
         .btnSecondary:hover {
-          transform: translateY(-2px);
+          transform: translateY(-4px) rotateX(8deg);
+          box-shadow: 0 16px 28px rgba(0, 0, 0, 0.24);
+        }
+
+        .ctaBox:hover {
+          transform: translateY(-6px);
+          box-shadow: 0 38px 72px rgba(0, 0, 0, 0.32);
+        }
+
+        .ctaBox:hover .ctaBg {
+          transform: scale(1.05);
+          filter: brightness(0.72);
+        }
+
+        @keyframes ctaReveal {
+          from {
+            opacity: 0;
+            transform: translateY(34px) scale(0.98);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+
+        @keyframes ctaTextReveal {
+          from {
+            opacity: 0;
+            transform: translateY(22px);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .ctaBox,
+          h2,
+          p,
+          .ctaActions {
+            animation: none;
+            transform: none;
+            transition: none;
+          }
         }
 
         @media (max-width: 900px) {
@@ -188,6 +242,7 @@ export default function CTABanner() {
 
           .ctaBox {
             height: 230px;
+            transform: none;
           }
 
           .ctaContent {

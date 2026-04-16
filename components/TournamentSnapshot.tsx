@@ -7,6 +7,7 @@ interface SnapshotCard {
   size: 'small' | 'large'
   position?: string
   image: string 
+  animationDelay: string
 }
 
 const cards: SnapshotCard[] = [
@@ -16,7 +17,8 @@ const cards: SnapshotCard[] = [
     description: '16 Elite Teams. Sixteen of the region\'s finest squads, assembled for one purpose: to compete, to impress, and to be remembered.',
     size: 'small',
     position: '8% 25%',
-    image: '/images/untitled folder 3/Team.JPG',
+    image: '/images/optimized/snapshot-team.jpg',
+    animationDelay: '0.12s',
   },
   {
     id: 'player-level',
@@ -24,7 +26,8 @@ const cards: SnapshotCard[] = [
     description: 'Ranji-Level Talent. Every squad features players operating at the highest tier of domestic cricket, the same arena where India\'s international stars were forged.',
     size: 'large',
     position: '50% 50%',
-    image: '/images/untitled folder 3/DSC_0191.JPG',
+    image: '/images/optimized/snapshot-player-level.jpg',
+    animationDelay: '0.2s',
   },
   {
     id: 'opening-day',
@@ -32,7 +35,8 @@ const cards: SnapshotCard[] = [
     description: 'Opening Ceremony: 15th May. The stage is set. The teams are ready. The legacy continues.',
     size: 'small',
     position: '86% 20%',
-    image: '/images/untitled folder 3/DSC_0892.JPG',
+    image: '/images/optimized/snapshot-opening-day.jpg',
+    animationDelay: '0.28s',
   },
   {
     id: 'groups',
@@ -40,7 +44,8 @@ const cards: SnapshotCard[] = [
     description: 'Competitive Groups. Balanced, fierce, and unpredictable. Every group stage match is a statement.',
     size: 'small',
     position: '12% 78%',
-    image: '/images/untitled folder 3/DSC_0892.JPG',
+    image: '/images/optimized/snapshot-groups.jpg',
+    animationDelay: '0.36s',
   },
   {
     id: 'scale',
@@ -48,7 +53,8 @@ const cards: SnapshotCard[] = [
     description: '31 Matches of Pure Cricket. Every delivery matters. Every innings tells a story.',
     size: 'small',
     position: '84% 54%',
-    image: '/images/untitled folder 3/DSC_2262.JPG',
+    image: '/images/optimized/snapshot-scale.jpg',
+    animationDelay: '0.44s',
   },
   {
     id: 'format',
@@ -56,13 +62,17 @@ const cards: SnapshotCard[] = [
     description: 'Multi-Day Tournament. Not a sprint. A test of skill, temperament, and character. The way real cricket is meant to be played.',
     size: 'small',
     position: '84% 82%',
-    image: '/images/untitled folder 3/DSC_9984.JPG',
+    image: '/images/optimized/snapshot-format.jpg',
+    animationDelay: '0.52s',
   },
 ]
 
 function SnapshotCard({ card }: { card: SnapshotCard }) {
   return (
-    <div className={`card ${card.size}`}>
+    <div
+      className={`card ${card.size}`}
+      style={{ animationDelay: card.animationDelay }}
+    >
       <div
         className="cardBg"
         style={{backgroundImage: `url('${card.image}')`,
@@ -81,14 +91,19 @@ function SnapshotCard({ card }: { card: SnapshotCard }) {
           overflow: hidden;
           border: 1px solid rgba(255, 255, 255, 0.22);
           height: 100%;
+          transform: translateY(28px) scale(0.98);
+          opacity: 0;
+          animation: cardReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+          transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
         }
 
         .cardBg {
           position: absolute;
           inset: 0;
-          
           background-size: cover;
           filter: brightness(0.7) saturate(0.9);
+          transition: transform 0.5s ease, filter 0.5s ease;
         }
 
         .cardOverlay {
@@ -105,10 +120,27 @@ function SnapshotCard({ card }: { card: SnapshotCard }) {
           flex-direction: column;
           justify-content: flex-end;
           padding: 18px;
+          transform: translateZ(0);
+          transition: transform 0.35s ease;
+        }
+
+        .card:hover {
+          transform: translateY(-10px) scale(1.01);
+          border-color: rgba(248, 229, 172, 0.55);
+          box-shadow: 0 28px 48px rgba(0, 0, 0, 0.26);
+        }
+
+        .card:hover .cardBg {
+          transform: scale(1.08);
+          filter: brightness(0.8) saturate(1);
+        }
+
+        .card:hover .cardContent {
+          transform: translateY(-4px);
         }
 
         h3 {
-          font-family: 'Barlow Condensed', sans-serif;
+          font-family: var(--font-cloluna);
           font-weight: 800;
           font-size: clamp(28px, 2vw, 42px);
           letter-spacing: 0;
@@ -119,10 +151,22 @@ function SnapshotCard({ card }: { card: SnapshotCard }) {
         }
 
         p {
-          font-family: 'Barlow', sans-serif;
+          font-family: var(--font-manrope);
           font-size: 14px;
           color: rgba(255, 255, 255, 0.9);
           line-height: 1.3;
+        }
+
+        @keyframes cardReveal {
+          from {
+            opacity: 0;
+            transform: translateY(28px) scale(0.98);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
         }
       `}</style>
     </div>
@@ -159,6 +203,8 @@ export default function TournamentSnapshot() {
         .snapshotSection {
           background: #0a0a0a;
           padding: 80px 60px;
+          position: relative;
+          overflow: hidden;
         }
 
         .headingWrap {
@@ -167,6 +213,7 @@ export default function TournamentSnapshot() {
           justify-content: center;
           gap: 24px;
           margin-bottom: 48px;
+          animation: snapHeadingReveal 0.8s ease both;
         }
 
         .line {
@@ -180,7 +227,7 @@ export default function TournamentSnapshot() {
         h2 {
           color: #fff;
           text-align: center;
-          font-family: 'Coluna', 'Barlow Condensed', sans-serif;
+          font-family: var(--font-coluna);
           font-size: 60px;
           font-style: normal;
           font-weight: 700;
@@ -195,7 +242,7 @@ export default function TournamentSnapshot() {
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           color: transparent;
-          font-family: 'Coluna', 'Barlow Condensed', sans-serif;
+          font-family: var(--font-coluna);
           font-size: 60px;
           font-style: normal;
           font-weight: 700;
@@ -226,6 +273,30 @@ export default function TournamentSnapshot() {
 
         .h572 {
           height: 572px;
+        }
+
+        @keyframes snapHeadingReveal {
+          from {
+            opacity: 0;
+            transform: translateY(24px);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .headingWrap,
+          :global(.card),
+          :global(.cardBg),
+          :global(.cardContent) {
+            animation: none !important;
+            transform: none !important;
+            opacity: 1 !important;
+            transition: none !important;
+          }
         }
 
         @media (max-width: 900px) {

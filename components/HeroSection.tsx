@@ -1,10 +1,20 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import styles from './HeroSection.module.css'
 
 export default function HeroSection() {
   return (
     <section className={styles.heroFrame}>
-      <div className={styles.heroBg} />
+      <div className={styles.heroMedia}>
+        <Image
+          src="/images/optimized/hero-bg.jpg"
+          alt="Gold Cup batsman under stadium lights"
+          fill
+          priority
+          sizes="100vw"
+          className={styles.heroImage}
+        />
+      </div>
       <div className={styles.heroOverlay} />
       <div className={styles.heroBottomFade} />
 
@@ -22,9 +32,12 @@ export default function HeroSection() {
           <span className={styles.eyebrow}>Gold Cup: 42nd Edition</span>
 
           <h1 className={styles.headline}>
-            Where Legends
-            <br />
-            Once Played
+            <span className={styles.headlineClip}>
+              <span className={styles.headlineLine}>Where Legends</span>
+            </span>
+            <span className={styles.headlineClip}>
+              <span className={styles.headlineLine}>Once Played</span>
+            </span>
           </h1>
 
           <p className={styles.tagline}>
@@ -50,10 +63,8 @@ export default function HeroSection() {
             <span className={styles.btnSponsorContent}>Become a Sponsor</span>
           </Link>
 
-          
         </div>
       </div>
-      
 
       <div className={styles.statsRow}>
         <Link href="/sponsors" className={styles.btnSponsor}>
