@@ -53,7 +53,7 @@ export default function Footer() {
 
       <style jsx>{`
         .footer {
-          background: #000;
+          background: transparent;
           position: relative;
           overflow: hidden;
         }
@@ -152,14 +152,48 @@ export default function Footer() {
           }
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 639px) {
+          .row {
+            flex-direction: column;
+            align-items: center;
+            padding: 28px 16px 16px;
+            gap: 24px;
+          }
+
+          .links,
+          .links.right {
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+          }
+
+          .logoWrap {
+            display: none;
+          }
+
+          .copyWrap {
+            padding: 16px 16px 48px;
+          }
+
+          .watermarkWrap {
+            padding: 20px 16px;
+          }
+
+          .watermark {
+            font-size: min(11.4vw, 72px);
+            white-space: normal;
+          }
+        }
+
+        @media (min-width: 640px) and (max-width: 900px) {
           .row {
             padding: 34px 18px 16px;
             gap: 18px;
           }
 
           .links {
-            gap: 18px;
+            gap: 20px;
           }
 
           .links.right {

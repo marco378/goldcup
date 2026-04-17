@@ -11,15 +11,13 @@
 :root {
   --gold: #C9A84C;
   --gold-light: #E2C06A;
-  --bg: #000000;
+  --bg: transparent;
   --bg-card: #111111;
   --bg-section: #0a0a0a;
   --white: #ffffff;
   --gray: #888888;
   --red: #E31E24;
   --border: rgba(201, 168, 76, 0.3);
-  --bg: #0b0b0b; /* or your design value */
-
 }
 
 * {
@@ -34,12 +32,20 @@ html {
 }
 
 body {
-  background-color: var(--bg);
+  background-color: #0b0b0b;
   color: var(--white);
   font-family: 'Barlow', sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   overscroll-behavior-y: none;
+}
+
+.globalGlow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(ellipse 90% 55% at 50% -4%, rgba(201, 168, 76, 0.18) 0%, rgba(141, 92, 24, 0.07) 45%, transparent 70%);
 }
 
 body.is-loading {

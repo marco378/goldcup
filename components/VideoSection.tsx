@@ -255,19 +255,53 @@ export default function VideoSection() {
           }
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 639px) {
           .videoSection {
-            padding: 40px 18px;
+            padding: 32px 16px;
             grid-template-columns: 1fr;
-            gap: 20px;
+            gap: 24px;
+          }
+
+          h2 {
+            font-size: 38px;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+          }
+
+          .titleWhite {
+            font-size: 38px;
+            letter-spacing: -0.5px;
+          }
+
+          p {
+            font-size: 14px;
+            max-width: 100%;
+          }
+
+          .videoShell {
+            transform: none;
+          }
+
+          .videoShell:hover {
+            transform: none;
+          }
+        }
+
+        @media (min-width: 640px) and (max-width: 900px) {
+          .videoSection {
+            padding: 40px 24px;
+            grid-template-columns: 1fr;
+            gap: 28px;
           }
 
           h2 {
             font-size: 56px;
+            letter-spacing: -1.0px;
           }
 
-          h2 strong {
+          .titleWhite {
             font-size: 56px;
+            letter-spacing: -1.0px;
           }
 
           p {
@@ -277,6 +311,10 @@ export default function VideoSection() {
           }
 
           .videoShell {
+            transform: none;
+          }
+
+          .videoShell:hover {
             transform: none;
           }
         }

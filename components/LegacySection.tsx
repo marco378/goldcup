@@ -226,9 +226,39 @@ export default function LegacySection() {
           }
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 639px) {
           .legacySection {
-            padding: 40px 18px;
+            padding: 32px 16px;
+          }
+
+          .headline {
+            margin-bottom: 24px;
+          }
+
+          .divider {
+            margin-bottom: 18px;
+          }
+
+          .statsGrid {
+            display: grid;
+            width: 100%;
+            grid-template-columns: 1fr;
+            row-gap: 20px;
+          }
+
+          .statNumber {
+            font-size: 40px;
+            letter-spacing: -0.3px;
+          }
+
+          .stat {
+            padding: 0 8px 0 12px;
+          }
+        }
+
+        @media (min-width: 640px) and (max-width: 900px) {
+          .legacySection {
+            padding: 40px 24px;
           }
 
           .headline {
@@ -242,12 +272,21 @@ export default function LegacySection() {
           .statsGrid {
             display: grid;
             width: 100%;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            row-gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            row-gap: 24px;
+          }
+
+          .statNumber {
+            font-size: 48px;
+            letter-spacing: -0.5px;
+          }
+
+          .stat {
+            padding: 0 12px 0 16px;
           }
 
           .statLabel {
-            font-size: 16px;
+            font-size: 14px;
           }
         }
       `}</style>

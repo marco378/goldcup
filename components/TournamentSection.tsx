@@ -198,7 +198,7 @@ export default function TournamentSection() {
 
       <style jsx>{`
         .page {
-          background: #000;
+          background: transparent;
           min-height: 100vh;
         }
 
@@ -779,16 +779,179 @@ export default function TournamentSection() {
         .btnLabelDark { color: #000; }
         .btnLabelLight { color: #fff; }
 
-        @media (max-width: 900px) {
-          .heroTitle { font-size: 52px; white-space: normal; text-align: center; padding: 0 20px; }
-          .liveSection, .liveHeader, .matchCard { width: 100%; }
-          .matchCard { height: auto; min-height: 220px; }
-          .teamsRow { gap: 20px; width: 100%; justify-content: space-between; }
-          .scoreBlock { width: auto; }
-          .scheduleSection { padding: 0 18px; }
-          .tableHeader, .tableRow { grid-template-columns: 1fr 1.5fr 1.5fr 0.7fr 1.2fr; padding: 12px 14px; }
-          .ctaSection { padding: 40px 18px; }
-          .ctaTitle { font-size: 46px; }
+        @media (max-width: 639px) {
+          .hero {
+            padding: 80px 0 0;
+          }
+
+          .heroTitle {
+            font-size: 36px;
+            letter-spacing: -0.5px;
+            white-space: normal;
+            text-align: center;
+            padding: 0 18px;
+          }
+
+          .heroSub {
+            font-size: 14px;
+            letter-spacing: -0.09px;
+            padding: 0 18px;
+          }
+
+          .liveSection {
+            width: 100%;
+            padding: 0 18px;
+          }
+
+          .liveHeader {
+            width: 100%;
+          }
+
+          .matchCard {
+            width: 100%;
+            height: auto;
+            min-height: 200px;
+          }
+
+          .teamsRow {
+            gap: 10px;
+            width: 100%;
+            justify-content: space-between;
+          }
+
+          .teamBlock {
+            width: auto;
+          }
+
+          .teamName {
+            font-size: 14px;
+            letter-spacing: -0.2px;
+            white-space: normal;
+            text-align: center;
+          }
+
+          .score {
+            font-size: 36px;
+            letter-spacing: -0.6px;
+          }
+
+          .scoreBlock {
+            width: auto;
+          }
+
+          .scheduleSection {
+            padding: 0 18px;
+            margin: 40px auto 0;
+          }
+
+          .scheduleTitle {
+            font-size: 32px;
+            letter-spacing: -0.5px;
+          }
+
+          .filterRow {
+            flex-wrap: wrap;
+            gap: 6px;
+          }
+
+          .filterBtn {
+            font-size: 12px;
+            padding: 8px 10px;
+          }
+
+          .tableHeader {
+            display: none;
+          }
+
+          .tableRow {
+            grid-template-columns: 100px 1fr;
+            grid-template-rows: auto auto;
+            padding: 12px 14px;
+            gap: 4px 8px;
+          }
+
+          .colDate {
+            grid-row: 1;
+            grid-column: 1;
+          }
+
+          .colTeam {
+            grid-row: 1;
+            grid-column: 2;
+          }
+
+          .colVenue,
+          .colTime {
+            display: none;
+          }
+
+          .colStatus {
+            grid-row: 2;
+            grid-column: 2;
+          }
+
+          .ctaSection {
+            padding: 40px 18px;
+          }
+
+          .ctaTitle {
+            font-size: 30px;
+            letter-spacing: -0.48px;
+          }
+
+          .ctaActions {
+            flex-direction: column;
+            align-items: center;
+          }
+        }
+
+        @media (min-width: 640px) and (max-width: 900px) {
+          .heroTitle {
+            font-size: 52px;
+            letter-spacing: -1.0px;
+            white-space: normal;
+            text-align: center;
+            padding: 0 20px;
+          }
+
+          .liveSection,
+          .liveHeader,
+          .matchCard {
+            width: 100%;
+          }
+
+          .matchCard {
+            height: auto;
+            min-height: 220px;
+          }
+
+          .teamsRow {
+            gap: 20px;
+            width: 100%;
+            justify-content: space-between;
+          }
+
+          .scoreBlock {
+            width: auto;
+          }
+
+          .scheduleSection {
+            padding: 0 18px;
+          }
+
+          .tableHeader,
+          .tableRow {
+            grid-template-columns: 1fr 1.5fr 1.5fr 0.7fr 1.2fr;
+            padding: 12px 14px;
+          }
+
+          .ctaSection {
+            padding: 40px 18px;
+          }
+
+          .ctaTitle {
+            font-size: 46px;
+          }
         }
 
         @media (prefers-reduced-motion: reduce) {

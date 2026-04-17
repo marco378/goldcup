@@ -73,6 +73,7 @@ export default function HeroSection() {
             </svg>
             <span className={styles.btnSponsorContent}>view Teams</span>
           </Link>
+        
 
         <div className={styles.stat}>
           <div className={styles.statNum}>42nd</div>

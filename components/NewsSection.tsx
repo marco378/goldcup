@@ -441,26 +441,101 @@ export default function NewsSection() {
         }
 
         /* RESPONSIVE */
-        @media (max-width: 900px) {
+        @media (max-width: 639px) {
           .heroBlock {
-            padding: 120px 18px 40px;
+            padding: 60px 18px 24px;
           }
+
           .heroHeading {
-            font-size: 60px;
+            font-size: 36px;
+            letter-spacing: -0.5px;
           }
+
+          .heroSub {
+            font-size: 16px;
+            letter-spacing: -0.09px;
+          }
+
           .featuredWrap,
-          .updatesWrap,
-          .dividerWrap {
+          .updatesWrap {
             padding: 0 18px;
           }
+
+          .dividerWrap {
+            padding: 0 18px;
+            gap: 12px;
+            margin: 40px auto 16px;
+          }
+
           .featuredGrid {
             flex-direction: column;
           }
+
+          .cardTitle {
+            font-size: 18px;
+            letter-spacing: -0.15px;
+          }
+
           .updatesGrid {
             grid-template-columns: 1fr;
           }
+
+          .updateTitle {
+            font-size: 18px;
+            letter-spacing: -0.15px;
+          }
+
+          .dividerText {
+            font-size: 28px;
+            letter-spacing: -0.3px;
+          }
+        }
+
+        @media (min-width: 640px) and (max-width: 900px) {
+          .heroBlock {
+            padding: 80px 40px 30px;
+          }
+
+          .heroHeading {
+            font-size: 56px;
+            letter-spacing: -1.0px;
+          }
+
+          .heroSub {
+            letter-spacing: -0.09px;
+          }
+
+          .featuredWrap,
+          .updatesWrap {
+            padding: 0 40px;
+          }
+
+          .dividerWrap {
+            padding: 0 40px;
+            gap: 20px;
+          }
+
+          .featuredGrid {
+            flex-direction: column;
+          }
+
+          .cardTitle {
+            font-size: 24px;
+            letter-spacing: -0.3px;
+          }
+
+          .updatesGrid {
+            grid-template-columns: 1fr;
+          }
+
+          .updateTitle {
+            font-size: 24px;
+            letter-spacing: -0.3px;
+          }
+
           .dividerText {
             font-size: 42px;
+            letter-spacing: -0.6px;
           }
         }
       `}</style>

@@ -153,7 +153,7 @@ export default function SponsorsSection() {
 
       <style jsx>{`
         .page {
-          background: #000;
+          background: transparent;
           min-height: 100vh;
         }
 
@@ -168,7 +168,7 @@ export default function SponsorsSection() {
         }
 
         .heroTitle {
-          font-family: var(--font-coluna), 'Barlow Condensed', sans-serif;
+          font-family: var(--font-coluna);
           font-size: 70px;
           font-style: normal;
           font-weight: 700;
@@ -594,10 +594,137 @@ export default function SponsorsSection() {
           color: #fff;
         }
 
-        @media (max-width: 1100px) {
+        @media (max-width: 639px) {
+          .hero {
+            padding: 80px 0 0;
+          }
+
+          .heroTitle {
+            font-size: 32px;
+            letter-spacing: -0.6px;
+            white-space: normal;
+            padding: 0 18px;
+          }
+
+          .heroSub {
+            font-size: 14px;
+            letter-spacing: -0.08px;
+            padding: 0 18px;
+          }
+
+          .divider {
+            gap: 12px;
+            padding: 40px 18px 24px;
+          }
+
+          .dividerTitle {
+            font-size: 28px;
+            letter-spacing: -0.3px;
+            white-space: normal;
+          }
+
+          .tiersSection {
+            padding: 0 18px;
+          }
+
+          .tierRow {
+            flex-direction: column;
+            gap: 16px;
+            align-items: flex-start;
+          }
+
+          .tierLeft {
+            width: 100%;
+          }
+
+          .tierName {
+            font-size: 24px;
+            letter-spacing: -0.25px;
+          }
+
+          .tierDesc {
+            width: 100%;
+          }
+
+          .logoGrid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            width: 100%;
+          }
+
+          .brandSection {
+            padding: 0 18px;
+            margin: 40px auto 0;
+            flex-direction: column;
+            gap: 24px;
+          }
+
+          .brandLeft {
+            width: 100%;
+          }
+
+          .brandTitle {
+            font-size: 40px;
+            letter-spacing: -0.6px;
+            width: 100%;
+          }
+
+          .featuresGrid {
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+          }
+
+          .featureCard {
+            padding: 14px 16px;
+          }
+
+          .ctaSection {
+            padding: 0 18px 40px;
+          }
+
+          .ctaTitle {
+            font-size: 30px;
+            letter-spacing: -0.48px;
+          }
+
+          .ctaActions {
+            flex-direction: column;
+            align-items: center;
+          }
+
+          .logoStrip {
+            padding: 0 18px 40px;
+          }
+        }
+
+        @media (min-width: 640px) and (max-width: 1100px) {
           .tiersSection,
           .brandSection {
             padding: 0 24px;
+          }
+
+          .heroTitle {
+            font-size: 48px;
+            letter-spacing: -1.0px;
+            white-space: normal;
+            text-align: center;
+            padding: 0 24px;
+          }
+
+          .heroSub {
+            padding: 0 24px;
+          }
+
+          .divider {
+            gap: 20px;
+            padding: 60px 24px 40px;
+          }
+
+          .dividerTitle {
+            font-size: 42px;
+            letter-spacing: -0.6px;
+            white-space: normal;
           }
 
           .tierRow {
@@ -607,6 +734,15 @@ export default function SponsorsSection() {
           }
 
           .tierLeft {
+            width: 100%;
+          }
+
+          .tierName {
+            font-size: 32px;
+            letter-spacing: -0.5px;
+          }
+
+          .tierDesc {
             width: 100%;
           }
 
@@ -623,15 +759,22 @@ export default function SponsorsSection() {
             width: 100%;
           }
 
+          .brandTitle {
+            font-size: 56px;
+            letter-spacing: -1.0px;
+            width: 100%;
+          }
+
           .featuresGrid {
             grid-template-columns: 1fr 1fr;
           }
 
-          .heroTitle {
-            font-size: 42px;
-            white-space: normal;
-            text-align: center;
-            padding: 0 20px;
+          .ctaSection {
+            padding: 0 24px 60px;
+          }
+
+          .ctaTitle {
+            font-size: 46px;
           }
         }
       `}</style>

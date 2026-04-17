@@ -6,16 +6,18 @@ import { usePathname } from 'next/navigation'
 
 export default function Navbar() {
   const [moreOpen, setMoreOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
   const pathname = usePathname()
 
   const isActive = (href: string) => pathname === href
+  const close = () => { setMenuOpen(false); setMoreOpen(false) }
 
   return (
     <nav className="nav">
 
       {/* TOP BAR (LOGO) */}
       <div className="topBar">
-        <Link href="/" style={{ textDecoration: 'none' }}>
+        <Link href="/" style={{ textDecoration: 'none' }} onClick={close}>
           <div className="logoNotch">LOGO</div>
         </Link>
       </div>
@@ -58,7 +60,37 @@ export default function Navbar() {
           </div>
 
         </div>
+
+        {/* HAMBURGER */}
+        <button
+          className="hamburger"
+          onClick={() => setMenuOpen(v => !v)}
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
+        >
+          {menuOpen ? (
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <path d="M3 3L19 19M19 3L3 19" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+            </svg>
+          ) : (
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <path d="M3 6H19M3 11H19M3 16H19" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+            </svg>
+          )}
+        </button>
       </div>
+
+      {/* MOBILE MENU */}
+      {menuOpen && (
+        <div className="mobileMenu">
+          <Link href="/" className={isActive('/') ? 'mobileLink active' : 'mobileLink'} onClick={close}>Home</Link>
+          <Link href="/tournament" className={isActive('/tournament') ? 'mobileLink active' : 'mobileLink'} onClick={close}>Tournament</Link>
+          <Link href="/teams" className={isActive('/teams') ? 'mobileLink active' : 'mobileLink'} onClick={close}>Teams</Link>
+          <Link href="/media" className={isActive('/media') ? 'mobileLink active' : 'mobileLink'} onClick={close}>Media</Link>
+          <Link href="/sponsors" className={isActive('/sponsors') ? 'mobileLink active' : 'mobileLink'} onClick={close}>Sponsors</Link>
+          <Link href="/contact" className={isActive('/contact') ? 'mobileLink active' : 'mobileLink'} onClick={close}>Contact</Link>
+        </div>
+      )}
 
       {moreOpen && (
         <div className="backdrop" onClick={() => setMoreOpen(false)} />
@@ -67,7 +99,7 @@ export default function Navbar() {
       <style jsx>{`
         .nav {
           position: fixed;
-          top: 0px;
+          top: 0;
           left: 0;
           right: 0;
           z-index: 100;
@@ -175,9 +207,106 @@ export default function Navbar() {
           background: #1a1a1a;
         }
 
+        /* HAMBURGER — hidden on desktop */
+        .hamburger {
+          display: none;
+          align-items: center;
+          justify-content: center;
+          padding: 8px;
+          position: absolute;
+          right: 16px;
+          background: none;
+          border: none;
+          cursor: pointer;
+          min-width: 44px;
+          min-height: 44px;
+        }
+
+        /* MOBILE MENU */
+        .mobileMenu {
+          background: #050505;
+          border-top: 1px solid rgba(255,255,255,0.08);
+          display: flex;
+          flex-direction: column;
+          animation: menuSlide 0.22s ease both;
+        }
+
+        .mobileLink {
+          display: block;
+          padding: 14px 24px;
+          font-size: 18px;
+          font-family: var(--font-manrope);
+          color: rgba(255,255,255,0.85);
+          text-decoration: none;
+          border-bottom: 1px solid rgba(255,255,255,0.05);
+          transition: color 0.15s ease, background 0.15s ease;
+        }
+
+        .mobileLink:hover {
+          color: #fff;
+          background: rgba(255,255,255,0.04);
+        }
+
+        .mobileLink.active {
+          color: var(--gold);
+        }
+
+        @keyframes menuSlide {
+          from { opacity: 0; transform: translateY(-6px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+
         .backdrop {
           position: fixed;
           inset: 0;
+        }
+
+        /* ── TABLET & MOBILE: show hamburger, hide desktop nav ── */
+        @media (max-width: 1023px) {
+          .navCenter {
+            display: none;
+          }
+
+          .hamburger {
+            display: flex;
+          }
+
+          .bottomBar {
+            justify-content: center;
+            position: relative;
+          }
+        }
+
+        /* ── PHONES ── */
+        @media (max-width: 639px) {
+          .logoNotch {
+            width: 140px;
+            font-size: 13px;
+            height: 44px;
+            letter-spacing: 0.15em;
+          }
+
+          .bottomBar {
+            margin-top: -8px;
+            height: 48px;
+          }
+
+          .hamburger {
+            right: 12px;
+          }
+        }
+
+        /* ── TABLETS ── */
+        @media (min-width: 640px) and (max-width: 1023px) {
+          .logoNotch {
+            width: 170px;
+            font-size: 14px;
+          }
+
+          .bottomBar {
+            margin-top: -10px;
+            height: 54px;
+          }
         }
       `}</style>
     </nav>

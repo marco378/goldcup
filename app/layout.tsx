@@ -26,6 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${coluna.variable} ${manrope.variable} is-loading`}>
+        <div className="globalGlow" aria-hidden="true" />
         {children}
       </body>
     </html>

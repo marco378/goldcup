@@ -145,7 +145,7 @@ function SnapshotCard({ card, visible }: { card: SnapshotCard; visible: boolean 
         }
 
         h3 {
-          font-family: var(--font-cloluna);
+          font-family: var(--font-coluna);
           font-weight: 800;
           font-size: clamp(28px, 2vw, 42px);
           letter-spacing: 0;
@@ -225,7 +225,7 @@ export default function TournamentSnapshot() {
 
       <style jsx>{`
         .snapshotSection {
-          background: #0a0a0a;
+          background: transparent;
           padding: 80px 60px;
           position: relative;
           overflow: hidden;
@@ -325,9 +325,49 @@ export default function TournamentSnapshot() {
           }
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 639px) {
           .snapshotSection {
-            padding: 40px 18px;
+            padding: 32px 16px;
+          }
+
+          .headingWrap {
+            gap: 10px;
+            margin-bottom: 20px;
+          }
+
+          h2,
+          h2 span {
+            font-size: 26px;
+            letter-spacing: -0.3px;
+            white-space: normal;
+            text-align: center;
+          }
+
+          .line {
+            max-width: 28px;
+            height: 1px;
+          }
+
+          .grid {
+            grid-template-columns: 1fr;
+            gap: 12px;
+          }
+
+          .leftCol,
+          .rightCol {
+            flex-direction: column;
+          }
+
+          .h180,
+          .h280,
+          .h572 {
+            height: 200px;
+          }
+        }
+
+        @media (min-width: 640px) and (max-width: 900px) {
+          .snapshotSection {
+            padding: 40px 20px;
           }
 
           .headingWrap {
@@ -335,8 +375,10 @@ export default function TournamentSnapshot() {
             margin-bottom: 20px;
           }
 
-          h2 {
-            font-size: 34px;
+          h2,
+          h2 span {
+            font-size: 38px;
+            letter-spacing: -0.6px;
             white-space: normal;
             text-align: center;
           }
@@ -356,10 +398,16 @@ export default function TournamentSnapshot() {
             gap: 12px;
           }
 
-          .h180,
-          .h280,
+          .h180 {
+            height: 200px;
+          }
+
+          .h280 {
+            height: 240px;
+          }
+
           .h572 {
-            height: 230px;
+            height: 280px;
           }
         }
       `}</style>

@@ -73,14 +73,7 @@ export default function ContactSection() {
               onChange={handleChange}
             />
 
-            {/* Button uses img overlay — same pattern as CTABanner */}
             <button type="submit" className="submitBtn" aria-label="Send Enquiry">
-              <img
-                src="/images/send-enquiry-btn.svg"
-                alt=""
-                className="btnShape"
-                aria-hidden="true"
-              />
               <span className="submitLabel">Send Enquiry</span>
             </button>
           </form>
@@ -186,9 +179,9 @@ export default function ContactSection() {
         .inner {
           max-width: 1280px;
           margin: 0 auto;
-          padding: 0 98px;
+          padding: 0 60px;
           display: flex;
-          gap: 60px;
+          gap: 50px;
           align-items: flex-start;
         }
 
@@ -208,11 +201,12 @@ export default function ContactSection() {
         }
 
         .heading {
+          display: inline-block;
           font-family: var(--font-coluna), 'Barlow Condensed', sans-serif;
           font-size: 90px;
           font-style: normal;
           font-weight: 700;
-          line-height: 0.86;
+          line-height: 1;
           letter-spacing: -1.8px;
           margin: 0;
           background: linear-gradient(182.5deg, #fffbf2 53.3%, #999691 135%);
@@ -300,7 +294,6 @@ export default function ContactSection() {
 
         /* SUBMIT BUTTON */
         .submitBtn {
-          position: relative;
           display: inline-flex;
           align-items: center;
           justify-content: center;
@@ -308,9 +301,12 @@ export default function ContactSection() {
           width: 145px;
           height: 44px;
           border: none;
-          background: transparent;
           padding: 0;
           cursor: pointer;
+          background-image: url('/images/send-enquiry-btn.svg');
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 100% 100%;
           transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
 
@@ -319,23 +315,11 @@ export default function ContactSection() {
           box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
         }
 
-        .btnShape {
-          position: absolute;
-          inset: 0;
-          width: 100%;
-          height: 100%;
-          display: block;
-          object-fit: contain; /* ✅ prevents cropping weirdness */
-          pointer-events: none; /* ✅ ensures label/click works */
-        }
-
         .submitLabel {
-          position: relative;
-          z-index: 1;
           font-family: var(--font-manrope), sans-serif;
-          font-size: 16px;
+          font-size: 14px;
           font-weight: 700;
-          letter-spacing: -0.16px;
+          letter-spacing: -0.14px;
           color: #000;
           white-space: nowrap;
         }
@@ -392,7 +376,7 @@ export default function ContactSection() {
         .contactItems {
           display: flex;
           flex-direction: column;
-          gap: 20px;
+          gap: 25px;
         }
 
         .contactItem {
@@ -416,7 +400,7 @@ export default function ContactSection() {
         .contactMeta {
           display: flex;
           flex-direction: column;
-          gap: 8px;
+          gap: 12px;
           min-width: 0;
         }
 
@@ -435,14 +419,14 @@ export default function ContactSection() {
 
         .contactValue {
           font-family: var(--font-coluna), 'Barlow Condensed', sans-serif;
-          font-size: 30px;
+          font-size: 32px;
           font-style: normal;
           font-weight: 700;
           color: white;
           line-height: 1;
           letter-spacing: -0.4px;
           margin: 0;
-          white-space: nowrap; /* ✅ prevents wrapping like the screenshot */
+          white-space: nowrap;
         }
 
         /* SOCIAL */
@@ -468,28 +452,124 @@ export default function ContactSection() {
           background: rgba(255, 255, 255, 0.22);
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 639px) {
+          .contactSection {
+            padding: 100px 0 48px;
+          }
+
           .inner {
             flex-direction: column;
             padding: 0 18px;
             gap: 40px;
           }
 
-          .heading {
-            font-size: 60px;
+          .headingBlock {
+            max-width: 100%;
           }
 
-          .rightCol {
-            width: 100%;
+          .heading {
+            font-size: 52px;
+            letter-spacing: -0.8px;
+            line-height: 1;
+          }
+
+          .subtitle {
+            font-size: 15px;
+            letter-spacing: -0.09px;
           }
 
           .row {
             flex-direction: column;
           }
 
+          .textarea {
+            height: 100px;
+          }
+
+          .rightCol {
+            width: 100%;
+            flex-direction: column;
+            gap: 28px;
+          }
+
+          .accentBar {
+            height: 120px;
+          }
+
+          .accentBarShort {
+            height: 80px;
+          }
+
+          .infoTitle {
+            font-size: 22px;
+            letter-spacing: -0.25px;
+          }
+
+          .contactValue {
+            white-space: normal;
+            font-size: 22px;
+            letter-spacing: -0.1px;
+          }
+        }
+
+        @media (min-width: 640px) and (max-width: 900px) {
+          .contactSection {
+            padding: 120px 0 60px;
+          }
+
+          .inner {
+            flex-direction: column;
+            padding: 0 40px;
+            gap: 48px;
+          }
+
+          .headingBlock {
+            max-width: 100%;
+          }
+
+          .heading {
+            font-size: 64px;
+            letter-spacing: -1.0px;
+            line-height: 0.92;
+          }
+
+          .row {
+            flex-wrap: wrap;
+          }
+
+          .field {
+            min-width: 200px;
+          }
+
+          .rightCol {
+            width: 100%;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 24px;
+          }
+
+          .infoBlock {
+            flex: 1;
+            min-width: 220px;
+          }
+
+          .accentBar {
+            height: 140px;
+          }
+
+          .accentBarShort {
+            height: 100px;
+          }
+
+          .infoTitle {
+            font-size: 28px;
+            letter-spacing: -0.3px;
+          }
+
           .contactValue {
             white-space: normal;
             font-size: 26px;
+            letter-spacing: -0.2px;
           }
         }
       `}</style>

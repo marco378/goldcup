@@ -206,7 +206,7 @@ export default function CTABanner() {
           font-family: var(--font-manrope);
           font-size: 13px;
           font-weight: 700;
-          letter-spacing: 0.04em;
+          letter-spacing: -0.01em;
           text-transform: uppercase;
           white-space: nowrap;
         }
@@ -275,18 +275,63 @@ export default function CTABanner() {
           }
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 639px) {
           .ctaSection {
-            padding: 0 18px 40px;
+            padding: 0 12px 28px;
           }
 
           .ctaBox {
-            height: 230px;
+            height: 200px;
+            border-radius: 10px;
             transform: none;
           }
 
           .ctaContent {
-            padding: 30px 14px;
+            padding: 20px 12px;
+          }
+
+          h2 {
+            font-size: 30px;
+            letter-spacing: -0.48px;
+            margin-bottom: 6px;
+          }
+
+          p {
+            font-size: 13px;
+            margin-bottom: 16px;
+          }
+
+          .ctaActions {
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+          }
+
+          .btnPrimary,
+          .btnSecondary {
+            width: 150px;
+            height: 40px;
+          }
+        }
+
+        @media (min-width: 640px) and (max-width: 900px) {
+          .ctaSection {
+            padding: 0 20px 40px;
+          }
+
+          .ctaBox {
+            height: 240px;
+            transform: none;
+          }
+
+          .ctaContent {
+            padding: 30px 16px;
+          }
+
+          h2 {
+            font-size: 48px;
+            letter-spacing: -0.95px;
           }
 
           p {
@@ -294,16 +339,16 @@ export default function CTABanner() {
             margin-bottom: 18px;
           }
 
-          .btnPrimary,
-          .btnSecondary {
-            font-size: 13px;
-            width: 166px;
-            height: 38px;
-            padding: 0 14px;
+          .ctaActions {
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
           }
 
-          h2 {
-            font-size: 46px;
+          .btnPrimary,
+          .btnSecondary {
+            width: 170px;
+            height: 42px;
           }
         }
       `}</style>

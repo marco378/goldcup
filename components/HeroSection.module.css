@@ -197,7 +197,7 @@
   color: transparent;
   margin-bottom: 0px;
   opacity: 20;
-  animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+  animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 1.2s forwards;
 }
 
 .headline {
@@ -220,24 +220,25 @@
 .headlineClip {
   display: block;
   overflow: hidden;
-  padding-bottom: 16px;
+  padding-bottom: 1px;
 }
 
 /* Each headline line slides up from below its clip container */
 .headlineLine {
   display: block;
   white-space: nowrap;
-  padding-top: 8px;
+  padding-top: 2px;
   background: linear-gradient(196deg, #FFFBF2 53.32%, #999691 135%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   transform: translateY(60%) skewY(5deg);
   opacity: 0;
-  animation: lineReveal 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.38s forwards;
+  animation: lineReveal 0.85s cubic-bezier(0.22, 1, 0.36, 1) 1.4s forwards;
 }
 
 .headlineClip:last-child .headlineLine {
-  animation-delay: 0.5s;
+  animation-delay: 0.15s;
+  animation: lineReveal 0.85s cubic-bezier(0.22, 1, 0.36, 1) 1.4s forwards;
 }
 
 .tagline {
@@ -248,7 +249,7 @@
   color: #FFFBF2;
   max-width: 500px;
   opacity: 0;
-  animation: fadeUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.68s forwards;
+  animation: fadeUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) 1.4s forwards;
 }
 
 /* CTA row: buttons slide up together, slightly after tagline */
@@ -276,16 +277,17 @@
 }
 
 .btnWatch {
-  width: 165px;
+  width: 145px;
   height: 44px;
   padding: 0 18px;
 }
 
 .btnSponsor {
-  width: 193px;
+  width: 175px;
   height: 44px;
   padding: 0 20px;
 }
+
 
 .btnWatchBg,
 .btnSponsorBg {
@@ -516,9 +518,18 @@
   }
 }
 
+/* ── TABLET ──────────────────────────────────────────────────────────────── */
+
+@media (max-width: 1023px) {
+  .content {
+    padding: 0 24px 100px 24px;
+    width: 100%;
+  }
+}
+
 /* ── MOBILE ──────────────────────────────────────────────────────────────── */
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .heroFrame {
     width: calc(100% - 16px);
     margin: 8px auto 0;
@@ -527,7 +538,7 @@
   }
 
   .content {
-    padding: 0 28px 44px 28px;
+    padding: 0 16px 60px 16px;
     gap: 32px;
     transform: none;
     width: 100%;
@@ -538,18 +549,29 @@
   }
 
   .heroDeco {
-    width: 72%;
-    opacity: 0.7;
+    width: 50%;
+    opacity: 0.35;
+  }
+
+  .c1 {
+    width: 240px;
+    height: 240px;
+  }
+
+  .c2 {
+    width: 160px;
+    height: 160px;
   }
 
   .eyebrow {
-    font-size: 22px;
-    margin-bottom: 16px;
+    font-size: 18px;
+    margin-bottom: 12px;
   }
 
   .headline {
     gap: 0;
-    font-size: clamp(52px, 15vw, 82px);
+    font-size: clamp(42px, 10vw, 90px);
+    letter-spacing: -0.5px;
     margin-bottom: 18px;
     line-height: 0.95;
   }
@@ -566,7 +588,19 @@
 
   .tagline {
     max-width: 100%;
-    font-size: 16px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .ctaRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .btnWatch,
+  .btnSponsor {
+    width: 180px;
   }
 
   .heroFrame:hover .heroImage,
