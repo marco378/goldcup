@@ -33,27 +33,17 @@ export default function Footer() {
 
       <div className="row">
         <div className="links">
-          {['Home', 'Tournament', 'Teams'].map(item => (
-            <Link key={item} href={`/${item.toLowerCase()}`} style={footerLinkStyle}>
-              {item}
-            </Link>
-          ))}
+          <Link href="/" style={footerLinkStyle}>Home</Link>
+          <Link href="/tournament" style={footerLinkStyle}>Tournament</Link>
+          <Link href="/teams" style={footerLinkStyle}>Teams</Link>
         </div>
 
         <div className="logoWrap">L O G O</div>
 
         <div className="links right">
-          {['Media', 'Sponsors'].map(item => (
-            <Link key={item} href={`/${item.toLowerCase()}`} style={footerLinkStyle}>
-              {item}
-            </Link>
-          ))}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 'auto', ...footerLinkStyle }}>
-            More
-            <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
-              <path d="M1 1L5 5L9 1" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-            </svg>
-          </div>
+          <Link href="/media" style={footerLinkStyle}>Media</Link>
+          <Link href="/sponsors" style={footerLinkStyle}>Sponsors</Link>
+          <Link href="/contact" style={footerLinkStyle}>Contact</Link>
         </div>
       </div>
 

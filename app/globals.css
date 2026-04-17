@@ -18,6 +18,8 @@
   --gray: #888888;
   --red: #E31E24;
   --border: rgba(201, 168, 76, 0.3);
+  --bg: #0b0b0b; /* or your design value */
+
 }
 
 * {

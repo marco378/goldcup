@@ -1,10 +1,25 @@
 'use client'
 
 import Link from 'next/link'
+import { useEffect, useRef, useState } from 'react'
 
 export default function CTABanner() {
+  const [isVisible, setIsVisible] = useState(false)
+  const ref = useRef<HTMLElement | null>(null)
+
+  useEffect(() => {
+    const node = ref.current
+    if (!node) return
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setIsVisible(true); obs.disconnect() } },
+      { threshold: 0.15 }
+    )
+    obs.observe(node)
+    return () => obs.disconnect()
+  }, [])
+
   return (
-    <section className="ctaSection">
+    <section ref={ref} className={`ctaSection${isVisible ? ' isVisible' : ''}`}>
       <div className="ctaBox">
         <div className="ctaBg" />
         <div className="ctaOverlay" />
@@ -50,8 +65,13 @@ export default function CTABanner() {
           justify-content: center;
           text-align: center;
           box-shadow: 0 28px 56px rgba(0, 0, 0, 0.24);
-          animation: ctaReveal 0.95s cubic-bezier(0.22, 1, 0.36, 1) both;
+          opacity: 0;
+          transform: translateY(34px) scale(0.98);
           transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .ctaSection.isVisible .ctaBox {
+          animation: ctaReveal 0.95s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
 
         .ctaBg {
@@ -99,6 +119,11 @@ export default function CTABanner() {
           -webkit-text-fill-color: transparent;
           color: transparent;
           margin-bottom: 14px;
+          opacity: 0;
+          transform: translateY(22px);
+        }
+
+        .ctaSection.isVisible h2 {
           animation: ctaTextReveal 0.8s ease 0.14s both;
         }
 
@@ -107,6 +132,11 @@ export default function CTABanner() {
           font-size: 15px;
           color: rgba(255, 255, 255, 0.85);
           margin-bottom: 44px;
+          opacity: 0;
+          transform: translateY(22px);
+        }
+
+        .ctaSection.isVisible p {
           animation: ctaTextReveal 0.8s ease 0.24s both;
         }
 
@@ -115,6 +145,11 @@ export default function CTABanner() {
           gap: 16px;
           justify-content: center;
           flex-wrap: wrap;
+          opacity: 0;
+          transform: translateY(22px);
+        }
+
+        .ctaSection.isVisible .ctaActions {
           animation: ctaTextReveal 0.8s ease 0.34s both;
         }
 
@@ -228,8 +263,13 @@ export default function CTABanner() {
           .ctaBox,
           h2,
           p,
-          .ctaActions {
+          .ctaActions,
+          .ctaSection.isVisible .ctaBox,
+          .ctaSection.isVisible h2,
+          .ctaSection.isVisible p,
+          .ctaSection.isVisible .ctaActions {
             animation: none;
+            opacity: 1;
             transform: none;
             transition: none;
           }

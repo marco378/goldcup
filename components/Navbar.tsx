@@ -1,33 +1,40 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export default function Navbar() {
   const [moreOpen, setMoreOpen] = useState(false)
+  const pathname = usePathname()
+
+  const isActive = (href: string) => pathname === href
 
   return (
     <nav className="nav">
 
-      {/* 🔝 TOP BAR (LOGO) */}
+      {/* TOP BAR (LOGO) */}
       <div className="topBar">
-        <div className="logoNotch">LOGO</div>
+        <Link href="/" style={{ textDecoration: 'none' }}>
+          <div className="logoNotch">LOGO</div>
+        </Link>
       </div>
 
-      {/* 🔽 BOTTOM BAR */}
+      {/* BOTTOM BAR */}
       <div className="bottomBar">
         <div className="navCenter">
 
           {/* LEFT */}
           <div className="leftNav">
-            <a>Home</a>
-            <a>Tournament</a>
-            <a>Teams</a>
+            <Link href="/" className={isActive('/') ? 'navLink active' : 'navLink'}>Home</Link>
+            <Link href="/tournament" className={isActive('/tournament') ? 'navLink active' : 'navLink'}>Tournament</Link>
+            <Link href="/teams" className={isActive('/teams') ? 'navLink active' : 'navLink'}>Teams</Link>
           </div>
 
           {/* RIGHT */}
           <div className="rightNav">
-            <a>Media</a>
-            <a>Sponsors</a>
+            <Link href="/media" className={isActive('/media') ? 'navLink active' : 'navLink'}>Media</Link>
+            <Link href="/sponsors" className={isActive('/sponsors') ? 'navLink active' : 'navLink'}>Sponsors</Link>
 
             <div className="moreWrap">
               <button onClick={() => setMoreOpen(v => !v)}>
@@ -36,9 +43,15 @@ export default function Navbar() {
 
               {moreOpen && (
                 <div className="dropdown">
-                  <a>Wall of Fame</a>
-                  <a>Schedule</a>
-                  <a>Contact</a>
+                  <Link href="#" className="navLink" onClick={() => setMoreOpen(false)}>Wall of Fame</Link>
+                  <Link href="/tournament" className="navLink" onClick={() => setMoreOpen(false)}>Schedule</Link>
+                  <Link
+                    href="/contact"
+                    className={isActive('/contact') ? 'navLink active' : 'navLink'}
+                    onClick={() => setMoreOpen(false)}
+                  >
+                    Contact
+                  </Link>
                 </div>
               )}
             </div>
@@ -60,7 +73,7 @@ export default function Navbar() {
           z-index: 100;
         }
 
-        /* 🔝 TOP BAR */
+        /* TOP BAR */
         .topBar {
           display: flex;
           justify-content: center;
@@ -72,28 +85,19 @@ export default function Navbar() {
           width: 200px;
           height: 50px;
           background: #050505;
-
           border: 1px solid rgba(255,255,255,0.15);
           border-top: none;
-
-          clip-path: polygon(
-            0 0,
-            100% 0,
-            85% 100%,
-            15% 100%
-          );
-
+          clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
           display: flex;
           align-items: center;
           justify-content: center;
-
           font-size: 16px;
           letter-spacing: 0.3em;
           color: white;
           font-family: var(--font-manrope);
         }
 
-        /* 🔽 BOTTOM BAR */
+        /* BOTTOM BAR */
         .bottomBar {
           margin-top: -12px;
           height: 60px;
@@ -102,12 +106,11 @@ export default function Navbar() {
           align-items: center;
         }
 
-        /* 🔥 CENTERED GROUP */
         .navCenter {
-            display: flex;
-  width: 784px; /* 🔥 from figma */
-  justify-content: space-between; /* 🔥 key */
-  align-items: center;
+          display: flex;
+          width: 784px;
+          justify-content: space-between;
+          align-items: center;
         }
 
         .leftNav,
@@ -117,15 +120,20 @@ export default function Navbar() {
           align-items: center;
         }
 
-        a {
+        .navLink {
           color: rgba(255,255,255,0.85);
           text-decoration: none;
           font-size: 16px;
           font-family: var(--font-manrope);
+          transition: color 0.2s ease;
         }
 
-        a:hover {
+        .navLink:hover {
           color: #fff;
+        }
+
+        .navLink.active {
+          color: var(--gold);
         }
 
         /* MORE */
@@ -136,9 +144,15 @@ export default function Navbar() {
         button {
           background: none;
           border: none;
-          color: white;
+          color: rgba(255,255,255,0.85);
           cursor: pointer;
           font-size: 16px;
+          font-family: var(--font-manrope);
+          transition: color 0.2s ease;
+        }
+
+        button:hover {
+          color: #fff;
         }
 
         .dropdown {
@@ -146,17 +160,18 @@ export default function Navbar() {
           top: 36px;
           right: 0;
           background: #0e0e0e;
+          border: 1px solid rgba(255,255,255,0.08);
           border-radius: 6px;
           overflow: hidden;
           min-width: 180px;
         }
 
-        .dropdown a {
+        .dropdown .navLink {
           display: block;
           padding: 10px 14px;
         }
 
-        .dropdown a:hover {
+        .dropdown .navLink:hover {
           background: #1a1a1a;
         }
 

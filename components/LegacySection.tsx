@@ -12,6 +12,7 @@ const stats = [
 export default function LegacySection() {
   const sectionRef = useRef<HTMLElement | null>(null)
   const [counts, setCounts] = useState(() => stats.map(() => 0))
+  const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
     const node = sectionRef.current
@@ -45,11 +46,12 @@ export default function LegacySection() {
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated) {
           hasAnimated = true
+          setIsVisible(true)
           runCounter()
           observer.disconnect()
         }
       },
-      { threshold: 0.35 }
+      { threshold: 0.2 }
     )
 
     observer.observe(node)
@@ -61,7 +63,7 @@ export default function LegacySection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="legacySection">
+    <section ref={sectionRef} className={`legacySection${isVisible ? ' isVisible' : ''}`}>
       <h2 className="headline">
         A platform that shaped legends like{' '}
         <span>MS Dhoni</span>
@@ -100,6 +102,11 @@ export default function LegacySection() {
           color: #fff;
           max-width: 1100px;
           margin-bottom: 48px;
+          opacity: 0;
+          transform: translateY(26px);
+        }
+
+        .isVisible .headline {
           animation: legacyReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
 
@@ -113,6 +120,11 @@ export default function LegacySection() {
           background: rgba(255, 255, 255, 0.85);
           margin-bottom: 34px;
           transform-origin: left center;
+          opacity: 0;
+          transform: scaleX(0.2);
+        }
+
+        .isVisible .divider {
           animation: dividerGrow 1s ease 0.15s both;
         }
 
@@ -130,14 +142,17 @@ export default function LegacySection() {
           padding: 0 16px 0 20px;
           transform: translateY(28px);
           opacity: 0;
-          animation: statRise 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
           transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
-        .stat:nth-child(1) { animation-delay: 0.2s; }
-        .stat:nth-child(2) { animation-delay: 0.32s; }
-        .stat:nth-child(3) { animation-delay: 0.44s; }
-        .stat:nth-child(4) { animation-delay: 0.56s; }
+        .isVisible .stat {
+          animation: statRise 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .isVisible .stat:nth-child(1) { animation-delay: 0.2s; }
+        .isVisible .stat:nth-child(2) { animation-delay: 0.32s; }
+        .isVisible .stat:nth-child(3) { animation-delay: 0.44s; }
+        .isVisible .stat:nth-child(4) { animation-delay: 0.56s; }
 
         .stat:hover {
           transform: translateY(-6px);
@@ -200,7 +215,10 @@ export default function LegacySection() {
         @media (prefers-reduced-motion: reduce) {
           .headline,
           .divider,
-          .stat {
+          .stat,
+          .isVisible .headline,
+          .isVisible .divider,
+          .isVisible .stat {
             animation: none;
             opacity: 1;
             transform: none;

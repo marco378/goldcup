@@ -1,5 +1,7 @@
 'use client'
 
+import { useEffect, useRef, useState } from 'react'
+
 interface SnapshotCard {
   id: string
   title: string
@@ -67,11 +69,11 @@ const cards: SnapshotCard[] = [
   },
 ]
 
-function SnapshotCard({ card }: { card: SnapshotCard }) {
+function SnapshotCard({ card, visible }: { card: SnapshotCard; visible: boolean }) {
   return (
     <div
-      className={`card ${card.size}`}
-      style={{ animationDelay: card.animationDelay }}
+      className={`card ${card.size}${visible ? ' isVisible' : ''}`}
+      style={visible ? { animationDelay: card.animationDelay } : {}}
     >
       <div
         className="cardBg"
@@ -93,9 +95,12 @@ function SnapshotCard({ card }: { card: SnapshotCard }) {
           height: 100%;
           transform: translateY(28px) scale(0.98);
           opacity: 0;
-          animation: cardReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
           transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
           box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+        }
+
+        .card.isVisible {
+          animation: cardReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
 
         .cardBg {
@@ -174,8 +179,27 @@ function SnapshotCard({ card }: { card: SnapshotCard }) {
 }
 
 export default function TournamentSnapshot() {
+  const [isVisible, setIsVisible] = useState(false)
+  const sectionRef = useRef<HTMLElement | null>(null)
+
+  useEffect(() => {
+    const node = sectionRef.current
+    if (!node) return
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          obs.disconnect()
+        }
+      },
+      { threshold: 0.08 }
+    )
+    obs.observe(node)
+    return () => obs.disconnect()
+  }, [])
+
   return (
-    <section className="snapshotSection">
+    <section ref={sectionRef} className={`snapshotSection${isVisible ? ' isVisible' : ''}`}>
       <div className="headingWrap">
         <div className="line" />
         <h2>
@@ -186,16 +210,16 @@ export default function TournamentSnapshot() {
 
       <div className="grid">
         <div className="leftCol">
-          <div className="h280"><SnapshotCard card={cards[0]} /></div>
-          <div className="h280"><SnapshotCard card={cards[3]} /></div>
+          <div className="h280"><SnapshotCard card={cards[0]} visible={isVisible} /></div>
+          <div className="h280"><SnapshotCard card={cards[3]} visible={isVisible} /></div>
         </div>
 
-        <div className="h572"><SnapshotCard card={cards[1]} /></div>
+        <div className="h572"><SnapshotCard card={cards[1]} visible={isVisible} /></div>
 
         <div className="rightCol">
-          <div className="h180"><SnapshotCard card={cards[2]} /></div>
-          <div className="h180"><SnapshotCard card={cards[4]} /></div>
-          <div className="h180"><SnapshotCard card={cards[5]} /></div>
+          <div className="h180"><SnapshotCard card={cards[2]} visible={isVisible} /></div>
+          <div className="h180"><SnapshotCard card={cards[4]} visible={isVisible} /></div>
+          <div className="h180"><SnapshotCard card={cards[5]} visible={isVisible} /></div>
         </div>
       </div>
 
@@ -213,6 +237,11 @@ export default function TournamentSnapshot() {
           justify-content: center;
           gap: 24px;
           margin-bottom: 48px;
+          opacity: 0;
+          transform: translateY(24px);
+        }
+
+        .isVisible .headingWrap {
           animation: snapHeadingReveal 0.8s ease both;
         }
 
@@ -289,13 +318,10 @@ export default function TournamentSnapshot() {
 
         @media (prefers-reduced-motion: reduce) {
           .headingWrap,
-          :global(.card),
-          :global(.cardBg),
-          :global(.cardContent) {
-            animation: none !important;
-            transform: none !important;
-            opacity: 1 !important;
-            transition: none !important;
+          .isVisible .headingWrap {
+            animation: none;
+            opacity: 1;
+            transform: none;
           }
         }
 
