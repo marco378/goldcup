@@ -46,32 +46,31 @@ export default function VideoSection() {
         </p>
       </div>
 
-      <div
-        onClick={() => setPlaying(!playing)}
-        className="videoShell"
-      >
-        <div className="thumb" />
-        <div className="videoFade" />
+      <div className="cardOuter">
+        <div className="videoShell" onClick={() => setPlaying(!playing)}>
+          <div className="thumb" />
+          <div className="videoFade" />
 
-        {!playing && (
-          <div className="playOverlay">
-            <div className="playButton">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
-                <path d="M8 5v14l11-7z"/>
-              </svg>
+          {!playing && (
+            <div className="playOverlay">
+              <div className="playButton">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {playing && (
-          <video
-            autoPlay
-            controls
-            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 2, pointerEvents: 'auto' }}
-          >
-            <source src="/videos/highlight.mp4" type="video/mp4" />
-          </video>
-        )}
+          {playing && (
+            <video
+              autoPlay
+              controls
+              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 2, pointerEvents: 'auto' }}
+            >
+              <source src="/videos/highlight.mp4" type="video/mp4" />
+            </video>
+          )}
+        </div>
       </div>
 
       <style jsx>{`
@@ -114,7 +113,7 @@ export default function VideoSection() {
         }
 
         .titleGold {
-          background: linear-gradient(180.21deg, #8D5C18 20.65%, #F8E5AC 39.43%);
+          background:  linear-gradient(181deg, #8D5C18 -20.65%, #F8E5AC 39.43%);
           background-clip: text;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -145,19 +144,25 @@ export default function VideoSection() {
           transition: transform 0.8s ease 0.18s, opacity 0.8s ease 0.18s;
         }
 
+        .cardOuter {
+          border: 1px solid #8d5c18;
+          border-radius: 14px;
+          padding: 10px;
+          opacity: 0;
+          transform: translateY(42px) scale(0.96);
+          box-shadow: 0 30px 60px rgba(0, 0, 0, 0.28);
+          transition: transform 0.4s ease, box-shadow 0.4s ease;
+          will-change: transform;
+        }
+
         .videoShell {
           position: relative;
-          border-radius: 18px;
+          border-radius: 10px;
           overflow: hidden;
           aspect-ratio: 16 / 9;
-          border: 2px solid rgba(201, 168, 76, 0.8);
+          border: 1px solid rgba(255, 255, 255, 0.2);
           cursor: pointer;
           background: #111;
-          opacity: 0;
-          transform: translateY(42px) scale(0.96);;
-          box-shadow: 0 30px 60px rgba(0, 0, 0, 0.28);
-          transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
-          will-change: transform;
         }
 
         .isVisible .titleLine {
@@ -174,7 +179,7 @@ export default function VideoSection() {
           transform: translateY(0);
         }
 
-        .isVisible .videoShell {
+        .isVisible .cardOuter {
           opacity: 1;
           animation: videoShellReveal 1s cubic-bezier(0.22, 1, 0.36, 1) 0.22s both;
         }
@@ -215,18 +220,18 @@ export default function VideoSection() {
           transition: transform 0.35s ease, background 0.35s ease;
         }
 
-        .videoShell:hover {
+        .cardOuter:hover {
           transform: translateY(-8px) scale(1);
-          border-color: rgba(248, 229, 172, 0.92);
+          border-color: rgba(248, 229, 172, 0.85);
           box-shadow: 0 40px 72px rgba(0, 0, 0, 0.34);
         }
 
-        .videoShell:hover .thumb {
+        .cardOuter:hover .thumb {
           transform: scale(1.06);
           filter: brightness(0.82);
         }
 
-        .videoShell:hover .playButton {
+        .cardOuter:hover .playButton {
           transform: scale(1.08);
           background: rgba(255, 255, 255, 0.58);
         }
@@ -246,7 +251,7 @@ export default function VideoSection() {
         @media (prefers-reduced-motion: reduce) {
           .titleLine,
           p,
-          .videoShell {
+          .cardOuter {
             animation: none !important;
             opacity: 1;
             transform: none;

@@ -147,7 +147,7 @@ function SnapshotCard({ card, visible }: { card: SnapshotCard; visible: boolean 
         h3 {
           font-family: var(--font-coluna);
           font-weight: 800;
-          font-size: clamp(28px, 2vw, 42px);
+          font-size: 30px;
           letter-spacing: 0;
           text-transform: uppercase;
           color: #fff;
@@ -157,7 +157,7 @@ function SnapshotCard({ card, visible }: { card: SnapshotCard; visible: boolean 
 
         p {
           font-family: var(--font-manrope);
-          font-size: 14px;
+          font-size: 12px;
           color: rgba(255, 255, 255, 0.9);
           line-height: 1.3;
         }

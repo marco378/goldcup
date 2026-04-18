@@ -132,10 +132,10 @@ export default function WallOfFameSection() {
           font-style: normal;
           font-weight: 700;
           line-height: 1;
-          letter-spacing: -0.02em;
+          letter-spacing: -1.8px;
           margin: 0;
           text-align: center;
-          background: linear-gradient(180deg, #8d5c18 20%, #f8e5ac 39%);
+          background:linear-gradient(181deg, #8D5C18 -20.65%, #F8E5AC 39.43%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -201,7 +201,7 @@ export default function WallOfFameSection() {
           letter-spacing: -0.02em;
           margin: 0;
           max-width: 380px;
-          background: linear-gradient(180deg, #8d5c18 20%, #f8e5ac 99%);
+          background: linear-gradient(181deg, #8D5C18 -20.65%, #F8E5AC 99.5%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -281,7 +281,7 @@ export default function WallOfFameSection() {
           margin: 0;
         }
         .goldText {
-          background: linear-gradient(180deg, #8d5c18 20%, #f8e5ac 99%);
+          background: linear-gradient(181deg, #8D5C18 -20.65%, #F8E5AC 99.5%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -343,7 +343,7 @@ export default function WallOfFameSection() {
           font-weight: 700;
           line-height: 1;
           letter-spacing: -0.02em;
-          background: linear-gradient(180deg, #8d5c18 20%, #f8e5ac 99%);
+          background:linear-gradient(181deg, #8D5C18 -20.65%, #F8E5AC 99.5%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;

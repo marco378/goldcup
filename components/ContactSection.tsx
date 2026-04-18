@@ -190,7 +190,7 @@ export default function ContactSection() {
           background-clip: text;
         }
         .headingGold {
-          background: linear-gradient(180deg, #8d5c18 20%, #f8e5ac 39%);
+          background: linear-gradient(181deg, #8D5C18 -20.65%, #F8E5AC 39.43%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -356,7 +356,7 @@ export default function ContactSection() {
           flex-direction: column;
           gap: 14px;
           flex: 1;
-          min-width: 0;
+          min-width: 300px;
         }
         .sidebarTitle {
           font-family: var(--font-coluna), 'Coluna', sans-serif;
@@ -367,7 +367,7 @@ export default function ContactSection() {
           letter-spacing: -0.01em;
           margin: 0;
           text-transform: uppercase;
-          background: linear-gradient(180deg, #8d5c18 20%, #f8e5ac 99%);
+          background: linear-gradient(181deg, #8D5C18 -20.65%, #F8E5AC 99.5%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -384,7 +384,7 @@ export default function ContactSection() {
         }
         .iconTile {
           flex-shrink: 0;
-          width: 54px;
+          width: 64px;
           height: 54px;
           background: rgba(255, 255, 255, 0.14);
           border-radius: 4px;
@@ -397,6 +397,12 @@ export default function ContactSection() {
         .iconTile:hover {
           background: rgba(255, 255, 255, 0.22);
         }
+        .iconTile img {
+          width: 24px;
+          height: 24px;
+          object-fit: contain;
+          flex-shrink: 0;
+        }
         .contactText {
           display: flex;
           flex-direction: column;
@@ -408,7 +414,7 @@ export default function ContactSection() {
           font-weight: 400;
           letter-spacing: 0.2em;
           text-transform: uppercase;
-          background: linear-gradient(180deg, #8d5c18 20%, #f8e5ac 99%);
+          background: linear-gradient(181deg, #8D5C18 -20.65%, #F8E5AC 99.5%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;

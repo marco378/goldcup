@@ -78,7 +78,7 @@ export default function CTABanner() {
           position: absolute;
           inset: 0;
           background: url('/images/optimized/cta-banner-bg.jpg') lightgray 50% / cover no-repeat;
-          filter: brightness(0.65);
+          filter: brightness(0.55);
           z-index: 0;
           transition: transform 0.5s ease, filter 0.5s ease;
         }
@@ -283,7 +283,7 @@ export default function CTABanner() {
 
         .ctaBox:hover .ctaBg {
           transform: scale(1.05);
-          filter: brightness(0.72);
+          filter: brightness(0.42);
         }
 
         @keyframes ctaReveal {

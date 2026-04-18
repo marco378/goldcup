@@ -9,7 +9,7 @@ const teams = [
   { name: 'Northern Stars', style: 'Bowling', group: 'Group A', players: ['Pradeep Kumar', 'Suresh Yadav', 'Arjun Singh'], roles: ['Bowl', 'Bowl', 'Bat'] },
   { name: 'Meerut Titans', style: 'All-Round', group: 'Group A', players: ['Karan Mehta', 'Dev Sharma', 'Anil Patel'], roles: ['AR', 'Bat', 'Bowl'] },
   { name: 'Golden Eagles', style: 'Batting', group: 'Group A', players: ['Ramesh Gupta', 'Mohan Das', 'Vijay Rao'], roles: ['Bat', 'AR', 'Bowl'] },
-  { name: 'Thunder XI', style: 'Bowling', group: 'Group A', players: ['Ravi Kumar', 'Sanjay Shah', 'Deepak Nair'], roles: ['Bowl', 'Bat', 'AR'] },
+  { name: 'Thunder XI', style: 'Bowling', group: 'Group B', players: ['Ravi Kumar', 'Sanjay Shah', 'Deepak Nair'], roles: ['Bowl', 'Bat', 'AR'] },
   { name: 'Warrior Squad', style: 'All-Round', group: 'Group A', players: ['Ankit Singh', 'Sunil Mehta', 'Rakesh Das'], roles: ['AR', 'Bowl', 'Bat'] },
 ]
 
@@ -271,12 +271,12 @@ export default function TeamsAndPlayersSection() {
           font-style: normal;
           font-weight: 700;
           line-height: 1;
-          letter-spacing: -0.02em;
+          letter-spacing: -1px;
           color: #fff;
           margin: 0;
         }
         .goldText {
-          background: linear-gradient(180deg, #8d5c18 20%, #f8e5ac 39%);
+          background:  linear-gradient(181deg, #8D5C18 -20.65%, #F8E5AC 99.5%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -390,7 +390,7 @@ export default function TeamsAndPlayersSection() {
           font-style: normal;
           font-weight: 700;
           line-height: 1;
-          letter-spacing: -0.02em;
+          letter-spacing: -1.2px;
           color: #fff;
           margin: 0;
           text-align: center;

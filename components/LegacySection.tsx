@@ -117,10 +117,12 @@ export default function LegacySection() {
         .divider {
           width: 100%;
           height: 1px;
-          background: rgba(255, 255, 255, 0.85);
+          background: rgba(255, 255, 255, 0.2);
           margin-bottom: 34px;
           transform-origin: left center;
-          opacity: 0;
+          stroke="white";
+          stroke-opacity="0.2";
+          opacity: 0.2;
           transform: scaleX(0.2);
         }
 

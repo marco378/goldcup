@@ -66,21 +66,20 @@ export default function Footer() {
           align-items: center;
           width: 100%;
           overflow: hidden;
-          padding: 20px 40px 20px;
+          padding: 0;
         }
 
         .watermark {
           color: rgba(255, 255, 255, 0.1);
           font-family: var(--font-coluna),'Coluna', 'Barlow Condensed', sans-serif;
-          font-size: min(9.15vw, 172px);
+          font-size: 240px;
           font-style: normal;
           font-weight: 700;
-          line-height: 0.86;
-          letter-spacing: -0.001em;
+          line-height: 1;
+          letter-spacing: -4px;
           margin: 0;
           text-align: center;
           white-space: nowrap;
-          max-width: 100%;
           opacity: 0;
           transform: translateY(115%) skewY(4deg);
           transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s ease;
@@ -179,12 +178,13 @@ export default function Footer() {
           }
 
           .watermarkWrap {
-            padding: 20px 16px;
+            padding: 0;
           }
 
           .watermark {
-            font-size: min(11.4vw, 72px);
-            white-space: normal;
+            font-size: clamp(72px, 22vw, 110px);
+            letter-spacing: -2px;
+            white-space: nowrap;
           }
         }
 
@@ -207,12 +207,13 @@ export default function Footer() {
           }
 
           .watermarkWrap {
-            padding: 34px 18px 26px;
+            padding: 0;
           }
 
           .watermark {
-            font-size: min(11.4vw, 72px);
-            white-space: normal;
+            font-size: clamp(80px, 16vw, 140px);
+            letter-spacing: -2px;
+            white-space: nowrap;
           }
         }
       `}</style>

@@ -524,7 +524,7 @@ export default function TournamentSection() {
         }
 
         .filterBtn {
-          background: #191919;
+          background: #0A0A0A;
           border: 1px solid rgba(255, 255, 255, 0.2);
           border-radius: 4px;
           padding: 12px 15px;
@@ -570,7 +570,7 @@ export default function TournamentSection() {
           gap: 0;
           align-items: center;
           padding: 18px 36px;
-          background: #171717;
+          background: #0A0A0A;
           border: 1px solid rgba(255, 255, 255, 0.1);
           margin-bottom: -1px;
           opacity: 0;
@@ -704,7 +704,7 @@ export default function TournamentSection() {
           font-style: normal;
           font-weight: 700;
           line-height: 1;
-          letter-spacing: -1.6px;
+          letter-spacing: -1.8px;
           background: linear-gradient(180.06deg, #8d5c18 20.6%, #f8e5ac 39.4%);
           background-clip: text;
           -webkit-background-clip: text;
@@ -719,7 +719,7 @@ export default function TournamentSection() {
           font-size: 16px;
           font-weight: 400;
           line-height: 1.4;
-          letter-spacing: -0.16px;
+          letter-spacing: -0.1px;
           color: rgba(255, 255, 255, 0.8);
           margin: 0;
         }

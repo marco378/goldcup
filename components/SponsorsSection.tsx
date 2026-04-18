@@ -1,5 +1,7 @@
 'use client'
 
+import { useEffect, useRef, useState } from 'react'
+
 const TIERS = [
   {
     tier: 'TIER 1',
@@ -43,6 +45,20 @@ const FEATURES = [
 const LATEST_LOGOS = Array(13).fill('LOGO 1')
 
 export default function SponsorsSection() {
+  const [ctaVisible, setCtaVisible] = useState(false)
+  const ctaRef = useRef<HTMLElement | null>(null)
+
+  useEffect(() => {
+    const node = ctaRef.current
+    if (!node) return
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setCtaVisible(true); obs.disconnect() } },
+      { threshold: 0.15 }
+    )
+    obs.observe(node)
+    return () => obs.disconnect()
+  }, [])
+
   return (
     <div className="page">
 
@@ -132,7 +148,7 @@ export default function SponsorsSection() {
       </div>
 
       {/* ── CTA BANNER ── */}
-      <section className="ctaSection">
+      <section ref={ctaRef} className={`ctaSection${ctaVisible ? ' isVisible' : ''}`}>
         <div className="ctaBox">
           <div className="ctaBg" />
           <div className="ctaOverlay" />
@@ -174,7 +190,7 @@ export default function SponsorsSection() {
           font-weight: 700;
           line-height: 1;
           letter-spacing: -1.4px;
-          background: linear-gradient(180.04deg, #8d5c18 20.6%, #f8e5ac 39.4%);
+          background: linear-gradient(181deg, #8D5C18 -20.65%, #F8E5AC 39.43%);
           background-clip: text;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -218,7 +234,7 @@ export default function SponsorsSection() {
           line-height: 1;
           letter-spacing: -1.2px;
           text-align: center;
-          background: linear-gradient(180.12deg, #8d5c18 20.6%, #f8e5ac 99.5%);
+          background: linear-gradient(181deg, #8D5C18 -20.65%, #F8E5AC 99.5%);
           background-clip: text;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -273,7 +289,7 @@ export default function SponsorsSection() {
           font-weight: 400;
           letter-spacing: 2.4px;
           line-height: 1;
-          background: linear-gradient(180.13deg, #8d5c18 20.6%, #f8e5ac 99.5%);
+          background: linear-gradient(181deg, #8D5C18 -20.65%, #F8E5AC 99.5%);;
           background-clip: text;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -288,7 +304,7 @@ export default function SponsorsSection() {
           font-style: normal;
           font-weight: 700;
           line-height: 1;
-          background: linear-gradient(180.13deg, #8d5c18 20.6%, #f8e5ac 99.5%);
+          background:linear-gradient(181deg, #8D5C18 -20.65%, #F8E5AC 99.5%);
           background-clip: text;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -338,10 +354,10 @@ export default function SponsorsSection() {
         /* ── BRAND SECTION ── */
         .brandSection {
           max-width: 1280px;
-          margin: 80px auto 0;
-          padding: 0 70px;
+          margin: 160px auto 121px;
+          padding: 0 10px;
           display: flex;
-          gap: 144px;
+          gap: 220px;
           align-items: center;
         }
 
@@ -371,7 +387,7 @@ export default function SponsorsSection() {
         }
 
         .brandTitleGold {
-          background: linear-gradient(180.24deg, #8d5c18 20.6%, #f8e5ac 99.5%);
+          background: linear-gradient(181deg, #8D5C18 -20.65%, #F8E5AC 99.5%);
           background-clip: text;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -484,6 +500,24 @@ export default function SponsorsSection() {
           align-items: center;
           justify-content: center;
           text-align: center;
+          box-shadow: 0 28px 56px rgba(0, 0, 0, 0.24);
+          opacity: 0;
+          transform: translateY(34px) scale(0.98);
+          transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .isVisible .ctaBox {
+          animation: ctaReveal 0.95s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        .ctaBox:hover {
+          transform: translateY(-6px);
+          box-shadow: 0 38px 72px rgba(0, 0, 0, 0.32);
+        }
+
+        .ctaBox:hover .ctaBg {
+          transform: scale(1.05);
+          filter: brightness(0.42);
         }
 
         .ctaBg {
@@ -492,6 +526,7 @@ export default function SponsorsSection() {
           background: url('/images/optimized/cta-banner-bg.jpg') center / cover no-repeat;
           filter: brightness(0.65);
           z-index: 0;
+          transition: transform 0.5s ease, filter 0.5s ease;
         }
 
         .ctaOverlay {
@@ -517,13 +552,19 @@ export default function SponsorsSection() {
           font-weight: 700;
           line-height: 1;
           letter-spacing: -1.6px;
-          background: linear-gradient(180.09deg, #8d5c18 20.6%, #f8e5ac 39.4%);
+          background:linear-gradient(181deg, #8D5C18 -20.65%, #F8E5AC 39.43%);
           background-clip: text;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           color: transparent;
           display: inline-block;
           margin: 0;
+          opacity: 0;
+          transform: translateY(22px);
+        }
+
+        .isVisible .ctaTitle {
+          animation: ctaTextReveal 0.8s ease 0.14s both;
         }
 
         .ctaSub {
@@ -534,6 +575,12 @@ export default function SponsorsSection() {
           letter-spacing: -0.16px;
           color: rgba(255, 255, 255, 0.8);
           margin: 0;
+          opacity: 0;
+          transform: translateY(22px);
+        }
+
+        .isVisible .ctaSub {
+          animation: ctaTextReveal 0.8s ease 0.24s both;
         }
 
         .ctaActions {
@@ -541,6 +588,22 @@ export default function SponsorsSection() {
           gap: 14px;
           align-items: center;
           margin-top: 29px;
+          opacity: 0;
+          transform: translateY(22px);
+        }
+
+        .isVisible .ctaActions {
+          animation: ctaTextReveal 0.8s ease 0.34s both;
+        }
+
+        @keyframes ctaReveal {
+          from { opacity: 0; transform: translateY(34px) scale(0.98); }
+          to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes ctaTextReveal {
+          from { opacity: 0; transform: translateY(22px); }
+          to   { opacity: 1; transform: translateY(0); }
         }
 
         .btnPrimary,
@@ -555,6 +618,13 @@ export default function SponsorsSection() {
           border: none;
           background: transparent;
           cursor: pointer;
+          transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .btnPrimary:hover,
+        .btnSecondary:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 16px 28px rgba(0, 0, 0, 0.24);
         }
 
         .btnPrimary::before,
@@ -563,6 +633,7 @@ export default function SponsorsSection() {
           position: absolute;
           inset: 0;
           z-index: 0;
+          pointer-events: none;
           background-repeat: no-repeat;
           background-position: center;
           background-size: 100% 100%;
@@ -576,22 +647,62 @@ export default function SponsorsSection() {
           background-image: url('/images/cta-btn-outline.svg');
         }
 
+        .btnPrimary::after,
+        .btnSecondary::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+          pointer-events: none;
+          opacity: 0;
+          transition: opacity 0.25s ease;
+        }
+
+        .btnPrimary::after {
+          background: #000;
+          -webkit-mask: url('/images/cta-btn-fill.svg') no-repeat center / 100% 100%;
+          mask: url('/images/cta-btn-fill.svg') no-repeat center / 100% 100%;
+        }
+
+        .btnPrimary:hover::after {
+          opacity: 1;
+        }
+
+        .btnSecondary::after {
+          background: #fff;
+          -webkit-mask: url('/images/cta-btn-fill.svg') no-repeat center / 100% 100%;
+          mask: url('/images/cta-btn-fill.svg') no-repeat center / 100% 100%;
+        }
+
+        .btnSecondary:hover::after {
+          opacity: 1;
+        }
+
         .btnLabel {
           position: relative;
-          z-index: 1;
+          z-index: 2;
           font-family: var(--font-manrope), sans-serif;
           font-size: 16px;
           font-weight: 700;
           letter-spacing: -0.16px;
           white-space: nowrap;
+          transition: color 0.25s ease;
         }
 
         .btnLabelDark {
           color: #000;
         }
 
+        .btnPrimary:hover .btnLabelDark {
+          color: #fff;
+        }
+
         .btnLabelLight {
           color: #fff;
+        }
+
+        .btnSecondary:hover .btnLabelLight {
+          color: #000;
         }
 
         @media (max-width: 639px) {
