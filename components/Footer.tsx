@@ -72,7 +72,7 @@ export default function Footer() {
         .watermark {
           color: rgba(255, 255, 255, 0.1);
           font-family: var(--font-coluna),'Coluna', 'Barlow Condensed', sans-serif;
-          font-size: 240px;
+          font-size: 218px;
           font-style: normal;
           font-weight: 700;
           line-height: 1;
