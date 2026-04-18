@@ -102,10 +102,8 @@ export default function VideoSection() {
         .titleClip {
           display: block;
           overflow: hidden;
-          
-          padding-bottom: 12px;
-          padding-top: 6px;
-
+          padding-bottom: 4px;
+          padding-top: 4px;
         }
 
         .titleLine {
@@ -116,7 +114,7 @@ export default function VideoSection() {
         }
 
         .titleGold {
-          background: linear-gradient(181deg, #8D5C18 -20.65%, #F8E5AC 39.43%);
+          background: linear-gradient(180.21deg, #8D5C18 20.65%, #F8E5AC 39.43%);
           background-clip: text;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;

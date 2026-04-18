@@ -242,8 +242,9 @@ export default function LegacySection() {
           .statsGrid {
             display: grid;
             width: 100%;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(2, 1fr);
             row-gap: 20px;
+            column-gap: 16px;
           }
 
           .statNumber {

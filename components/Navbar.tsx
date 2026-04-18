@@ -1,39 +1,46 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 export default function Navbar() {
-  const [moreOpen, setMoreOpen] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [moreOpen, setMoreOpen] = useState(false)
   const pathname = usePathname()
 
   const isActive = (href: string) => pathname === href
-  const close = () => { setMenuOpen(false); setMoreOpen(false) }
+
+  const closeAll = () => {
+    setMenuOpen(false)
+    setMoreOpen(false)
+  }
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+  }, [menuOpen])
 
   return (
     <nav className="nav">
 
-      {/* TOP BAR (LOGO) */}
+      {/* ===== TOP BAR ===== */}
       <div className="topBar">
-        <Link href="/" style={{ textDecoration: 'none' }} onClick={close}>
+        <Link href="/" onClick={closeAll}>
           <div className="logoNotch">LOGO</div>
         </Link>
       </div>
 
-      {/* BOTTOM BAR */}
+      {/* ===== BOTTOM BAR ===== */}
       <div className="bottomBar">
+
         <div className="navCenter">
 
-          {/* LEFT */}
           <div className="leftNav">
             <Link href="/" className={isActive('/') ? 'navLink active' : 'navLink'}>Home</Link>
             <Link href="/tournament" className={isActive('/tournament') ? 'navLink active' : 'navLink'}>Tournament</Link>
             <Link href="/teamsandplayers" className={isActive('/teamsandplayers') ? 'navLink active' : 'navLink'}>Teams</Link>
           </div>
 
-          {/* RIGHT */}
           <div className="rightNav">
             <Link href="/media" className={isActive('/media') ? 'navLink active' : 'navLink'}>Media</Link>
             <Link href="/sponsors" className={isActive('/sponsors') ? 'navLink active' : 'navLink'}>Sponsors</Link>
@@ -45,58 +52,65 @@ export default function Navbar() {
 
               {moreOpen && (
                 <div className="dropdown">
-                  <Link href="/walloffame" className="navLink" onClick={() => setMoreOpen(false)}>Wall of Fame</Link>
-                  <Link href="/tournament" className="navLink" onClick={() => setMoreOpen(false)}>Schedule</Link>
-                  <Link
-                    href="/contact"
-                    className={isActive('/contact') ? 'navLink active' : 'navLink'}
-                    onClick={() => setMoreOpen(false)}
-                  >
-                    Contact
-                  </Link>
+                  <Link href="/walloffame" onClick={closeAll}>Wall of Fame</Link>
+                  <Link href="/tournament" onClick={closeAll}>Schedule</Link>
+                  <Link href="/contact" onClick={closeAll}>Contact</Link>
                 </div>
               )}
             </div>
+
           </div>
 
         </div>
 
-        {/* HAMBURGER */}
-        <button
-          className="hamburger"
-          onClick={() => setMenuOpen(v => !v)}
-          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={menuOpen}
-        >
-          {menuOpen ? (
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-              <path d="M3 3L19 19M19 3L3 19" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-            </svg>
-          ) : (
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-              <path d="M3 6H19M3 11H19M3 16H19" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-            </svg>
-          )}
+        {/* ===== HAMBURGER ===== */}
+        <button className="hamburger" onClick={() => setMenuOpen(true)}>
+          ☰
         </button>
+
       </div>
 
-      {/* MOBILE MENU */}
+      {/* ===== MOBILE OVERLAY ===== */}
       {menuOpen && (
-        <div className="mobileMenu">
-          <Link href="/" className={isActive('/') ? 'mobileLink active' : 'mobileLink'} onClick={close}>Home</Link>
-          <Link href="/tournament" className={isActive('/tournament') ? 'mobileLink active' : 'mobileLink'} onClick={close}>Tournament</Link>
-          <Link href="/teamsandplayers" className={isActive('/teamsandplayers') ? 'mobileLink active' : 'mobileLink'} onClick={close}>Teams</Link>
-          <Link href="/media" className={isActive('/media') ? 'mobileLink active' : 'mobileLink'} onClick={close}>Media</Link>
-          <Link href="/sponsors" className={isActive('/sponsors') ? 'mobileLink active' : 'mobileLink'} onClick={close}>Sponsors</Link>
-          <Link href="/walloffame" className={isActive('/walloffame') ? 'mobileLink active' : 'mobileLink'} onClick={close}>Wall of Fame</Link>
-          <Link href="/contact" className={isActive('/contact') ? 'mobileLink active' : 'mobileLink'} onClick={close}>Contact</Link>
-        </div>
+        <>
+          <div className="overlay" onClick={closeAll} />
+
+          <div className="drawer">
+
+            {/* ===== HEADER ===== */}
+            <div className="drawerHeader">
+              <Link href="/" onClick={closeAll} className="drawerLogo">GOLD CUP</Link>
+              <button className="drawerClose" onClick={closeAll}>✕</button>
+            </div>
+
+            {/* ===== ROW + DIVIDER MENU ===== */}
+            <div className="drawerLinks">
+              {[
+                { href: '/', label: 'Home' },
+                { href: '/tournament', label: 'Tournament' },
+                { href: '/teamsandplayers', label: 'Teams' },
+                { href: '/media', label: 'Media' },
+                { href: '/sponsors', label: 'Sponsors' },
+                { href: '/walloffame', label: 'Wall of Fame' },
+                { href: '/contact', label: 'Contact' },
+              ].map((item, i) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={closeAll}
+                  className={`drawerLink${isActive(item.href) ? ' mobileActive' : ''}`}
+                  style={{ animationDelay: `${i * 0.05}s` }}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+
+          </div>
+        </>
       )}
 
-      {moreOpen && (
-        <div className="backdrop" onClick={() => setMoreOpen(false)} />
-      )}
-
+      {/* ===== STYLES ===== */}
       <style jsx>{`
         .nav {
           position: fixed;
@@ -106,12 +120,9 @@ export default function Navbar() {
           z-index: 100;
         }
 
-        /* TOP BAR */
         .topBar {
           display: flex;
           justify-content: center;
-          position: relative;
-          z-index: 2;
         }
 
         .logoNotch {
@@ -124,13 +135,9 @@ export default function Navbar() {
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 16px;
-          letter-spacing: 0.3em;
           color: white;
-          font-family: var(--font-manrope);
         }
 
-        /* BOTTOM BAR */
         .bottomBar {
           margin-top: -12px;
           height: 60px;
@@ -153,165 +160,202 @@ export default function Navbar() {
           align-items: center;
         }
 
-        .navLink {
+        :global(.navLink) {
           color: rgba(255,255,255,0.85);
           text-decoration: none;
-          font-size: 16px;
-          font-family: var(--font-manrope);
-          transition: color 0.2s ease;
+          font-family: var(--font-manrope), sans-serif;
+          font-size: 14px;
+          font-weight: 500;
         }
 
-        .navLink:hover {
-          color: #fff;
+        :global(.navLink.active) {
+          color: var(--gold-light);
         }
 
-        .navLink.active {
-          color: var(--gold);
-        }
-
-        /* MORE */
         .moreWrap {
           position: relative;
         }
 
-        button {
+        .moreWrap button {
           background: none;
           border: none;
           color: rgba(255,255,255,0.85);
+          font-family: var(--font-manrope), sans-serif;
+          font-size: 14px;
+          font-weight: 500;
           cursor: pointer;
-          font-size: 16px;
-          font-family: var(--font-manrope);
-          transition: color 0.2s ease;
-        }
-
-        button:hover {
-          color: #fff;
+          padding: 0;
         }
 
         .dropdown {
           position: absolute;
-          top: 36px;
+          top: calc(100% + 12px);
           right: 0;
-          background: #0e0e0e;
-          border: 1px solid rgba(255,255,255,0.08);
-          border-radius: 6px;
+          background: rgba(10,10,10,0.96);
+          border: 1px solid rgba(255,255,255,0.12);
+          border-radius: 8px;
+          min-width: 160px;
           overflow: hidden;
-          min-width: 180px;
-          display: flex; 
-          z-index: 200;         /* ✅ ADD */
-  flex-direction: column;
+          display: flex;
+          flex-direction: column;
         }
 
-        .dropdown .navLink {
+        .dropdown :global(a) {
           display: block;
-          padding: 10px 14px;
-          white-space: nowrap;
+          padding: 12px 18px;
+          font-family: var(--font-manrope), sans-serif;
+          font-size: 14px;
+          font-weight: 400;
+          color: rgba(255,255,255,0.80);
+          text-decoration: none;
+          border-bottom: 1px solid rgba(255,255,255,0.08);
+          transition: background 150ms ease, color 150ms ease;
         }
 
-        .dropdown .navLink:hover {
-          background: #1a1a1a;
+        .dropdown :global(a:last-child) {
+          border-bottom: none;
         }
 
-        /* HAMBURGER — hidden on desktop */
+        .dropdown :global(a:hover) {
+          background: rgba(255,255,255,0.06);
+          color: #fff;
+        }
+
         .hamburger {
           display: none;
-          align-items: center;
-          justify-content: center;
-          padding: 8px;
           position: absolute;
           right: 16px;
           background: none;
           border: none;
+          font-size: 22px;
+          color: white;
           cursor: pointer;
-          min-width: 44px;
-          min-height: 44px;
         }
 
-        /* MOBILE MENU */
-        .mobileMenu {
-          background: #050505;
-          border-top: 1px solid rgba(255,255,255,0.08);
-          display: flex;
-          flex-direction: column;
-          animation: menuSlide 0.22s ease both;
-        }
-
-        .mobileLink {
-          display: block;
-          padding: 14px 24px;
-          font-size: 18px;
-          font-family: var(--font-manrope);
-          color: rgba(255,255,255,0.85);
-          text-decoration: none;
-          border-bottom: 1px solid rgba(255,255,255,0.05);
-          transition: color 0.15s ease, background 0.15s ease;
-        }
-
-        .mobileLink:hover {
-          color: #fff;
-          background: rgba(255,255,255,0.04);
-        }
-
-        .mobileLink.active {
-          color: var(--gold);
-        }
-
-        @keyframes menuSlide {
-          from { opacity: 0; transform: translateY(-6px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-
-        .backdrop {
+        /* ===== OVERLAY ===== */
+        .overlay {
           position: fixed;
           inset: 0;
-          z-index: 100;
+          background: rgba(0,0,0,0.55);
+          backdrop-filter: blur(10px);
         }
 
-        /* ── TABLET & MOBILE: show hamburger, hide desktop nav ── */
+        /* ===== DRAWER BASE ===== */
+        .drawer {
+          position: fixed;
+          inset: 0;
+          background: rgba(10, 10, 10, 0.97);
+          display: flex;
+          flex-direction: column;
+          animation: drawerIn 380ms cubic-bezier(.2,.8,.2,1);
+          overflow-y: auto;
+        }
+
+        .drawer::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          background:
+            radial-gradient(900px circle at 10% 0%, rgba(255,215,0,0.12), transparent 45%);
+          opacity: 0.9;
+        }
+
+        /* ===== DRAWER HEADER ===== */
+        .drawerHeader {
+          padding: 52px 28px 52px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          position: relative;
+          z-index: 1;
+        }
+
+        :global(.drawerLogo) {
+          font-family: var(--font-coluna), 'Barlow Condensed', sans-serif;
+          font-size: 52px;
+          font-weight: 900;
+          line-height: 1;
+          letter-spacing: -1px;
+          text-transform: uppercase;
+          color: rgba(255,255,255,0.95);
+          text-decoration: none;
+        }
+
+        .drawerClose {
+          width: 44px;
+          height: 44px;
+          border-radius: 12px;
+          border: 1px solid rgba(255,255,255,0.16);
+          background: rgba(255,255,255,0.04);
+          color: rgba(255,255,255,0.80);
+          cursor: pointer;
+          font-size: 18px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+        }
+
+        /* ===== LINKS ===== */
+        .drawerLinks {
+          padding: 0 28px;
+          display: flex;
+          flex-direction: column;
+          position: relative;
+          z-index: 1;
+          border-top: 1px solid rgba(255,255,255,0.10);
+        }
+
+        .drawerLinks :global(a) {
+          display: block;
+          padding: 28px 0;
+          border-bottom: 1px solid rgba(255,255,255,0.10);
+          font-family: var(--font-manrope), sans-serif;
+          font-size: 30px;
+          font-weight: 300;
+          letter-spacing: -0.3px;
+          color: rgba(255,255,255,0.72);
+          text-decoration: none;
+          opacity: 0;
+          transform: translateY(12px);
+          animation: menuRowIn 400ms cubic-bezier(.2,.8,.2,1) forwards;
+          transition: color 180ms ease;
+        }
+
+        .drawerLinks :global(a:last-child) {
+          border-bottom: none;
+        }
+
+        .drawerLinks :global(a:hover) {
+          color: #fff;
+        }
+
+        .drawerLinks :global(a.mobileActive) {
+          color: var(--gold-light);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes drawerIn {
+          from { transform: translateX(20px); opacity: 0; }
+          to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes menuRowIn {
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 1023px) {
           .navCenter {
             display: none;
           }
 
           .hamburger {
-            display: flex;
-          }
-
-          .bottomBar {
-            justify-content: center;
-            position: relative;
-          }
-        }
-
-        /* ── PHONES ── */
-        @media (max-width: 639px) {
-          .logoNotch {
-            width: 140px;
-            font-size: 13px;
-            height: 44px;
-            letter-spacing: 0.15em;
-          }
-
-          .bottomBar {
-            margin-top: -8px;
-            height: 48px;
-          }
-
-          .hamburger {
-            right: 12px;
-          }
-        }
-
-        /* ── TABLETS ── */
-        @media (min-width: 640px) and (max-width: 1023px) {
-          .logoNotch {
-            width: 170px;
-            font-size: 14px;
-          }
-
-          .bottomBar {
-            margin-top: -10px;
-            height: 54px;
+            display: block;
           }
         }
       `}</style>

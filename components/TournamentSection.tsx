@@ -860,29 +860,48 @@ export default function TournamentSection() {
           .matchCard {
             width: 100%;
             height: auto;
-            min-height: 200px;
+            min-height: 180px;
+          }
+
+          .matchCardContent {
+            gap: 20px;
+            padding: 16px;
           }
 
           .teamsRow {
-            gap: 10px;
+            gap: 8px;
             width: 100%;
             justify-content: space-between;
           }
 
           .teamBlock {
             width: auto;
+            gap: 8px;
+          }
+
+          .teamLogo {
+            width: 44px;
+            height: 44px;
           }
 
           .teamName {
-            font-size: 14px;
+            font-size: 13px;
             letter-spacing: -0.2px;
             white-space: normal;
             text-align: center;
           }
 
+          .teamStatus {
+            font-size: 12px;
+          }
+
           .score {
-            font-size: 36px;
+            font-size: 32px;
             letter-spacing: -0.6px;
+          }
+
+          .overs {
+            font-size: 12px;
           }
 
           .scoreBlock {
