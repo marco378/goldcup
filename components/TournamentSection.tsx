@@ -753,31 +753,81 @@ export default function TournamentSection() {
         }
 
         .btnPrimary::before,
-        .btnSecondary::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          z-index: 0;
-          background-repeat: no-repeat;
-          background-position: center;
-          background-size: 100% 100%;
-        }
+.btnSecondary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  transition: opacity 0.25s ease;
+}
 
-        .btnPrimary::before { background-image: url('/images/cta-btn-fill.svg'); }
-        .btnSecondary::before { background-image: url('/images/cta-btn-outline.svg'); }
+.btnPrimary::before { background-image: url('/images/cta-btn-fill.svg'); }
+.btnSecondary::before { background-image: url('/images/cta-btn-outline.svg'); }
 
-        .btnLabel {
-          position: relative;
-          z-index: 1;
-          font-family: var(--font-manrope), sans-serif;
-          font-size: 16px;
-          font-weight: 700;
-          letter-spacing: -0.16px;
-          white-space: nowrap;
-        }
+.btnPrimary::after,
+.btnSecondary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  -webkit-mask: var(--btn-shape) no-repeat center / 100% 100%;
+  mask: var(--btn-shape) no-repeat center / 100% 100%;
+}
 
-        .btnLabelDark { color: #000; }
-        .btnLabelLight { color: #fff; }
+.btnPrimary {
+  --btn-shape: url('/images/cta-btn-fill.svg');
+}
+
+.btnPrimary::after {
+  background: #000;
+}
+
+.btnPrimary:hover::after {
+  opacity: 1;
+}
+
+.btnSecondary {
+  --btn-shape: url('/images/cta-btn-fill.svg');
+}
+
+.btnSecondary::after {
+  background: #ffffff;
+}
+
+.btnSecondary:hover::after {
+  opacity: 1;
+}
+
+.btnLabel {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-manrope), sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.16px;
+  white-space: nowrap;
+}
+
+.btnLabelDark { 
+  color: #000; 
+}
+
+.btnPrimary:hover .btnLabelDark {
+  color: #fff;
+}
+
+.btnLabelLight { 
+  color: #fff; 
+}
+
+.btnSecondary:hover .btnLabelLight {
+  color: #000;
+}
 
         @media (max-width: 639px) {
           .hero {

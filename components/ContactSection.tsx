@@ -1,109 +1,112 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export default function ContactSection() {
-  const [form, setForm] = useState({ name: '', email: '', enquiry: '', message: '' })
+  const heroRef = useRef<HTMLDivElement | null>(null)
+  const formRef = useRef<HTMLDivElement | null>(null)
+  const sidebarRef = useRef<HTMLDivElement | null>(null)
 
-  function handleChange(
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) {
-    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
-  }
+  const [heroVisible, setHeroVisible] = useState(false)
+  const [formVisible, setFormVisible] = useState(false)
+  const [sidebarVisible, setSidebarVisible] = useState(false)
 
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    // TODO: submit logic
-  }
+  useEffect(() => {
+    const entries = [
+      { ref: heroRef, setter: setHeroVisible },
+      { ref: formRef, setter: setFormVisible },
+      { ref: sidebarRef, setter: setSidebarVisible },
+    ]
+    const observers = entries.map(({ ref, setter }) => {
+      const node = ref.current
+      if (!node) return null
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) { setter(true); obs.disconnect() } },
+        { threshold: 0.1 }
+      )
+      obs.observe(node)
+      return obs
+    })
+    return () => observers.forEach(obs => obs?.disconnect())
+  }, [])
 
   return (
     <section className="contactSection">
       <div className="inner">
-        {/* LEFT: Form */}
+
+        {/* ── Left Column ── */}
         <div className="leftCol">
-          <div className="headingBlock">
+
+          {/* Heading */}
+          <div ref={heroRef} className={`headingBlock ${heroVisible ? 'visible' : ''}`}>
             <h1 className="heading">
-              Get in <span className="headingGold">Touch</span>
+              <span className="headingWhite">Get in </span>
+              <span className="headingGold">Touch</span>
             </h1>
-            <p className="subtitle">
-              Whether you are looking to sponsor, register your team, or simply learn more, we are
-              ready to talk.
+            <p className="subheading">
+              Whether you are looking to sponsor, register your team, or simply learn more, we are ready to talk.
             </p>
           </div>
 
-          <form className="form" onSubmit={handleSubmit}>
-            <div className="row">
+          {/* Form */}
+          <div ref={formRef} className={`formBlock ${formVisible ? 'visible' : ''}`}>
+            <div className="inputRow">
               <input
-                className="field"
+                className="input"
                 type="text"
-                name="name"
                 placeholder="Full Name"
-                value={form.name}
-                onChange={handleChange}
+                autoComplete="name"
               />
               <input
-                className="field"
+                className="input"
                 type="email"
-                name="email"
                 placeholder="Email Address"
-                value={form.email}
-                onChange={handleChange}
+                autoComplete="email"
               />
-              <select
-                className="field select"
-                name="enquiry"
-                value={form.enquiry}
-                onChange={handleChange}
-              >
-                <option value="" disabled>
-                  Enquiry Type
-                </option>
-                <option value="sponsorship">Sponsorship</option>
-                <option value="registration">Team Registration</option>
-                <option value="media">Media</option>
-                <option value="general">General</option>
-              </select>
+              <input
+                className="input"
+                type="text"
+                placeholder="Enquiry Type"
+              />
             </div>
-
             <textarea
-              className="field textarea"
-              name="message"
+              className="textarea"
               placeholder="Message"
-              value={form.message}
-              onChange={handleChange}
+              rows={4}
             />
-
-            <button type="submit" className="submitBtn" aria-label="Send Enquiry">
-              <span className="submitLabel">Send Enquiry</span>
-            </button>
-          </form>
+            <div className="btnWrap">
+              <button className="sendBtn" type="submit">
+                <span className="sendBtnLabel">Send Enquiry</span>
+              </button>
+            </div>
+          </div>
         </div>
 
-        {/* RIGHT: Contact Info */}
-        <div className="rightCol">
+        {/* ── Right Column (Sidebar) ── */}
+        <div ref={sidebarRef} className={`rightCol ${sidebarVisible ? 'visible' : ''}`}>
+
           {/* Direct Contact */}
-          <div className="infoBlock">
-            <div className="accentBar" />
-            <div className="infoContent">
-              <h3 className="infoTitle">DIRECT CONTACT</h3>
-              <div className="contactItems">
-                <div className="contactItem">
-                  <div className="iconBox">
-                    <img src="/images/icon-phone.svg" alt="" width={24} height={24} />
+          <div className="sidebarBlock">
+            <div className="sideBar" />
+            <div className="sidebarContent">
+              <p className="sidebarTitle">Direct Contact</p>
+              <div className="contactRows">
+                <div className="contactRow">
+                  <div className="iconTile">
+                    <img src="/images/icon-phone.svg" alt="Phone" width={24} height={24} />
                   </div>
-                  <div className="contactMeta">
-                    <p className="contactLabel">CALL US</p>
-                    <p className="contactValue">+(555)-89473623</p>
+                  <div className="contactText">
+                    <span className="contactLabel">Call Us</span>
+                    <span className="contactValue">+(555)-89473623</span>
                   </div>
                 </div>
-
-                <div className="contactItem">
-                  <div className="iconBox">
-                    <img src="/images/icon-email.svg" alt="" width={24} height={24} />
+                <div className="contactRow">
+                  <div className="iconTile">
+                    <img src="/images/icon-email.svg" alt="Email" width={24} height={24} />
                   </div>
-                  <div className="contactMeta">
-                    <p className="contactLabel">EMAIL US</p>
-                    <p className="contactValue">info@goldcup.ca</p>
+                  <div className="contactText">
+                    <span className="contactLabel">Email Us</span>
+                    <span className="contactValue">info@goldcup.com</span>
                   </div>
                 </div>
               </div>
@@ -111,465 +114,393 @@ export default function ContactSection() {
           </div>
 
           {/* Follow the Legacy */}
-          <div className="infoBlock">
-            <div className="accentBar accentBarShort" />
-            <div className="infoContent">
-              <h3 className="infoTitle">FOLLOW THE LEGACY</h3>
+          <div className="sidebarBlock">
+            <div className="sideBarShort" />
+            <div className="sidebarContent">
+              <p className="sidebarTitle">Follow the Legacy</p>
               <div className="socialRow">
-                <a href="#" className="socialBtn" aria-label="Instagram">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                    <rect
-                      x="2"
-                      y="2"
-                      width="20"
-                      height="20"
-                      rx="5"
-                      stroke="white"
-                      strokeWidth="1.8"
-                      strokeOpacity=".85"
-                    />
-                    <circle
-                      cx="12"
-                      cy="12"
-                      r="4.5"
-                      stroke="white"
-                      strokeWidth="1.8"
-                      strokeOpacity=".85"
-                    />
-                    <circle cx="17.5" cy="6.5" r="1" fill="white" fillOpacity=".85" />
-                  </svg>
-                </a>
-
-                <a href="#" className="socialBtn" aria-label="Facebook">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
-                      stroke="white"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeOpacity=".85"
-                    />
-                  </svg>
-                </a>
-
-                <a href="#" className="socialBtn" aria-label="Twitter / X">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M4 4l16 16M20 4L4 20"
-                      stroke="white"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                      strokeOpacity=".85"
-                    />
-                  </svg>
-                </a>
+                <div className="iconTile">
+                  <img src="/images/icon-signal.svg" alt="Instagram" width={24} height={24} />
+                </div>
+                <div className="iconTile">
+                  <img src="/images/icon-email.svg" alt="Twitter" width={24} height={24} />
+                </div>
+                <div className="iconTile">
+                  <img src="/images/icon-phone.svg" alt="Facebook" width={24} height={24} />
+                </div>
               </div>
             </div>
           </div>
+
         </div>
       </div>
 
       <style jsx>{`
         .contactSection {
-          background: var(--bg);
-          padding: 150px 0 80px;
+          background: #000;
+          color: #fffbf2;
+          padding: 100px 98px 80px;
         }
 
         .inner {
-          max-width: 1280px;
-          margin: 0 auto;
-          padding: 0 60px;
           display: flex;
-          gap: 50px;
+          gap: 60px;
           align-items: flex-start;
+          max-width: 1084px;
+          margin: 0 auto;
         }
 
-        /* LEFT */
+        /* ── Left ── */
         .leftCol {
-          flex: 1;
+          flex: 0 0 763px;
+          max-width: 763px;
           display: flex;
           flex-direction: column;
           gap: 30px;
         }
 
+        /* Heading block */
         .headingBlock {
           display: flex;
           flex-direction: column;
           gap: 10px;
           max-width: 493px;
+          opacity: 0;
+          transform: translateY(36px);
+          transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+                      transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
         }
-
+        .headingBlock.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
         .heading {
-          display: inline-block;
-          font-family: var(--font-coluna), 'Barlow Condensed', sans-serif;
-          font-size: 90px;
+          font-family: var(--font-coluna), 'Coluna', sans-serif;
+          font-size: clamp(52px, 7vw, 90px);
           font-style: normal;
           font-weight: 700;
           line-height: 1;
-          letter-spacing: -1.8px;
+          letter-spacing: -0.01em;
           margin: 0;
-          background: linear-gradient(182.5deg, #fffbf2 53.3%, #999691 135%);
-          background-clip: text;
+        }
+        .headingWhite {
+          background: linear-gradient(183deg, #fffbf2 53%, #999691 135%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
-          color: transparent;
+          background-clip: text;
         }
-
         .headingGold {
-          background: linear-gradient(180deg, #8d5c18 20.6%, #f8e5ac 39.4%);
-          background-clip: text;
+          background: linear-gradient(180deg, #8d5c18 20%, #f8e5ac 39%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
+          background-clip: text;
         }
-
-        .subtitle {
-          font-family: var(--font-manrope), sans-serif;
+        .subheading {
+          font-family: var(--font-manrope), 'Manrope', sans-serif;
           font-size: 18px;
-          color: #fffbf2;
+          font-weight: 400;
           line-height: 1.5;
-          letter-spacing: -0.18px;
+          letter-spacing: -0.01em;
+          color: #fffbf2;
           margin: 0;
         }
 
-        /* FORM */
-        .form {
+        /* Form block */
+        .formBlock {
           display: flex;
           flex-direction: column;
           gap: 8px;
-          width: 100%;
+          opacity: 0;
+          transform: translateY(32px);
+          transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.1s,
+                      transform 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.1s;
         }
-
-        .row {
+        .formBlock.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        .inputRow {
           display: flex;
           gap: 8px;
         }
-
-        .field {
-          flex: 1;
+        .input {
+          flex: 1 1 0;
+          min-width: 0;
           background: transparent;
           border: 1px solid rgba(255, 255, 255, 0.3);
           border-radius: 5px;
           padding: 15px 17px;
-          font-family: var(--font-manrope), sans-serif;
+          font-family: var(--font-manrope), 'Manrope', sans-serif;
           font-size: 16px;
-          color: #fffbf2;
+          font-weight: 400;
           line-height: 1.5;
-          letter-spacing: -0.16px;
+          letter-spacing: -0.01em;
+          color: #fffbf2;
           outline: none;
-          transition: border-color 0.2s;
+          transition: border-color 0.2s ease;
         }
-
-        .field::placeholder {
+        .input::placeholder {
           color: rgba(255, 251, 242, 0.5);
         }
-
-        .field:focus {
-          border-color: rgba(201, 168, 76, 0.6);
+        .input:focus {
+          border-color: rgba(162, 120, 54, 0.7);
         }
-
-        .select {
-          appearance: none;
-          -webkit-appearance: none;
-          cursor: pointer;
-          background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='rgba(255,251,242,0.5)' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
-          background-repeat: no-repeat;
-          background-position: right 16px center;
-          padding-right: 36px;
-        }
-
-        .select option {
-          background: #111;
-          color: #fffbf2;
-        }
-
         .textarea {
-          flex: none;
-          height: 96px;
-          resize: none;
           width: 100%;
           box-sizing: border-box;
-          align-items: flex-start;
+          height: 96px;
+          background: transparent;
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          border-radius: 5px;
+          padding: 15px 17px;
+          font-family: var(--font-manrope), 'Manrope', sans-serif;
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 1.5;
+          letter-spacing: -0.01em;
+          color: #fffbf2;
+          resize: none;
+          outline: none;
+          transition: border-color 0.2s ease;
         }
-
-        /* SUBMIT BUTTON */
-        .submitBtn {
+        .textarea::placeholder {
+          color: rgba(255, 251, 242, 0.5);
+        }
+        .textarea:focus {
+          border-color: rgba(162, 120, 54, 0.7);
+        }
+        .btnWrap {
+          opacity: 0;
+          transform: translateY(16px);
+          transition: opacity 0.7s ease 0.25s, transform 0.7s ease 0.25s;
+        }
+        .formBlock.visible .btnWrap {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        .sendBtn {
+          position: relative;
+          width: 145px;
+          height: 44px;
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          padding: 0;
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          align-self: flex-start;
-          width: 145px;
-          height: 44px;
-          border: none;
-          padding: 0;
-          cursor: pointer;
+          transition: transform 0.25s ease, filter 0.25s ease;
+        }
+        .sendBtn::before {
+          content: '';
+          position: absolute;
+          inset: 0;
           background-image: url('/images/send-enquiry-btn.svg');
           background-repeat: no-repeat;
-          background-position: center;
           background-size: 100% 100%;
-          transition: transform 0.25s ease, box-shadow 0.25s ease;
+          background-position: center;
+          z-index: 0;
         }
-
-        .submitBtn:hover {
+        .sendBtn:hover {
           transform: translateY(-3px);
-          box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+          filter: brightness(1.08);
         }
-
-        .submitLabel {
-          font-family: var(--font-manrope), sans-serif;
-          font-size: 14px;
+        .sendBtnLabel {
+          position: relative;
+          z-index: 1;
+          font-family: var(--font-manrope), 'Manrope', sans-serif;
+          font-size: 16px;
           font-weight: 700;
-          letter-spacing: -0.14px;
+          letter-spacing: -0.01em;
           color: #000;
           white-space: nowrap;
         }
 
-        /* RIGHT */
+        /* ── Right / Sidebar ── */
         .rightCol {
-          width: 261px;
-          flex-shrink: 0;
+          flex: 0 0 261px;
+          max-width: 261px;
           display: flex;
           flex-direction: column;
           gap: 36px;
+          opacity: 0;
+          transform: translateX(32px);
+          transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.2s,
+                      transform 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
         }
-
-        .infoBlock {
+        .rightCol.visible {
+          opacity: 1;
+          transform: translateX(0);
+        }
+        .sidebarBlock {
           display: flex;
           gap: 20px;
           align-items: flex-start;
         }
-
-        .accentBar {
+        .sideBar {
+          flex-shrink: 0;
           width: 5px;
           height: 188px;
-          flex-shrink: 0;
           border-radius: 1px;
-          background: linear-gradient(200.66deg, #8d5c18 20.6%, #f8e5ac 99.5%);
+          background: linear-gradient(201deg, #8d5c18 20%, #f8e5ac 99%);
         }
-
-        .accentBarShort {
+        .sideBarShort {
+          flex-shrink: 0;
+          width: 5px;
           height: 102px;
+          border-radius: 1px;
+          background: linear-gradient(192deg, #8d5c18 20%, #f8e5ac 99%);
         }
-
-        .infoContent {
+        .sidebarContent {
           display: flex;
           flex-direction: column;
           gap: 14px;
           flex: 1;
+          min-width: 0;
         }
-
-        .infoTitle {
-          display: inline-block;
-          font-family: var(--font-coluna), 'Barlow Condensed', sans-serif;
+        .sidebarTitle {
+          font-family: var(--font-coluna), 'Coluna', sans-serif;
           font-size: 36px;
           font-style: normal;
           font-weight: 700;
           line-height: 1;
-          background: linear-gradient(180.09deg, #8d5c18 20.65%, #f8e5ac 99.5%);
-          background-clip: text;
+          letter-spacing: -0.01em;
+          margin: 0;
+          text-transform: uppercase;
+          background: linear-gradient(180deg, #8d5c18 20%, #f8e5ac 99%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
-          color: transparent;
-          margin: 0;
+          background-clip: text;
         }
-
-        .contactItems {
+        .contactRows {
           display: flex;
           flex-direction: column;
           gap: 25px;
         }
-
-        .contactItem {
+        .contactRow {
           display: flex;
           gap: 14px;
           align-items: center;
         }
-
-        .iconBox {
+        .iconTile {
+          flex-shrink: 0;
           width: 54px;
           height: 54px;
-          flex-shrink: 0;
           background: rgba(255, 255, 255, 0.14);
           border-radius: 4px;
           display: flex;
           align-items: center;
           justify-content: center;
-          overflow: hidden;
+          transition: background 0.2s ease;
+          cursor: pointer;
         }
-
-        .contactMeta {
+        .iconTile:hover {
+          background: rgba(255, 255, 255, 0.22);
+        }
+        .contactText {
           display: flex;
           flex-direction: column;
           gap: 12px;
-          min-width: 0;
         }
-
         .contactLabel {
-          font-family: var(--font-manrope), sans-serif;
+          font-family: var(--font-manrope), 'Manrope', sans-serif;
           font-size: 12px;
-          letter-spacing: 2.4px;
-          background: linear-gradient(180.03deg, #8d5c18 20.6%, #f8e5ac 99.5%);
-          background-clip: text;
+          font-weight: 400;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          background: linear-gradient(180deg, #8d5c18 20%, #f8e5ac 99%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
-          color: transparent;
-          margin: 0;
-          white-space: nowrap;
+          background-clip: text;
         }
-
         .contactValue {
-          font-family: var(--font-coluna), 'Barlow Condensed', sans-serif;
-          font-size: 32px;
+          font-family: var(--font-coluna), 'Coluna', sans-serif;
+          font-size: 28px;
           font-style: normal;
           font-weight: 700;
-          color: white;
           line-height: 1;
-          letter-spacing: -0.4px;
-          margin: 0;
-          white-space: nowrap;
+          color: #fff;
+          word-break: break-all;
         }
-
-        /* SOCIAL */
         .socialRow {
           display: flex;
           gap: 17px;
           align-items: center;
+          flex-wrap: wrap;
         }
 
-        .socialBtn {
-          width: 54px;
-          height: 54px;
-          background: rgba(255, 255, 255, 0.14);
-          border-radius: 4px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          text-decoration: none;
-          transition: background 0.2s;
+        /* ── Reduced Motion ── */
+        @media (prefers-reduced-motion: reduce) {
+          .headingBlock,
+          .formBlock,
+          .btnWrap,
+          .rightCol {
+            opacity: 1;
+            transform: none;
+            transition: none;
+          }
         }
 
-        .socialBtn:hover {
-          background: rgba(255, 255, 255, 0.22);
-        }
-
+        /* ── Mobile (≤ 639px) ── */
         @media (max-width: 639px) {
           .contactSection {
-            padding: 100px 0 48px;
+            padding: 80px 16px 60px;
           }
-
           .inner {
             flex-direction: column;
-            padding: 0 18px;
-            gap: 40px;
-          }
-
-          .headingBlock {
+            gap: 48px;
             max-width: 100%;
           }
-
+          .leftCol {
+            flex: none;
+            max-width: 100%;
+          }
           .heading {
-            font-size: 52px;
-            letter-spacing: -0.8px;
-            line-height: 1;
+            font-size: clamp(40px, 12vw, 60px);
           }
-
-          .subtitle {
+          .subheading {
             font-size: 15px;
-            letter-spacing: -0.09px;
           }
-
-          .row {
+          .inputRow {
             flex-direction: column;
           }
-
-          .textarea {
-            height: 100px;
-          }
-
           .rightCol {
-            width: 100%;
-            flex-direction: column;
-            gap: 28px;
+            flex: none;
+            max-width: 100%;
           }
-
-          .accentBar {
-            height: 120px;
+          .sidebarTitle {
+            font-size: 26px;
           }
-
-          .accentBarShort {
-            height: 80px;
-          }
-
-          .infoTitle {
-            font-size: 22px;
-            letter-spacing: -0.25px;
-          }
-
           .contactValue {
-            white-space: normal;
             font-size: 22px;
-            letter-spacing: -0.1px;
           }
         }
 
-        @media (min-width: 640px) and (max-width: 900px) {
+        /* ── Tablet (640–1024px) ── */
+        @media (min-width: 640px) and (max-width: 1024px) {
           .contactSection {
-            padding: 120px 0 60px;
+            padding: 80px 40px 60px;
           }
-
           .inner {
             flex-direction: column;
-            padding: 0 40px;
             gap: 48px;
-          }
-
-          .headingBlock {
             max-width: 100%;
           }
-
+          .leftCol {
+            flex: none;
+            max-width: 100%;
+          }
           .heading {
-            font-size: 64px;
-            letter-spacing: -1.0px;
-            line-height: 0.92;
+            font-size: clamp(52px, 8vw, 72px);
           }
-
-          .row {
-            flex-wrap: wrap;
-          }
-
-          .field {
-            min-width: 200px;
-          }
-
           .rightCol {
-            width: 100%;
+            flex: none;
+            max-width: 100%;
             flex-direction: row;
-            flex-wrap: wrap;
-            gap: 24px;
+            gap: 40px;
           }
-
-          .infoBlock {
+          .sidebarBlock {
             flex: 1;
-            min-width: 220px;
-          }
-
-          .accentBar {
-            height: 140px;
-          }
-
-          .accentBarShort {
-            height: 100px;
-          }
-
-          .infoTitle {
-            font-size: 28px;
-            letter-spacing: -0.3px;
-          }
-
-          .contactValue {
-            white-space: normal;
-            font-size: 26px;
-            letter-spacing: -0.2px;
           }
         }
       `}</style>

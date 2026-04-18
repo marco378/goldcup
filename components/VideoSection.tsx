@@ -67,7 +67,7 @@ export default function VideoSection() {
           <video
             autoPlay
             controls
-            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 2 }}
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 2, pointerEvents: 'auto' }}
           >
             <source src="/videos/highlight.mp4" type="video/mp4" />
           </video>
@@ -156,9 +156,10 @@ export default function VideoSection() {
           cursor: pointer;
           background: #111;
           opacity: 0;
-          transform: rotateY(-10deg) rotateX(4deg);
+          transform: translateY(42px) scale(0.96);;
           box-shadow: 0 30px 60px rgba(0, 0, 0, 0.28);
           transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+          will-change: transform;
         }
 
         .isVisible .titleLine {
@@ -217,7 +218,7 @@ export default function VideoSection() {
         }
 
         .videoShell:hover {
-          transform: rotateY(-4deg) rotateX(1deg) translateY(-8px);
+          transform: translateY(-8px) scale(1);
           border-color: rgba(248, 229, 172, 0.92);
           box-shadow: 0 40px 72px rgba(0, 0, 0, 0.34);
         }
@@ -235,12 +236,12 @@ export default function VideoSection() {
         @keyframes videoShellReveal {
           from {
             opacity: 0;
-            transform: rotateY(-16deg) rotateX(8deg) translateY(42px) scale(0.96);
+            transform: translateY(42px) scale(0.96);
           }
 
           to {
             opacity: 1;
-            transform: rotateY(-10deg) rotateX(4deg) translateY(0) scale(1);
+            transform: translateY(0) scale(1);
           }
         }
 

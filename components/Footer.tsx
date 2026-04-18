@@ -36,6 +36,7 @@ export default function Footer() {
           <Link href="/" style={footerLinkStyle}>Home</Link>
           <Link href="/tournament" style={footerLinkStyle}>Tournament</Link>
           <Link href="/teams" style={footerLinkStyle}>Teams</Link>
+          <Link href="/tournament" style={footerLinkStyle}>Schedule</Link>
         </div>
 
         <div className="logoWrap">L O G O</div>
@@ -43,6 +44,7 @@ export default function Footer() {
         <div className="links right">
           <Link href="/media" style={footerLinkStyle}>Media</Link>
           <Link href="/sponsors" style={footerLinkStyle}>Sponsors</Link>
+          <Link href="/walloffame" style={footerLinkStyle}>Wall of Fame</Link>
           <Link href="/contact" style={footerLinkStyle}>Contact</Link>
         </div>
       </div>

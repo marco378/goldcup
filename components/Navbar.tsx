@@ -30,7 +30,7 @@ export default function Navbar() {
           <div className="leftNav">
             <Link href="/" className={isActive('/') ? 'navLink active' : 'navLink'}>Home</Link>
             <Link href="/tournament" className={isActive('/tournament') ? 'navLink active' : 'navLink'}>Tournament</Link>
-            <Link href="/teams" className={isActive('/teams') ? 'navLink active' : 'navLink'}>Teams</Link>
+            <Link href="/teamsandplayers" className={isActive('/teamsandplayers') ? 'navLink active' : 'navLink'}>Teams</Link>
           </div>
 
           {/* RIGHT */}
@@ -45,7 +45,7 @@ export default function Navbar() {
 
               {moreOpen && (
                 <div className="dropdown">
-                  <Link href="#" className="navLink" onClick={() => setMoreOpen(false)}>Wall of Fame</Link>
+                  <Link href="/walloffame" className="navLink" onClick={() => setMoreOpen(false)}>Wall of Fame</Link>
                   <Link href="/tournament" className="navLink" onClick={() => setMoreOpen(false)}>Schedule</Link>
                   <Link
                     href="/contact"
@@ -85,9 +85,10 @@ export default function Navbar() {
         <div className="mobileMenu">
           <Link href="/" className={isActive('/') ? 'mobileLink active' : 'mobileLink'} onClick={close}>Home</Link>
           <Link href="/tournament" className={isActive('/tournament') ? 'mobileLink active' : 'mobileLink'} onClick={close}>Tournament</Link>
-          <Link href="/teams" className={isActive('/teams') ? 'mobileLink active' : 'mobileLink'} onClick={close}>Teams</Link>
+          <Link href="/teamsandplayers" className={isActive('/teamsandplayers') ? 'mobileLink active' : 'mobileLink'} onClick={close}>Teams</Link>
           <Link href="/media" className={isActive('/media') ? 'mobileLink active' : 'mobileLink'} onClick={close}>Media</Link>
           <Link href="/sponsors" className={isActive('/sponsors') ? 'mobileLink active' : 'mobileLink'} onClick={close}>Sponsors</Link>
+          <Link href="/walloffame" className={isActive('/walloffame') ? 'mobileLink active' : 'mobileLink'} onClick={close}>Wall of Fame</Link>
           <Link href="/contact" className={isActive('/contact') ? 'mobileLink active' : 'mobileLink'} onClick={close}>Contact</Link>
         </div>
       )}
@@ -196,11 +197,15 @@ export default function Navbar() {
           border-radius: 6px;
           overflow: hidden;
           min-width: 180px;
+          display: flex; 
+          z-index: 200;         /* ✅ ADD */
+  flex-direction: column;
         }
 
         .dropdown .navLink {
           display: block;
           padding: 10px 14px;
+          white-space: nowrap;
         }
 
         .dropdown .navLink:hover {
@@ -259,6 +264,7 @@ export default function Navbar() {
         .backdrop {
           position: fixed;
           inset: 0;
+          z-index: 100;
         }
 
         /* ── TABLET & MOBILE: show hamburger, hide desktop nav ── */

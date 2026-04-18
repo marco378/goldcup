@@ -161,7 +161,7 @@ export default function CTABanner() {
           width: 193px;
           height: 44px;
           text-decoration: none;
-          font-family: 'Barlow', sans-serif;
+          font-family: var(--font-manrope);
           font-weight: 600;
           font-size: 14px;
           line-height: 1;
@@ -170,8 +170,13 @@ export default function CTABanner() {
           isolation: isolate;
           border: none;
           background: transparent;
-          overflow: visible;
-          transition: transform 0.25s ease, filter 0.25s ease, box-shadow 0.25s ease;
+          overflow: hidden;
+          transition: 
+  transform 0.25s ease, 
+  filter 0.25s ease, 
+  box-shadow 0.25s ease,
+  background 0.25s ease,
+  color 0.25s ease;
           cursor: pointer;
         }
 
@@ -186,6 +191,8 @@ export default function CTABanner() {
           background-repeat: no-repeat;
           background-position: center;
           background-size: 100% 100%;
+          transition: opacity 0.25s ease;
+          
         }
 
         .btnPrimary {
@@ -224,6 +231,50 @@ export default function CTABanner() {
           transform: translateY(-4px) rotateX(8deg);
           box-shadow: 0 16px 28px rgba(0, 0, 0, 0.24);
         }
+        
+        /* KEEP SHAPE, CHANGE COLOR VIA OVERLAY */
+.btnPrimary::after,
+.btnSecondary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+
+  -webkit-mask: var(--btn-shape) no-repeat center / 100% 100%;
+  mask: var(--btn-shape) no-repeat center / 100% 100%;
+}
+
+/* PRIMARY → black fill */
+.btnPrimary::after {
+  background: #000;
+}
+
+.btnPrimary:hover::after {
+  opacity: 1;
+}
+
+.btnPrimary:hover .btnPrimaryContent {
+  color: #fff;
+}
+
+
+/* SECONDARY → white fill */
+.btnsSecondary::after{
+  --btn-shape: url('/images/cta-btn-fill.svg'); /* switch to filled shape for masking */}
+.btnSecondary::after {
+  background: #ffffff; /* fixed */
+  --btn-shape: url('/images/cta-btn-fill.svg'); /* ensure outline shape is used for masking */
+}
+
+.btnSecondary:hover::after {
+  opacity: 1;
+}
+
+.btnSecondary:hover .btnSecondaryContent {
+  color: #000000;
+}
 
         .ctaBox:hover {
           transform: translateY(-6px);
@@ -313,7 +364,9 @@ export default function CTABanner() {
             width: 150px;
             height: 40px;
           }
+            
         }
+        
 
         @media (min-width: 640px) and (max-width: 900px) {
           .ctaSection {
@@ -350,7 +403,7 @@ export default function CTABanner() {
             width: 170px;
             height: 42px;
           }
-        }
+          
       `}</style>
     </section>
   )

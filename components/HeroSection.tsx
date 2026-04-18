@@ -67,12 +67,12 @@ export default function HeroSection() {
       </div>
 
       <div className={styles.statsRow}>
-        <Link href="/sponsors" className={styles.btnSponsor}>
-            <svg className={styles.btnSponsorBg} viewBox="0 0 193 44" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
-              <path d="M192.121 11.1213C192.684 11.6839 193 12.447 193 13.2426V41C193 42.6569 191.657 44 190 44H13.2426C12.447 44 11.6839 43.6839 11.1213 43.1213L0.87868 32.8787C0.31607 32.3161 0 31.553 0 30.7574V3C0 1.34315 1.34315 0 3 0L179.757 0C180.553 0 181.316 0.316071 181.879 0.87868L192.121 11.1213Z" fill="white" />
-            </svg>
-            <span className={styles.btnSponsorContent}>view Teams</span>
-          </Link>
+        <Link href="/sponsors" className={styles.btnSponsor}style={{ width: '125px', margin:'auto' }}>
+      <svg className={styles.btnSponsorBg} viewBox="0 0 165 44" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M164.121 11.1213C164.684 11.6839 165 12.447 165 13.2426V41C165 42.6569 163.657 44 162 44H13.2426C12.447 44 11.6839 43.6839 11.1213 43.1213L0.87868 32.8787C0.31607 32.3161 0 31.553 0 30.7574V3C0 1.34315 1.34315 0 3 0H151.757C152.553 0 153.316 0.316071 153.879 0.87868L164.121 11.1213Z" fill="white" />
+      </svg>
+      <span className={styles.btnSponsorContent}>view Teams</span>
+    </Link>
         
 
         <div className={styles.stat}>
