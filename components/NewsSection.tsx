@@ -168,7 +168,7 @@ export default function NewsSection() {
           text-align: center;
           margin: 0;
           display: inline-block;
-          background: linear-gradient(180.09deg, #8d5c18 20.647%, #f8e5ac 39.428%);
+          background: linear-gradient(181deg, #8D5C18 -20.65%, #F8E5AC 39.43%);
           background-clip: text;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -274,7 +274,7 @@ export default function NewsSection() {
           font-weight: 600;
           letter-spacing: 0.8px;
           color: #000;
-          background: linear-gradient(180.16deg, #8d5c18 20.647%, #f8e5ac 39.428%);
+          background: linear-gradient(181deg, #8D5C18 -20.65%, #F8E5AC 39.43%);
           white-space: nowrap;
         }
 
@@ -321,7 +321,7 @@ export default function NewsSection() {
           width: 0;
           height: 2px;
           border-radius: 1px;
-          background: linear-gradient(207.32deg, #8d5c18 20.647%, #f8e5ac 99.503%);
+          background: linear-gradient(181deg, #8D5C18 -20.65%, #F8E5AC 39.43%);
           transition: width 0.8s ease;
         }
         .dividerLine.lineExpand {
@@ -342,7 +342,7 @@ export default function NewsSection() {
           text-align: center;
           white-space: nowrap;
           margin: 0;
-          background: linear-gradient(180.11deg, #8d5c18 20.647%, #f8e5ac 99.503%);
+          background: linear-gradient(181deg, #8D5C18 -20.65%, #F8E5AC 39.43%);
           background-clip: text;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;

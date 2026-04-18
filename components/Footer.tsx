@@ -36,7 +36,7 @@ export default function Footer() {
           <Link href="/" style={footerLinkStyle}>Home</Link>
           <Link href="/tournament" style={footerLinkStyle}>Tournament</Link>
           <Link href="/teams" style={footerLinkStyle}>Teams</Link>
-          <Link href="/tournament" style={footerLinkStyle}>Schedule</Link>
+          <Link href="/about" style={footerLinkStyle}>About</Link>
         </div>
 
         <div className="logoWrap">L O G O</div>
@@ -179,12 +179,15 @@ export default function Footer() {
 
           .watermarkWrap {
             padding: 0;
+            width: 100%;
           }
 
           .watermark {
-            font-size: clamp(72px, 22vw, 110px);
-            letter-spacing: -2px;
+            font-size: 14.9vw;
+            letter-spacing: -0.02em;
             white-space: nowrap;
+            width: 100%;
+            text-align: center;
           }
         }
 
@@ -211,8 +214,8 @@ export default function Footer() {
           }
 
           .watermark {
-            font-size: clamp(80px, 16vw, 140px);
-            letter-spacing: -2px;
+            font-size: 13vw;
+            letter-spacing: -0.02em;
             white-space: nowrap;
           }
         }

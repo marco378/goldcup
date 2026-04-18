@@ -54,6 +54,7 @@ export default function Navbar() {
                 <div className="dropdown">
                   <Link href="/walloffame" onClick={closeAll}>Wall of Fame</Link>
                   <Link href="/tournament" onClick={closeAll}>Schedule</Link>
+                  <Link href="/about" onClick={closeAll}>About</Link>
                   <Link href="/contact" onClick={closeAll}>Contact</Link>
                 </div>
               )}
@@ -92,6 +93,7 @@ export default function Navbar() {
                 { href: '/media', label: 'Media' },
                 { href: '/sponsors', label: 'Sponsors' },
                 { href: '/walloffame', label: 'Wall of Fame' },
+                { href: '/about', label: 'About' },
                 { href: '/contact', label: 'Contact' },
               ].map((item, i) => (
                 <Link
