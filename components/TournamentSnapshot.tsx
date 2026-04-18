@@ -327,7 +327,7 @@ export default function TournamentSnapshot() {
 
         @media (max-width: 639px) {
           .snapshotSection {
-            padding: 32px 16px;
+            padding: 92px 18px;
           }
 
           .headingWrap {

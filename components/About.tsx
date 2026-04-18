@@ -322,6 +322,7 @@ export default function About() {
           -webkit-text-fill-color: transparent;
           background-clip: text;
           margin: 0 0 20px;
+          
         }
         .heroSub {
           font-family: var(--font-manrope), 'Manrope', sans-serif;

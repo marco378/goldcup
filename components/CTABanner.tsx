@@ -211,7 +211,7 @@ export default function CTABanner() {
           align-items: center;
           gap: 9px;
           font-family: var(--font-manrope);
-          font-size: 13px;
+          font-size: 12px;
           font-weight: 700;
           letter-spacing: -0.01em;
           text-transform: uppercase;

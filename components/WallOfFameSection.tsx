@@ -91,7 +91,7 @@ export default function WallOfFameSection() {
         <div className="statsGrid">
           {[
             { num: '42', label: 'Edition Played' },
-            { num: '100', label: 'Alumni on Record' },
+            { num: '100+', label: 'Alumni on Record' },
             { num: '28', label: 'National Selections' },
             { num: '01', label: 'Hall of Famer' },
           ].map((s, i) => (

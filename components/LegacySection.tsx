@@ -230,7 +230,7 @@ export default function LegacySection() {
 
         @media (max-width: 639px) {
           .legacySection {
-            padding: 32px 16px;
+            padding: 92px 16px;
           }
 
           .headline {

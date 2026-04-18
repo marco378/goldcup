@@ -17,18 +17,12 @@ const TIERS = [
   },
   {
     tier: 'TIER 3',
-    name: 'Title Sponsor',
-    desc: 'The most prestigious association available. Full naming rights, premium placement across all match and digital assets, and direct alignment with the Gold Cup brand story.',
-    logos: 7,
-  },
-  {
-    tier: 'TIER 4',
     name: 'Associate Sponsors',
     desc: 'The most prestigious association available. Full naming rights, premium placement across all match and digital assets, and direct alignment with the Gold Cup brand story.',
     logos: 7,
   },
   {
-    tier: 'TIER 5',
+    tier: 'TIER 4',
     name: 'Media Partners',
     desc: 'The most prestigious association available. Full naming rights, premium placement across all match and digital assets, and direct alignment with the Gold Cup brand story.',
     logos: 7,

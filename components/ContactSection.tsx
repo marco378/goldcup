@@ -97,7 +97,7 @@ export default function ContactSection() {
                   </div>
                   <div className="contactText">
                     <span className="contactLabel">Call Us</span>
-                    <span className="contactValue">+(555)-89473623</span>
+                    <span className="contactValue">+(91)-89473623</span>
                   </div>
                 </div>
                 <div className="contactRow">

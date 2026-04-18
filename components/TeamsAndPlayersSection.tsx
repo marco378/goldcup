@@ -271,7 +271,7 @@ export default function TeamsAndPlayersSection() {
           font-style: normal;
           font-weight: 700;
           line-height: 1;
-          letter-spacing: -1px;
+          letter-spacing: 1px;
           color: #fff;
           margin: 0;
         }
@@ -350,7 +350,7 @@ export default function TeamsAndPlayersSection() {
           font-size: 18px;
           font-weight: 400;
           line-height: 1;
-          letter-spacing: -0.01em;
+          
           color: #fff;
         }
 
@@ -390,7 +390,7 @@ export default function TeamsAndPlayersSection() {
           font-style: normal;
           font-weight: 700;
           line-height: 1;
-          letter-spacing: -1.2px;
+          letter-spacing: 1px;
           color: #fff;
           margin: 0;
           text-align: center;
@@ -499,7 +499,7 @@ export default function TeamsAndPlayersSection() {
           font-style: normal;
           font-weight: 700;
           line-height: 1;
-          letter-spacing: -0.02em;
+          letter-spacing: 0.01em;
           color: rgba(255, 255, 255, 0.9);
         }
         .teamStyle {
@@ -705,7 +705,7 @@ export default function TeamsAndPlayersSection() {
           font-style: normal;
           font-weight: 700;
           line-height: 1;
-          letter-spacing: -0.02em;
+          letter-spacing: 0.01em;
           color: rgba(255, 255, 255, 0.9);
         }
         .playerTeam {

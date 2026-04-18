@@ -7,7 +7,7 @@ export default function HeroSection() {
     <section className={styles.heroFrame}>
       <div className={styles.heroMedia}>
         <Image
-          src="/images/optimized/hero-bg.jpg"
+          src="/images/optimized/backdummy.jpg"
           alt="Gold Cup batsman under stadium lights"
           fill
           priority
