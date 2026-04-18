@@ -79,7 +79,7 @@ export default function Navbar() {
 
             {/* ===== HEADER ===== */}
             <div className="drawerHeader">
-              <Link href="/" onClick={closeAll} className="drawerLogo">GOLD CUP</Link>
+              <Link href="/" onClick={closeAll} className="drawerLogo">GOLD CUP MENU</Link>
               <button className="drawerClose" onClick={closeAll}>✕</button>
             </div>
 
@@ -263,7 +263,7 @@ export default function Navbar() {
 
         /* ===== DRAWER HEADER ===== */
         .drawerHeader {
-          padding: 52px 28px 52px;
+          padding: 52px 28px 20px;
           display: flex;
           justify-content: space-between;
           align-items: center;
@@ -309,10 +309,10 @@ export default function Navbar() {
 
         .drawerLinks :global(a) {
           display: block;
-          padding: 28px 0;
+          padding: 12px 0;
           border-bottom: 1px solid rgba(255,255,255,0.10);
           font-family: var(--font-manrope), sans-serif;
-          font-size: 30px;
+          font-size: 20px;
           font-weight: 300;
           letter-spacing: -0.3px;
           color: rgba(255,255,255,0.72);
