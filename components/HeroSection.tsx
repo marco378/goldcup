@@ -76,7 +76,9 @@ export default function HeroSection() {
         
 
         <div className={styles.stat}>
-          <div className={styles.statNum}>42nd</div>
+          <div className={styles.statNum}>
+  42<sup>nd</sup>
+</div>
           <div className={styles.statLabel}>Edition</div>
         </div>
         <div className={styles.stat}>

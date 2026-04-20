@@ -42,8 +42,8 @@ const cards: SnapshotCard[] = [
   },
   {
     id: 'groups',
-    title: 'Groups 4',
-    description: 'Competitive Groups. Balanced, fierce, and unpredictable. Every group stage match is a statement.',
+    title: 'Groups',
+    description: '4 Competitive Groups. Balanced, fierce, and unpredictable. Every group stage match is a statement.',
     size: 'small',
     position: '12% 78%',
     image: '/images/optimized/snapshot-groups.jpg',
@@ -149,7 +149,7 @@ function SnapshotCard({ card, visible }: { card: SnapshotCard; visible: boolean 
           font-weight: 800;
           font-size: 30px;
           letter-spacing: 0;
-          text-transform: uppercase;
+          text-transform: none; !important 
           color: #fff;
           margin-bottom: 8px;
           line-height: 1;

@@ -389,6 +389,11 @@
   line-height: 1;
   color: #fff;
 }
+.statNum sup {
+  font-size: 0.5em;
+  vertical-align: super;
+  margin-left: 2px;
+}
 
 .statLabel {
   font-family: var(--font-manrope);

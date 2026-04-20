@@ -133,7 +133,9 @@ export default function Navbar() {
           align-items: center;
           justify-content: center;
           gap: 50px;
-          width: 50%;
+          width: fit-content;
+max-width: calc(100% - 40px);
+margin: 0 auto;
           max-width: 1100px;
           background: translucent;
           backdrop-filter: blur(18px);
@@ -253,7 +255,7 @@ export default function Navbar() {
           background: none;
           border: none;
           cursor: pointer;
-          padding: 6px;
+          padding: 65px 10px 10px 20px;
         }
         .hamburger span {
           display: block;

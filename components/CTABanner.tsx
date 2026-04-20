@@ -342,7 +342,7 @@ export default function CTABanner() {
           }
 
           h2 {
-            font-size: 30px;
+            font-size: 45px;
             letter-spacing: -0.48px;
             margin-bottom: 6px;
           }

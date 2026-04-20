@@ -50,7 +50,7 @@ export default function Footer() {
       </div>
 
       <div className="copyWrap">
-        <p>Copyright Audace labs</p>
+        <p>Gold Cup: 42nd Edition. All Rights Reserved.</p>
       </div>
 
       <style jsx>{`

@@ -47,48 +47,46 @@ const IconCompetition = () => (
 
 /* ── Data ── */
 const foundingMembers = [
-  { name: 'A.S. Menswal', role: 'In Memoriam' },
-  { name: 'B.K. Sharma',  role: 'In Memoriam' },
-  { name: 'C.R. Patel',   role: 'In Memoriam' },
-  { name: 'D.L. Verma',   role: 'In Memoriam' },
-  { name: 'E.S. Kumar',   role: 'In Memoriam' },
-  { name: 'F.P. Singh',   role: 'In Memoriam' },
-  { name: 'G.R. Nair',    role: 'In Memoriam' },
-  { name: 'H.C. Joshi',   role: 'In Memoriam' },
-  { name: 'I.B. Mehta',   role: 'In Memoriam' },
-  { name: 'J.K. Rao',     role: 'In Memoriam' },
-  { name: 'K.S. Iyer',    role: 'In Memoriam' },
-  { name: 'L.D. Gupta',   role: 'In Memoriam' },
-  { name: 'M.R. Bose',    role: 'In Memoriam' },
-  { name: 'N.K. Das',     role: 'In Memoriam' },
-  { name: 'O.P. Tiwari',  role: 'In Memoriam' },
-  { name: 'P.C. Varma',   role: 'Secretary' },
+  { name: 'A.S. Menswal', role: 'Late' },
+  { name: 'K.K. Shagly', role: 'Late' },
+  { name: 'Santosh Kumar Rastogi', role: '' },
+  { name: 'B.M. Goyal', role: '' },
+  { name: 'Santosh Gairola', role: '' },
+  { name: 'M.L. Shah', role: '' },
+  { name: 'M.C. Shah', role: '' },
+  { name: 'H.C. Minocha', role: '' },
+  { name: 'P.C. Kuthari', role: '' },
+  { name: 'S. Sundaram', role: 'Late' },
+  { name: 'Prem Singh Bhandari', role: 'Late' },
+  { name: 'Inderjeet Singh', role: 'Late' },
+  { name: 'R.P.S. Tomar', role: 'Late' },
+  { name: 'Dinesh Sharma', role: 'Late' },
+  { name: 'Rajiv Dutta', role: '' },
+  { name: 'Balwant Singh Pundir', role: '' },
+  { name: 'Hira Singh Bisht', role: '' }
 ]
 
 const officeBearers = [
-  { name: 'P.C. Varma',   role: 'Secretary' },
-  { name: 'R.K. Sharma',  role: 'President' },
-  { name: 'S.L. Mehta',   role: 'Vice President' },
-  { name: 'T.R. Singh',   role: 'Treasurer' },
-  { name: 'U.S. Kumar',   role: 'Joint Secretary' },
-  { name: 'V.D. Patel',   role: 'Committee Member' },
-  { name: 'W.C. Nair',    role: 'Committee Member' },
-  { name: 'X.B. Rao',     role: 'Committee Member' },
-  { name: 'Y.S. Iyer',    role: 'Committee Member' },
-  { name: 'Z.K. Bose',    role: 'Committee Member' },
-  { name: 'A.R. Das',     role: 'Committee Member' },
-  { name: 'B.S. Gupta',   role: 'Committee Member' },
-  { name: 'C.K. Joshi',   role: 'Committee Member' },
-  { name: 'D.P. Verma',   role: 'Committee Member' },
-  { name: 'E.R. Kumar',   role: 'Committee Member' },
-  { name: 'F.S. Tiwari',  role: 'Committee Member' },
+  { name: 'Rajiv Dutta', role: 'President' },
+  { name: 'Deepak Mehra', role: 'Sr. Vice President' },
+  { name: 'Sandeep Rawat', role: 'Vice President' },
+  { name: 'P.C. Varma', role: 'Secretary' },
+  { name: 'Yogender Bisht', role: 'Treasurer' },
+  { name: 'Santosh Gairola', role: 'Jt. Treasurer' },
+  { name: 'Dr. J. Sachan', role: 'Executive Secretary' },
+  { name: 'D.K. Sharma', role: 'Media & Spokesperson' },
+  { name: 'Ajay Pandey', role: 'Executive Member' },
+  { name: 'Arun Tiwari', role: 'Executive Member' },
+  { name: 'Devender Sati', role: 'Executive Member' },
+  { name: 'Pawan Pal', role: 'Executive Member' },
+  { name: 'Indu Saral', role: 'Executive Member' },
 ]
 
 const valueCards = [
   { Icon: IconLegacy,      title: 'Legacy',      body: 'The Gold Cup has been running for 42 years, longer than most players have been alive. That continuity is not accidental. We are proud custodians of a tradition that has consistently elevated the game.' },
   { Icon: IconOpportunity, title: 'Opportunity', body: 'Every team that steps onto a Gold Cup ground does so on equal footing. Sixteen squads. Thirty-one matches. Perform here, and the right people will notice. Over 100 alumni have gone on to higher honours.' },
-  { Icon: IconExcellence,  title: 'Excellence',  body: "Gold Cup fields Ranji-level players by design. We don't lower the standard of competition — we raise the standard of every player who participates. That's why our alumni compete at the highest levels." },
-  { Icon: IconCompetition, title: 'Competition', body: 'Four groups. A knockout bracket. A trophy. The format is built around pressure, because it is pressure that reveals character, and character that builds careers. This is not friendly — it is a fight worth winning.' },
+  { Icon: IconExcellence,  title: 'Excellence',  body: "Gold Cup fields Ranji-level players by design. We don't lower the standard of competition, we raise the standard of every player who participates. That's why our alumni compete at the highest levels." },
+  { Icon: IconCompetition, title: 'Competition', body: 'Four groups. A knockout bracket. A trophy. The format is built around pressure, because it is pressure that reveals character, and character that builds careers. This is not friendly, it is a fight worth winning.' },
 ]
 
 export default function About() {
@@ -136,7 +134,7 @@ export default function About() {
             and let the results speak. One of its most famous alumni is MS Dhoni, now known worldwide
             for his leadership, three ICC titles, and a place in the ICC Hall of Fame.</p>
             <p>Gold Cup understands what cricket means in India: it's not only a sport, it's a
-            pathway — a chance to play today for something much bigger tomorrow.</p>
+            pathway, a chance to play today for something much bigger tomorrow.</p>
           </div>
         </div>
 
@@ -211,13 +209,13 @@ export default function About() {
       {/* ══ FOUNDER ══ */}
       <section ref={founderVis.ref as React.RefObject<HTMLElement>} className={`founder ${founderVis.visible ? 'vis' : ''}`}>
         <h2 className="founderHeading">
-          <span className="fhWhite">The Man Behind </span>
+          <span className="fhWhite">Man Behind </span>
           <span className="fhGold">the Gold Cup</span>
         </h2>
 
         <div className="founderCard">
           <div className="founderTop">
-            <div className="founderAvatarPlaceholder" aria-hidden="true">PC</div>
+            
             <div className="founderMeta">
               <p className="founderLabel">Founding Member</p>
               <p className="founderName">P.C. Varma</p>
@@ -227,7 +225,7 @@ export default function About() {
           <div className="founderRule" aria-hidden="true" />
           <div className="founderQuoteWrap">
             <p className="founderQuote">
-              "The first thing is to love your sport. Never do it to please someone else. It has to be yours."
+              " The first thing is to love your sport. Never do it to please someone else. It has to be yours."
             </p>
             <p className="founderAttrib">— P.C. Varma, Secretary &amp; Founding Member</p>
           </div>
@@ -247,8 +245,9 @@ export default function About() {
         <div className="membersGrid">
           {foundingMembers.map((m, i) => (
             <div className="memberCard" key={i}>
-              <p className="memberName">{m.name}</p>
               <p className="memberRole">{m.role}</p>
+              <p className="memberName">{m.name}</p>
+              
             </div>
           ))}
         </div>
@@ -665,7 +664,11 @@ export default function About() {
         .founderCard {
           width: 463px;
           max-width: calc(100% - 32px);
-          background: linear-gradient(-4.96deg, rgb(14,14,14) 51.14%, rgb(162,120,54) 221.18%);
+          background: 
+            url("./images/optimized/PCVermaCompressed.png") center/cover no-repeat,
+            linear-gradient(-4.96deg, rgb(14,14,14) 51.14%, rgb(162,120,54) 221.18%);
+            background-position: 50% 15%; /* shows face */
+            background-size: cover;
           border: 1px solid rgba(255,255,255,0.2);
           border-radius: 8px;
           padding: 20px;
@@ -673,6 +676,12 @@ export default function About() {
           flex-direction: column;
           gap: 20px;
           align-items: center;
+          flex-direction: column;
+          justify-content: flex-end; /* 🔥 THIS is the key */
+          align-items: center;
+
+          min-height: 520px
+          
         }
         .founderTop {
           width: 100%;
@@ -718,9 +727,12 @@ export default function About() {
           font-size: 30px;
           font-weight: 700;
           font-style: normal;
+          background: linear-gradient(181deg, #8D5C18 -20.65%, #F8E5AC 99.5%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
           line-height: 1;
           letter-spacing: -0.6px;
-          color: rgba(255,255,255,0.9);
+          color:rgba(255,255,255,0.9);
           margin: 0;
         }
         .founderRole {
@@ -801,7 +813,7 @@ export default function About() {
           font-weight: 700;
           font-style: normal;
           line-height: 1;
-          letter-spacing: -0.48px;
+          letter-spacing: 0.5px;
           color: rgba(255,255,255,0.9);
           margin: 0;
         }
@@ -883,7 +895,8 @@ export default function About() {
             line-height: 1.05;
           }
           .fhWhite, .fhGold { line-height: 1.05; }
-          .founderCard    { width: 100%; }
+          .founderCard    { width: 100%; 
+                            }
           .founderQuote   { width: 100%; }
 
           .members  { padding: 50px 20px; }

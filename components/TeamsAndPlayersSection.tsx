@@ -109,7 +109,7 @@ export default function TeamsAndPlayersSection() {
           <div className="decorBar" />
         </div>
         <p className="sectionDesc">
-          Four groups. Four battlegrounds. Each team arrives carrying a legacy — and a hunger to write the next one.
+          Four groups. Four battlegrounds. Each team arrives carrying a legacy and a hunger to write the next one.
         </p>
 
         <div className="groupTabs">

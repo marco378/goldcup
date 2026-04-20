@@ -187,7 +187,7 @@ export default function VideoSection() {
         .thumb {
           position: absolute;
           inset: 0;
-          background-image: url('/images/optimized/video-thumb.jpg');
+          background-image: url('/images/optimized/video-bg.jpeg');
           background-size: cover;
           background-position: center;
           filter: brightness(0.75);
@@ -261,7 +261,7 @@ export default function VideoSection() {
 
         @media (max-width: 639px) {
           .videoSection {
-            padding: 32px 16px;
+            padding: 32px 16px 120px;
             grid-template-columns: 1fr;
             gap: 24px;
           }
@@ -294,6 +294,7 @@ export default function VideoSection() {
         @media (min-width: 640px) and (max-width: 900px) {
           .videoSection {
             padding: 40px 24px;
+            padding-bottom:40px;
             grid-template-columns: 1fr;
             gap: 28px;
           }

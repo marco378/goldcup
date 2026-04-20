@@ -177,8 +177,11 @@ export default function WallOfFameSection() {
   margin: 0 auto;
         }
         .featuredImage {
-          background: linear-gradient(180deg, #1a1a1a 0%, #111 100%);
+          background: 
+          url("./images/optimized/Dhoni2.png") center/cover no-repeat,  
+          linear-gradient(180deg, #1a1a1a 0%, #111 100%);
           min-height: 451px;
+          
         }
         .featuredContent {
           padding: 43px 44px 43px 40px;
@@ -372,7 +375,7 @@ export default function WallOfFameSection() {
         /* ── Mobile ── */
         @media (max-width: 639px) {
           .heroSection {
-            padding: 80px 20px 48px;
+            padding: 40px 20px 48px;
           }
           .heroDesc {
             font-size: 15px;
@@ -384,7 +387,7 @@ export default function WallOfFameSection() {
             grid-template-columns: 1fr;
           }
           .featuredImage {
-            min-height: 220px;
+            min-height: 450px;
           }
           .featuredContent {
             padding: 24px 20px;

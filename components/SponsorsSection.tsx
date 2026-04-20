@@ -36,7 +36,7 @@ const FEATURES = [
   { label: 'PRINT', desc: 'Collateral & programme features' },
 ]
 
-const LATEST_LOGOS = Array(13).fill('LOGO 1')
+const LATEST_LOGOS = Array(13).fill('News')
 
 export default function SponsorsSection() {
   const [ctaVisible, setCtaVisible] = useState(false)
@@ -128,7 +128,7 @@ export default function SponsorsSection() {
       {/* ── LATEST UPDATES DIVIDER ── */}
       <div className="divider">
         <div className="dividerLine" />
-        <h2 className="dividerTitle">LATEST UPDATES</h2>
+        <h2 className="dividerTitle">Our Sponsors</h2>
         <div className="dividerLine" />
       </div>
 
