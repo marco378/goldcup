@@ -337,7 +337,7 @@ export default function TournamentSnapshot() {
 
           h2,
           h2 span {
-            font-size: 26px;
+            font-size: 30px;
             letter-spacing: -0.3px;
             white-space: normal;
             text-align: center;
