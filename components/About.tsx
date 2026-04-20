@@ -103,13 +103,13 @@ export default function About() {
 
       {/* ══ HERO ══ */}
       <section ref={heroVis.ref as React.RefObject<HTMLElement>} className={`hero ${heroVis.visible ? 'vis' : ''}`}>
-        <h1 className="heroTitle">One Prestigious Cup Gold Cup</h1>
+        <h1 className="heroTitle">One Prestigious Gold Cup</h1>
         <p className="heroSub">
           Gold Cup, established in 1981, is a gold-plated symbol of excellence and pride. Born from
           the vision of true cricket lovers, it continues to celebrate talent and passion.
         </p>
         <div className="pillsRow">
-          {['Est. 1981', '42 Editions', '100+ Alumni'].map((label) => (
+          {['Est. 1981', '42ⁿᵈ Editions', '100+ Alumni'].map((label) => (
             <div className="pill" key={label}>
               <span className="pillDot" aria-hidden="true" />
               <span className="pillLabel">{label}</span>
@@ -281,11 +281,24 @@ export default function About() {
           color: #fffbf2;
           overflow: hidden;
         }
+@keyframes logoFadeIn {
+  from {
+    opacity: 0;
+    
+    filter: blur(20px);
+  }
+  to {
+    opacity: ;
+    
+    filter: blur(0px);
+  }
+}
 
         /* ── shared reveal animation ── */
         .hero, .legacy, .careers, .platform, .founder, .members {
           opacity: 0;
           transform: translateY(36px);
+          
           transition: opacity 0.85s cubic-bezier(0.22,1,0.36,1),
                       transform 0.85s cubic-bezier(0.22,1,0.36,1);
         }
@@ -321,7 +334,7 @@ export default function About() {
           -webkit-text-fill-color: transparent;
           background-clip: text;
           margin: 0 0 20px;
-          
+          animation: logoFadeIn 1.25s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
         }
         .heroSub {
           font-family: var(--font-manrope), 'Manrope', sans-serif;
@@ -332,6 +345,7 @@ export default function About() {
           color: #fffbf2;
           margin: 0 0 36px;
           max-width: 600px;
+          animation: logoFadeIn 2.2s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
         }
         .pillsRow {
           display: flex;

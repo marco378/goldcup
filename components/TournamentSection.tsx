@@ -204,7 +204,7 @@ export default function TournamentSection() {
 
         /* ── HERO ── */
         .hero {
-          padding: 140px 0 0;
+          padding: 150px 0 0;
           display: flex;
           flex-direction: column;
           align-items: center;

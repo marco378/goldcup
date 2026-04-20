@@ -249,7 +249,7 @@ export default function TeamsAndPlayersSection() {
 
         /* ── Hero ── */
         .heroSection {
-          padding: 100px 128px 80px;
+          padding: 150px 128px 80px;
         }
         .heroContent {
           display: flex;

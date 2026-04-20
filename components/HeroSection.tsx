@@ -65,6 +65,15 @@ export default function HeroSection() {
 
         </div>
       </div>
+        <div className={styles.logoReveal}>
+          <Image
+            src="/images/optimized/FinalLogo.png"
+            alt="Gold Cup Logo"
+            width={400}
+            height={400}
+            className={styles.heroLogo}
+          />
+        </div>
 
       <div className={styles.statsRow}>
         <Link href="/sponsors" className={styles.btnSponsor}style={{ width: '125px', margin:'auto' }}>

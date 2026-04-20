@@ -112,7 +112,7 @@ export default function WallOfFameSection() {
 
         /* ── Hero ── */
         .heroSection {
-          padding: 100px 128px 74px;
+          padding: 150px 128px 74px;
           display: flex;
           flex-direction: column;
           align-items: center;

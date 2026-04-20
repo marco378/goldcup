@@ -139,7 +139,7 @@ export default function ContactSection() {
         .contactSection {
           background: #000;
           color: #fffbf2;
-          padding: 100px 98px 80px;
+          padding: 150px 98px 80px;
         }
 
         .inner {

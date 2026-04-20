@@ -23,6 +23,11 @@ export default function Navbar() {
       {/* ── SINGLE BAR ── */}
       <div className="bar">
 
+        {/* Mobile logo (left side) */}
+        <Link href="/" onClick={closeAll} className="mobileLogo">
+          <img src="./images/optimized/FinalLogo.png" alt="LOGO" width={60} height={60} />
+        </Link>
+
         {/* Desktop row */}
         <div className="navCenter">
 
@@ -35,8 +40,7 @@ export default function Navbar() {
 
           {/* Centre logo */}
           <Link href="/" onClick={closeAll} className="logoWrap">
-          LOGO
-             {/*<img src="" alt="LOGO" width={110} height={60} /> */}
+            <img src="./images/optimized/FinalLogo.png" alt="LOGO" width={60} height={60} />
           </Link>
 
           {/* Right links */}
@@ -127,6 +131,22 @@ export default function Navbar() {
           position: relative;
         }
 
+        /* Mobile logo - hidden on desktop */
+        :global(.mobileLogo) {
+          display: none;
+          position: absolute;
+          left: 20px;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 2;
+        }
+        :global(.mobileLogo) img {
+          display: block;
+          object-fit: contain;
+          width: 50px;
+          height: auto;
+        }
+
         /* three-column centred layout */
         .navCenter {
           display: flex;
@@ -134,8 +154,8 @@ export default function Navbar() {
           justify-content: center;
           gap: 50px;
           width: fit-content;
-max-width: calc(100% - 40px);
-margin: 0 auto;
+          max-width: calc(100% - 40px);
+          margin: 0 auto;
           max-width: 1100px;
           background: translucent;
           backdrop-filter: blur(18px);
@@ -255,7 +275,8 @@ margin: 0 auto;
           background: none;
           border: none;
           cursor: pointer;
-          padding: 65px 10px 10px 20px;
+          padding: 10px;
+          z-index: 2;
         }
         .hamburger span {
           display: block;
@@ -374,11 +395,14 @@ margin: 0 auto;
         @media (max-width: 1023px) {
           .navCenter { display: none; }
           .hamburger { display: flex; }
+          :global(.mobileLogo) { display: block; }
         }
 
         @media (max-width: 639px) {
-          .bar { padding: 16px 20px; }
-          .navCenter { padding: 16px; margin: 16px 20px; }
+          .bar { padding: 46px 20px; }
+          :global(.mobileLogo) img {
+            width: 75px;
+          }
         }
       `}</style>
     </nav>
