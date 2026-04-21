@@ -218,7 +218,7 @@ export default function About() {
             
             <div className="founderMeta">
               <p className="founderLabel">Founding Member</p>
-              <p className="founderName">P.C. Varma</p>
+              <p className="founderName">P.C. Verma</p>
               <p className="founderRole">Secretary · Gold Cup</p>
             </div>
           </div>
@@ -227,7 +227,7 @@ export default function About() {
             <p className="founderQuote">
               " The first thing is to love your sport. Never do it to please someone else. It has to be yours."
             </p>
-            <p className="founderAttrib">— P.C. Varma, Secretary &amp; Founding Member</p>
+            <p className="founderAttrib">— P.C. Verma, Secretary &amp; Founding Member</p>
           </div>
         </div>
       </section>
@@ -237,7 +237,7 @@ export default function About() {
         <div className="secHeader">
           <span className="divLine" />
           <h2 className="secTitle">
-            <span className="stGold">Founding</span>
+            <span className="stGold">Executive</span>
             <span className="stWhite"> Members</span>
           </h2>
           <span className="divLine" />

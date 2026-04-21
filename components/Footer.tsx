@@ -12,7 +12,7 @@ export default function Footer() {
     if (!node) {
       return
     }
-
+    
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsVisible(entry.isIntersecting)
@@ -34,12 +34,15 @@ export default function Footer() {
       <div className="row">
         <div className="links">
           <Link href="/" style={footerLinkStyle}>Home</Link>
-          <Link href="/tournament" style={footerLinkStyle}>Tournament</Link>
-          <Link href="/teams" style={footerLinkStyle}>Teams</Link>
           <Link href="/about" style={footerLinkStyle}>About</Link>
+          <Link href="/tournament" style={footerLinkStyle}>Tournament</Link>
+          <Link href="/teamsandplayers" style={footerLinkStyle}>Teams</Link>
+          
         </div>
 
-        <div className="logoWrap">L O G O</div>
+        <Link href="/" >
+            <img src="./images/optimized/FinalLogo.png" alt="LOGO" width={140} height={140} />
+          </Link>
 
         <div className="links right">
           <Link href="/media" style={footerLinkStyle}>Media</Link>

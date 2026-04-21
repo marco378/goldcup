@@ -71,6 +71,7 @@ export default function HeroSection() {
             alt="Gold Cup Logo"
             width={400}
             height={400}
+            passing-bottom={30}
             className={styles.heroLogo}
           />
         </div>

@@ -34,6 +34,7 @@ export default function Navbar() {
           {/* Left links */}
           <div className="navGroup navLeft">
             <Link href="/"                  className={isActive('/')                  ? 'navLink active' : 'navLink'}>Home</Link>
+            <Link href="/about"             className={isActive('/about')             ? 'navLink active' : 'navLink'}>About</Link>
             <Link href="/tournament"        className={isActive('/tournament')        ? 'navLink active' : 'navLink'}>Tournament</Link>
             <Link href="/teamsandplayers"   className={isActive('/teamsandplayers')   ? 'navLink active' : 'navLink'}>Teams</Link>
           </div>
@@ -59,7 +60,7 @@ export default function Navbar() {
               {moreOpen && (
                 <div className="dropdown">
                   <Link href="/walloffame" onClick={closeAll}>Wall of Fame</Link>
-                  <Link href="/about"      onClick={closeAll}>About</Link>
+                  
                   <Link href="/contact"    onClick={closeAll}>Contact</Link>
                 </div>
               )}
