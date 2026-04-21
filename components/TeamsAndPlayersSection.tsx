@@ -4,27 +4,41 @@ import { useEffect, useRef, useState } from 'react'
 
 const GROUPS = ['GROUP A', 'GROUP B', 'GROUP C', 'GROUP D']
 
+type FilterTab = 'ALL' | 'BATSMAN' | 'BOWLERS' | 'ALL ROUNDERS' | 'WICKETKEEPERS'
+
 const teams = [
-  { name: 'Royal Club XI', style: 'Batting', group: 'Group A', players: ['Arjun Rao', 'Vikram Shah', 'Rohit Nair'], roles: ['Bat', 'Bowl', 'AR'] },
-  { name: 'Northern Stars', style: 'Bowling', group: 'Group A', players: ['Pradeep Kumar', 'Suresh Yadav', 'Arjun Singh'], roles: ['Bowl', 'Bowl', 'Bat'] },
-  { name: 'Meerut Titans', style: 'All-Round', group: 'Group A', players: ['Karan Mehta', 'Dev Sharma', 'Anil Patel'], roles: ['AR', 'Bat', 'Bowl'] },
-  { name: 'Golden Eagles', style: 'Batting', group: 'Group A', players: ['Ramesh Gupta', 'Mohan Das', 'Vijay Rao'], roles: ['Bat', 'AR', 'Bowl'] },
-  { name: 'Thunder XI', style: 'Bowling', group: 'Group B', players: ['Ravi Kumar', 'Sanjay Shah', 'Deepak Nair'], roles: ['Bowl', 'Bat', 'AR'] },
-  { name: 'Warrior Squad', style: 'All-Round', group: 'Group A', players: ['Ankit Singh', 'Sunil Mehta', 'Rakesh Das'], roles: ['AR', 'Bowl', 'Bat'] },
+  { name: 'Royal Club XI',   style: 'Batting',   group: 'GROUP A', players: ['Arjun Rao', 'Vikram Shah', 'Rohit Nair'],       roles: ['Bat', 'Bowl', 'AR']  },
+  { name: 'Northern Stars',  style: 'Bowling',   group: 'GROUP A', players: ['Pradeep Kumar', 'Suresh Yadav', 'Arjun Singh'], roles: ['Bowl', 'Bowl', 'Bat'] },
+  { name: 'Meerut Titans',   style: 'All-Round', group: 'GROUP A', players: ['Karan Mehta', 'Dev Sharma', 'Anil Patel'],      roles: ['AR', 'Bat', 'Bowl']  },
+  { name: 'Golden Eagles',   style: 'Batting',   group: 'GROUP A', players: ['Ramesh Gupta', 'Mohan Das', 'Vijay Rao'],       roles: ['Bat', 'AR', 'Bowl']  },
+  { name: 'Thunder XI',      style: 'Bowling',   group: 'GROUP B', players: ['Ravi Kumar', 'Sanjay Shah', 'Deepak Nair'],     roles: ['Bowl', 'Bat', 'AR']  },
+  { name: 'Warrior Squad',   style: 'All-Round', group: 'GROUP B', players: ['Ankit Singh', 'Sunil Mehta', 'Rakesh Das'],     roles: ['AR', 'Bowl', 'Bat']  },
+  { name: 'Falcon FC',       style: 'Batting',   group: 'GROUP B', players: ['Yash Patel', 'Nikhil Das', 'Rohit Singh'],      roles: ['Bat', 'Bat', 'Bowl'] },
+  { name: 'Desert Kings',    style: 'Bowling',   group: 'GROUP B', players: ['Imran Khan', 'Salman Mir', 'Farhan Ali'],       roles: ['Bowl', 'AR', 'Bowl'] },
+  { name: 'Northern Hawks',  style: 'All-Round', group: 'GROUP C', players: ['Dev Raj', 'Vikas Nair', 'Suresh Gupta'],        roles: ['AR', 'Bat', 'Bowl']  },
+  { name: 'Southern Stars',  style: 'Batting',   group: 'GROUP C', players: ['Arun Mehta', 'Kiran Das', 'Rahul Rao'],         roles: ['Bat', 'AR', 'Bat']   },
+  { name: 'Eastern Blaze',   style: 'Bowling',   group: 'GROUP C', players: ['Manoj Sharma', 'Praveen Nair', 'Sanjay Patel'], roles: ['Bowl', 'Bowl', 'Bat'] },
+  { name: 'Western Wolves',  style: 'All-Round', group: 'GROUP C', players: ['Tarun Singh', 'Rajan Kumar', 'Vijay Das'],      roles: ['AR', 'Bat', 'Bowl']  },
+  { name: 'Capital Colts',   style: 'Batting',   group: 'GROUP D', players: ['Ashok Rao', 'Naveen Shah', 'Dinesh Nair'],      roles: ['Bat', 'AR', 'Bowl']  },
+  { name: 'Frontier Force',  style: 'Bowling',   group: 'GROUP D', players: ['Zaheer Abbas', 'Usman Ali', 'Kamran Mir'],      roles: ['Bowl', 'Bowl', 'AR'] },
+  { name: 'Desert Falcons',  style: 'All-Round', group: 'GROUP D', players: ['Ravi Das', 'Mohan Singh', 'Sunil Rao'],         roles: ['AR', 'Bat', 'Bowl']  },
+  { name: 'Valley Vipers',   style: 'Batting',   group: 'GROUP D', players: ['Alok Mehta', 'Girish Patel', 'Deepak Kumar'],   roles: ['Bat', 'Bowl', 'Bat'] },
 ]
 
 const players = [
-  { name: 'Kartik Malhotra', team: 'Meerut Titans', num: 45, group: 'Group A', runs: '2,434', avg: '68.2', hundreds: '8' },
-  { name: 'Arjun Rao', team: 'Royal Club XI', num: 7, group: 'Group A', runs: '1,876', avg: '54.6', hundreds: '6' },
-  { name: 'Vikram Shah', team: 'Royal Club XI', num: 12, group: 'Group A', runs: '2,102', avg: '61.8', hundreds: '7' },
-  { name: 'Pradeep Kumar', team: 'Northern Stars', num: 22, group: 'Group A', runs: '1,543', avg: '48.2', hundreds: '4' },
-  { name: 'Karan Mehta', team: 'Meerut Titans', num: 3, group: 'Group A', runs: '1,982', avg: '57.4', hundreds: '5' },
-  { name: 'Dev Sharma', team: 'Meerut Titans', num: 18, group: 'Group A', runs: '1,720', avg: '52.1', hundreds: '5' },
-  { name: 'Rohit Nair', team: 'Royal Club XI', num: 9, group: 'Group A', runs: '2,211', avg: '63.7', hundreds: '7' },
-  { name: 'Suresh Yadav', team: 'Northern Stars', num: 14, group: 'Group A', runs: '1,654', avg: '50.3', hundreds: '4' },
+  { name: 'Kartik Malhotra', team: 'Meerut Titans',  num: 45, group: 'GROUP A', role: 'BATSMAN',      runs: '2,434', avg: '68.2', hundreds: '8' },
+  { name: 'Arjun Rao',       team: 'Royal Club XI',  num:  7, group: 'GROUP A', role: 'BATSMAN',      runs: '1,876', avg: '54.6', hundreds: '6' },
+  { name: 'Vikram Shah',     team: 'Royal Club XI',  num: 12, group: 'GROUP A', role: 'BOWLERS',      runs: '1,102', avg: '31.8', hundreds: '2' },
+  { name: 'Pradeep Kumar',   team: 'Northern Stars', num: 22, group: 'GROUP A', role: 'BOWLERS',      runs: '543',   avg: '18.2', hundreds: '0' },
+  { name: 'Karan Mehta',     team: 'Meerut Titans',  num:  3, group: 'GROUP A', role: 'ALL ROUNDERS', runs: '1,982', avg: '57.4', hundreds: '5' },
+  { name: 'Ravi Kumar',      team: 'Thunder XI',     num: 11, group: 'GROUP B', role: 'BOWLERS',      runs: '420',   avg: '14.0', hundreds: '0' },
+  { name: 'Ankit Singh',     team: 'Warrior Squad',  num:  5, group: 'GROUP B', role: 'ALL ROUNDERS', runs: '1,540', avg: '44.0', hundreds: '3' },
+  { name: 'Yash Patel',      team: 'Falcon FC',      num: 19, group: 'GROUP B', role: 'BATSMAN',      runs: '1,720', avg: '52.1', hundreds: '5' },
+  { name: 'Dev Raj',         team: 'Northern Hawks', num: 31, group: 'GROUP C', role: 'ALL ROUNDERS', runs: '1,320', avg: '38.8', hundreds: '2' },
+  { name: 'Arun Mehta',      team: 'Southern Stars', num:  8, group: 'GROUP C', role: 'BATSMAN',      runs: '2,100', avg: '60.0', hundreds: '6' },
+  { name: 'Ashok Rao',       team: 'Capital Colts',  num: 27, group: 'GROUP D', role: 'BATSMAN',      runs: '1,660', avg: '47.4', hundreds: '4' },
+  { name: 'Zaheer Abbas',    team: 'Frontier Force', num:  2, group: 'GROUP D', role: 'BOWLERS',      runs: '310',   avg: '10.3', hundreds: '0' },
 ]
-
-type FilterTab = 'ALL' | 'BATSMAN' | 'BOWLERS' | 'ALL ROUNDERS' | 'WICKETKEEPERS'
 
 export default function TeamsAndPlayersSection() {
   const heroRef = useRef<HTMLDivElement | null>(null)
@@ -39,6 +53,9 @@ export default function TeamsAndPlayersSection() {
   const [activeFilter, setActiveFilter] = useState<FilterTab>('ALL')
   const [searchQuery, setSearchQuery] = useState('')
   const [showCount, setShowCount] = useState(8)
+
+  const setFilter = (f: FilterTab) => { setActiveFilter(f); setShowCount(8) }
+  const setSearch = (q: string)    => { setSearchQuery(q);  setShowCount(8) }
 
   useEffect(() => {
     const sections = [
@@ -59,11 +76,16 @@ export default function TeamsAndPlayersSection() {
     return () => observers.forEach(obs => obs?.disconnect())
   }, [])
 
+  const filteredTeams = teams.filter(t => t.group === activeGroup)
+
   const filteredPlayers = players
     .filter(p => {
-      if (!searchQuery) return true
-      const q = searchQuery.toLowerCase()
-      return p.name.toLowerCase().includes(q) || p.team.toLowerCase().includes(q)
+      if (activeFilter !== 'ALL' && p.role !== activeFilter) return false
+      if (searchQuery) {
+        const q = searchQuery.toLowerCase()
+        return p.name.toLowerCase().includes(q) || p.team.toLowerCase().includes(q)
+      }
+      return true
     })
     .slice(0, showCount)
 
@@ -125,7 +147,7 @@ export default function TeamsAndPlayersSection() {
         </div>
 
         <div className="teamsGrid">
-          {teams.map((team, i) => (
+          {filteredTeams.map((team, i) => (
             <div
               key={i}
               className="teamCard"
@@ -174,7 +196,7 @@ export default function TeamsAndPlayersSection() {
               <button
                 key={f}
                 className={`filterTab ${activeFilter === f ? 'activeFilter' : ''}`}
-                onClick={() => setActiveFilter(f)}
+                onClick={() => setFilter(f)}
               >
                 {f}
               </button>
@@ -189,7 +211,7 @@ export default function TeamsAndPlayersSection() {
               type="text"
               placeholder="Search players or teams"
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => setSearch(e.target.value)}
               className="searchInput"
             />
           </div>

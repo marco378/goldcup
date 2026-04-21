@@ -70,7 +70,7 @@ const officeBearers = [
   { name: 'Rajiv Dutta', role: 'President' },
   { name: 'Deepak Mehra', role: 'Sr. Vice President' },
   { name: 'Sandeep Rawat', role: 'Vice President' },
-  { name: 'P.C. Varma', role: 'Secretary' },
+  { name: 'P.C. Verma', role: 'Secretary' },
   { name: 'Yogender Bisht', role: 'Treasurer' },
   { name: 'Santosh Gairola', role: 'Jt. Treasurer' },
   { name: 'Dr. J. Sachan', role: 'Executive Secretary' },
@@ -827,7 +827,7 @@ export default function About() {
           font-weight: 700;
           font-style: normal;
           line-height: 1;
-          letter-spacing: 0.5px;
+          letter-spacing: 0.8px;
           color: rgba(255,255,255,0.9);
           margin: 0;
         }

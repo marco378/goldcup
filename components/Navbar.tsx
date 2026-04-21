@@ -35,7 +35,10 @@ export default function Navbar() {
           <div className="navGroup navLeft">
             <Link href="/"                  className={isActive('/')                  ? 'navLink active' : 'navLink'}>Home</Link>
             <Link href="/about"             className={isActive('/about')             ? 'navLink active' : 'navLink'}>About</Link>
-            <Link href="/tournament"        className={isActive('/tournament')        ? 'navLink active' : 'navLink'}>Live Section</Link>
+            <Link href="/teamsandplayers"   className={isActive('/teamsandplayers')   ? 'navLink active' : 'navLink'}>Teams</Link>
+            <Link href="/TournamentSection"        className={isActive('/TournamentSection')        ? 'navLink active' : 'navLink'}>Tournament Structure</Link>
+            
+            
             
           </div>
 
@@ -46,9 +49,11 @@ export default function Navbar() {
 
           {/* Right links */}
           <div className="navGroup navRight">
-            <Link href="/teamsandplayers"   className={isActive('/teamsandplayers')   ? 'navLink active' : 'navLink'}>Teams</Link>
-            <Link href="/media"    className={isActive('/media')    ? 'navLink active' : 'navLink'}>Media</Link>
+            
+            
             <Link href="/sponsors" className={isActive('/sponsors') ? 'navLink active' : 'navLink'}>Sponsors</Link>
+            <Link href="/tournament"        className={isActive('/tournament')        ? 'navLink active' : 'navLink'}>Live Section</Link>
+            <Link href="/walloffame"        className={isActive('/walloffame')        ? 'navLink active' : 'navLink'}>Wall of Fame</Link>
 
             <div className="moreWrap">
               <button className="moreBtn" onClick={() => setMoreOpen(v => !v)}>
@@ -60,9 +65,8 @@ export default function Navbar() {
 
               {moreOpen && (
                 <div className="dropdown">
-                  <Link href="/walloffame" onClick={closeAll}>Wall of Fame</Link>
-                   <Link href="/TournamentSection" onClick={closeAll}>Tournament Snapshot</Link>
-                  <Link href="/contact"    onClick={closeAll}>Contact</Link>
+                  <Link href="/media"   onClick={closeAll}>News & Updates</Link>
+                  <Link href="/contact" onClick={closeAll}>Contact</Link>
                 </div>
               )}
             </div>
@@ -159,7 +163,7 @@ export default function Navbar() {
           max-width: calc(100% - 40px);
           margin: 0 auto;
           max-width: 1100px;
-          background: translucent;
+          background: rgba(0, 0, 0, 0.45);
           backdrop-filter: blur(18px);
           -webkit-backdrop-filter: blur(18px);
           border-radius: 12px;

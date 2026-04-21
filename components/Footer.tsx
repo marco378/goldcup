@@ -5,6 +5,7 @@ import Link from 'next/link'
 
 export default function Footer() {
   const [isVisible, setIsVisible] = useState(false)
+  const [moreOpen, setMoreOpen] = useState(false)
   const footerRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
@@ -35,8 +36,10 @@ export default function Footer() {
         <div className="links">
           <Link href="/" style={footerLinkStyle}>Home</Link>
           <Link href="/about" style={footerLinkStyle}>About</Link>
-          <Link href="/tournament" style={footerLinkStyle}>Tournament</Link>
           <Link href="/teamsandplayers" style={footerLinkStyle}>Teams</Link>
+          <Link href="/TournamentSection" style={footerLinkStyle}>Tournament Structure</Link>
+          
+          
           
         </div>
 
@@ -45,10 +48,23 @@ export default function Footer() {
           </Link>
 
         <div className="links right">
-          <Link href="/media" style={footerLinkStyle}>Media</Link>
           <Link href="/sponsors" style={footerLinkStyle}>Sponsors</Link>
+          <Link href="/tournament" style={footerLinkStyle}>Live Section</Link>
           <Link href="/walloffame" style={footerLinkStyle}>Wall of Fame</Link>
-          <Link href="/contact" style={footerLinkStyle}>Contact</Link>
+          <div className="moreWrap">
+            <button className="moreBtn" onClick={() => setMoreOpen(v => !v)}>
+              More
+              <svg className={`chevron ${moreOpen ? 'open' : ''}`} width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#fffbf2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+            {moreOpen && (
+              <div className="dropdown">
+                <Link href="/media"   onClick={() => setMoreOpen(false)} style={footerLinkStyle}>News & Updates</Link>
+                <Link href="/contact" onClick={() => setMoreOpen(false)} style={footerLinkStyle}>Contact</Link>
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
@@ -106,6 +122,56 @@ export default function Footer() {
           display: flex;
           gap: 48px;
           align-items: center;
+        }
+
+        .moreWrap {
+          position: relative;
+        }
+        .moreBtn {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          background: none;
+          border: none;
+          font-family: var(--font-manrope), 'Manrope', sans-serif;
+          font-size: 13px;
+          font-weight: 500;
+          letter-spacing: 0.02em;
+          color: rgba(255,255,255,0.9);
+          cursor: pointer;
+          padding: 0;
+          white-space: nowrap;
+          transition: color 0.18s ease;
+        }
+        .moreBtn:hover { color: #fff; }
+        .chevron { transition: transform 0.2s ease; flex-shrink: 0; }
+        .chevron.open { transform: rotate(180deg); }
+
+        .dropdown {
+          position: absolute;
+          bottom: calc(100% + 12px);
+          right: 0;
+          background: rgba(10,10,10,0.97);
+          border: 1px solid rgba(255,255,255,0.12);
+          border-radius: 8px;
+          min-width: 140px;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          animation: fadeUp 0.18s ease both;
+        }
+        .dropdown :global(a) {
+          display: block;
+          padding: 12px 18px;
+          border-bottom: 1px solid rgba(255,255,255,0.08);
+          transition: background 140ms ease, color 140ms ease;
+        }
+        .dropdown :global(a:last-child) { border-bottom: none; }
+        .dropdown :global(a:hover) { background: rgba(255,255,255,0.06); color: #fff !important; }
+
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateY(6px); }
+          to   { opacity: 1; transform: translateY(0); }
         }
 
         .logoWrap {
