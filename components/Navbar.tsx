@@ -35,8 +35,8 @@ export default function Navbar() {
           <div className="navGroup navLeft">
             <Link href="/"                  className={isActive('/')                  ? 'navLink active' : 'navLink'}>Home</Link>
             <Link href="/about"             className={isActive('/about')             ? 'navLink active' : 'navLink'}>About</Link>
-            <Link href="/tournament"        className={isActive('/tournament')        ? 'navLink active' : 'navLink'}>Tournament</Link>
-            <Link href="/teamsandplayers"   className={isActive('/teamsandplayers')   ? 'navLink active' : 'navLink'}>Teams</Link>
+            <Link href="/tournament"        className={isActive('/tournament')        ? 'navLink active' : 'navLink'}>Live Section</Link>
+            
           </div>
 
           {/* Centre logo */}
@@ -46,6 +46,7 @@ export default function Navbar() {
 
           {/* Right links */}
           <div className="navGroup navRight">
+            <Link href="/teamsandplayers"   className={isActive('/teamsandplayers')   ? 'navLink active' : 'navLink'}>Teams</Link>
             <Link href="/media"    className={isActive('/media')    ? 'navLink active' : 'navLink'}>Media</Link>
             <Link href="/sponsors" className={isActive('/sponsors') ? 'navLink active' : 'navLink'}>Sponsors</Link>
 
@@ -60,7 +61,7 @@ export default function Navbar() {
               {moreOpen && (
                 <div className="dropdown">
                   <Link href="/walloffame" onClick={closeAll}>Wall of Fame</Link>
-                  
+                   <Link href="/TournamentSection" onClick={closeAll}>Tournament Snapshot</Link>
                   <Link href="/contact"    onClick={closeAll}>Contact</Link>
                 </div>
               )}

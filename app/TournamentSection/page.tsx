@@ -1,14 +1,14 @@
 import Navbar from '@/components/Navbar'
-import TournamentSection from '@/components/LiveSection'
+import TournamentSection from '@/components/TournamentSection'
 import Footer from '@/components/Footer'
 import HomePageShell from '@/components/HomePageShell'
 
 export const metadata = {
-  title: 'Tournament – Gold Cup 42nd Edition',
-  description: '31 matches. Four phases. One trophy. Full schedule, live scores, and match results for Gold Cup 42nd Edition.',
+  title: 'Tournament | Gold Cup 42nd Edition',
+  description: 'The Road to Glory — 31 matches of elite cricket across groups, quarterfinals, semifinals and the grand final.',
 }
 
-export default function TournamentPage() {
+export default function TournamentSectionPage() {
   return (
     <HomePageShell>
       <main style={{ background: '#000', minHeight: '100vh' }}>

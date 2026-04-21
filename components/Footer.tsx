@@ -131,7 +131,7 @@ export default function Footer() {
         p {
           font-family: var(--font-manrope);
           font-size: 12px;
-          color: rgba(255, 255, 255, 0.52);
+          color: rgba(255, 251, 251, 0.96);
           letter-spacing: 0.02em;
         }
 
