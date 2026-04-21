@@ -67,11 +67,11 @@ export default function HeroSection() {
       </div>
         <div className={styles.logoReveal}>
           <Image
-            src="/images/optimized/FinalLogo.png"
+            src="/images/optimized/logorevealhero.png"
             alt="Gold Cup Logo"
-            width={400}
-            height={400}
-            passing-bottom={30}
+            width={600}
+            height={600}
+            style={{ paddingBottom: 20 }}
             className={styles.heroLogo}
           />
         </div>
