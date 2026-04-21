@@ -96,7 +96,7 @@ export default function Navbar() {
                 { href: '/',                label: 'Home' },
                 { href: '/tournament',      label: 'Tournament' },
                 { href: '/teamsandplayers', label: 'Teams' },
-                { href: '/media',           label: 'Media' },
+                { href: '/media',           label: 'News & Updates' },
                 { href: '/sponsors',        label: 'Sponsors' },
                 { href: '/walloffame',      label: 'Wall of Fame' },
                 { href: '/about',           label: 'About' },
