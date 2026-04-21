@@ -231,7 +231,7 @@ const footerLinkStyle: React.CSSProperties = {
   color: 'rgba(255,255,255,0.9)',
   textDecoration: 'none',
   fontSize: '13px',
-  fontFamily: 'Barlow, sans-serif',
+  fontFamily: 'var(--font-manrope)',
   fontWeight: 500,
   letterSpacing: '0.02em',
   cursor: 'pointer',
