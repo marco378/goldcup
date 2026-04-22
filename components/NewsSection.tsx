@@ -75,7 +75,7 @@ export default function NewsSection() {
             >
               <div className="cardImage">
                 <img
-                  src="/images/news-card-bg.jpg"
+                  src="/images/optimized/video-thumb.jpg"
                   alt=""
                   className="cardImg"
                   aria-hidden="true"

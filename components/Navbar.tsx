@@ -94,7 +94,7 @@ export default function Navbar() {
             <div className="drawerLinks">
               {[
                 { href: '/',                label: 'Home' },
-                { href: '/tournament',      label: 'Tournament' },
+                { href: '/tournament',      label: 'Live Section' },
                 { href: '/teamsandplayers', label: 'Teams' },
                 { href: '/media',           label: 'News & Updates' },
                 { href: '/sponsors',        label: 'Sponsors' },
@@ -167,7 +167,7 @@ export default function Navbar() {
           backdrop-filter: blur(18px);
           -webkit-backdrop-filter: blur(18px);
           border-radius: 12px;
-          padding: 11px 14px;
+          padding: 11px 24px;
           border: 1px solid rgba(255,255,255,0.08);
         }
 
@@ -407,7 +407,8 @@ export default function Navbar() {
         @media (max-width: 639px) {
           .bar { padding: 46px 20px; }
           :global(.mobileLogo) img {
-            width: 75px;
+            width: 65px;
+            padding-top: 17px;
           }
         }
       `}</style>

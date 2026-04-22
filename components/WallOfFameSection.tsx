@@ -178,7 +178,7 @@ export default function WallOfFameSection() {
         }
         .featuredImage {
           background: 
-          url("./images/optimized/Dhoni2.png") center/cover no-repeat,  
+          url("./images/optimized/DhoniFinal.png") center/cover no-repeat,  
           linear-gradient(180deg, #1a1a1a 0%, #111 100%);
           min-height: 451px;
           

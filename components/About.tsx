@@ -63,7 +63,6 @@ const foundingMembers = [
   { name: 'Dinesh Sharma', role: 'Late' },
   { name: 'Rajiv Dutta', role: '' },
   { name: 'Balwant Singh Pundir', role: '' },
-  { name: 'Hira Singh Bisht', role: '' }
 ]
 
 const officeBearers = [
@@ -71,7 +70,7 @@ const officeBearers = [
   { name: 'Deepak Mehra', role: 'Sr. Vice President' },
   { name: 'Sandeep Rawat', role: 'Vice President' },
   { name: 'P.C. Verma', role: 'Secretary' },
-  { name: 'Yogender Bisht', role: 'Treasurer' },
+  { name: 'Yogender Bajpai', role: 'Treasurer' },
   { name: 'Santosh Gairola', role: 'Jt. Treasurer' },
   { name: 'Dr. J. Sachan', role: 'Executive Secretary' },
   { name: 'D.K. Sharma', role: 'Media & Spokesperson' },
@@ -80,6 +79,8 @@ const officeBearers = [
   { name: 'Devender Sati', role: 'Executive Member' },
   { name: 'Pawan Pal', role: 'Executive Member' },
   { name: 'Indu Saral', role: 'Executive Member' },
+  { name: 'Noor Alam', role: 'Executive Member' },
+  { name: 'Rahul Panwar', role: 'Executive Member' },
 ]
 
 const valueCards = [

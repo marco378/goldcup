@@ -70,7 +70,7 @@ export default function TournamentSection() {
         </div>
 
         <div className="matchCard">
-          <img src="/images/tournament-live-bg.jpg" alt="" className="matchCardBg" />
+          <img src="/images/optimized/tournament-live-bgFinal.jpg" alt="" className="matchCardBg" />
           <div className="matchCardOverlay" />
 
           <div className="matchCardContent">
