@@ -153,8 +153,8 @@ export default function SponsorsSection() {
               <a href="/contact" className="btnPrimary">
                 <span className="btnLabel btnLabelDark">Become a Sponsor</span>
               </a>
-              <a href="#" className="btnSecondary">
-                <span className="btnLabel btnLabelLight">Download Media Kit</span>
+              <a href="/media" className="btnSecondary">
+                <span className="btnLabel btnLabelLight">News & Updates</span>
               </a>
             </div>
           </div>

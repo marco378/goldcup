@@ -4,7 +4,7 @@ import Footer from '@/components/Footer'
 import HomePageShell from '@/components/HomePageShell'
 
 export const metadata = {
-  title: 'Tournament | Gold Cup 42nd Edition',
+  title: 'Match Summary Gold Cup 42nd Edition',
   description: 'The Road to Glory — 31 matches of elite cricket across groups, quarterfinals, semifinals and the grand final.',
 }
 

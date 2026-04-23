@@ -106,7 +106,11 @@ export default function ContactSection() {
                   </div>
                   <div className="contactText">
                     <span className="contactLabel">Email Us</span>
-                    <span className="contactValue">goldcupteam@uttarakhandgoldcup.com</span>
+                    <span className="contactValue">
+                      <a href="mailto:goldcupteam@uttarakhandgoldcup.com" className="contactValue">
+                      goldcupteam@uttarakhandgoldcup.com
+                      </a>
+                      </span>
                   </div>
                 </div>
               </div>
