@@ -68,6 +68,11 @@ export default function Footer() {
         </div>
       </div>
 
+      <div className="addressWrap">
+        <p className="addressLine">Address: 2nd Floor, Sarvjeet Complex, Raipur, Dehradun (UK)</p>
+        <p className="addressLine">Contact No: +91 9760378007, +91 9411109317</p>
+      </div>
+
       <div className="copyWrap">
         <p>Gold Cup: 42nd Edition. All Rights Reserved.</p>
       </div>
@@ -194,6 +199,29 @@ export default function Footer() {
           transition: transform 0.6s ease 0.08s, opacity 0.6s ease 0.08s;
         }
 
+        .addressWrap {
+          position: relative;
+          z-index: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 6px;
+          padding: 0 80px 10px;
+          text-align: center;
+          opacity: 0;
+          transform: translateY(24px);
+          transition: transform 0.6s ease 0.04s, opacity 0.6s ease 0.04s;
+        }
+
+        .addressLine {
+          margin: 0;
+          font-family: var(--font-manrope);
+          font-size: 13px;
+          color: rgba(255, 251, 251, 0.82);
+          letter-spacing: 0.02em;
+          line-height: 1.5;
+        }
+
         p {
           font-family: var(--font-manrope);
           font-size: 12px;
@@ -206,6 +234,7 @@ export default function Footer() {
           transform: translateY(0) skewY(0deg);
         }
 
+        .isVisible .addressWrap,
         .isVisible .row,
         .isVisible .copyWrap {
           opacity: 1;
@@ -214,6 +243,7 @@ export default function Footer() {
 
         @media (prefers-reduced-motion: reduce) {
           .watermark,
+          .addressWrap,
           .row,
           .copyWrap {
             opacity: 1;
@@ -240,6 +270,16 @@ export default function Footer() {
 
           .logoWrap {
             display: none;
+          }
+
+          .addressWrap {
+            padding: 0 16px 8px;
+            gap: 4px;
+          }
+
+          .addressLine {
+            font-size: 12px;
+            line-height: 1.45;
           }
 
           .copyWrap {
@@ -272,6 +312,14 @@ export default function Footer() {
 
           .links.right {
             justify-content: flex-end;
+          }
+
+          .addressWrap {
+            padding: 0 18px 10px;
+          }
+
+          .addressLine {
+            font-size: 12px;
           }
 
           .copyWrap {

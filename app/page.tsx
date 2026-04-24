@@ -7,12 +7,14 @@ import CTABanner from '@/components/CTABanner'
 import Footer from '@/components/Footer'
 import HomePageShell from '@/components/HomePageShell'
 import AlumniRegisterBanner from '@/components/AlumniRegisterBanner'
+import AlumniRegisterTab from '@/components/AlumniRegisterTab'
 
 export default function Home() {
   return (
     <HomePageShell>
       <main style={{ background: '#000', minHeight: '100vh' }}>
         <Navbar />
+        <AlumniRegisterTab />
         <HeroSection />
         
         <LegacySection />

@@ -97,7 +97,7 @@ export default function ContactSection() {
                   </div>
                   <div className="contactText">
                     <span className="contactLabel">Call Us</span>
-                    <span className="contactValue">+(91)-89473623</span>
+                    <span className="contactValue">+(91) 9760378007, +(91) 9411109317</span>
                   </div>
                 </div>
                 <div className="contactRow">
@@ -360,7 +360,7 @@ export default function ContactSection() {
           flex-direction: column;
           gap: 14px;
           flex: 1;
-          min-width: 300px;
+          min-width: 0;
         }
         .sidebarTitle {
           font-family: var(--font-coluna), 'Coluna', sans-serif;
@@ -410,7 +410,8 @@ export default function ContactSection() {
         .contactText {
           display: flex;
           flex-direction: column;
-          gap: 12px;
+          gap: 8px;
+          min-width: 0;
         }
         .contactLabel {
           font-family: var(--font-manrope), 'Manrope', sans-serif;
@@ -425,12 +426,13 @@ export default function ContactSection() {
         }
         .contactValue {
           font-family: var(--font-coluna), 'Coluna', sans-serif;
-          font-size: 28px;
+          font-size: 22px;
           font-style: normal;
           font-weight: 700;
-          line-height: 1;
+          line-height: 1.15;
           color: #fff;
-          word-break: break-all;
+          word-break: normal;
+          overflow-wrap: anywhere;
         }
         .socialRow {
           display: flex;
@@ -482,7 +484,7 @@ export default function ContactSection() {
             font-size: 26px;
           }
           .contactValue {
-            font-size: 22px;
+            font-size: 18px;
           }
         }
 
@@ -511,6 +513,10 @@ export default function ContactSection() {
           }
           .sidebarBlock {
             flex: 1;
+          }
+
+          .contactValue {
+            font-size: 20px;
           }
         }
       `}</style>
