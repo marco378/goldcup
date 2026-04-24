@@ -1,5 +1,6 @@
 import Navbar from '@/components/Navbar'
 import WallOfFameSection from '@/components/WallOfFameSection'
+import AlumniRegisterBanner from '@/components/AlumniRegisterBanner'
 import CTABanner from '@/components/CTABanner'
 import Footer from '@/components/Footer'
 import HomePageShell from '@/components/HomePageShell'
@@ -15,6 +16,7 @@ export default function WallOfFamePage() {
       <main style={{ background: '#000', minHeight: '100vh' }}>
         <Navbar />
         <WallOfFameSection />
+        <AlumniRegisterBanner />
         <CTABanner />
         <Footer />
       </main>
