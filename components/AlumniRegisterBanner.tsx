@@ -32,7 +32,7 @@ export default function AlumniRegisterBanner() {
       className={`alumniRegisterSection${isVisible ? ' isVisible' : ''}`}
     >
       <div className="alumniRegisterInner">
-        <h2 className="alumniRegisterTitle">Are You a Gold Cup Alumnus?</h2>
+        <h2 className="alumniRegisterTitle">Are You a Gold Cup Alumni?</h2>
         <a
           href={ALUMNI_FORM_URL}
           target="_blank"
