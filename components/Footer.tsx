@@ -75,6 +75,16 @@ export default function Footer() {
 
       <div className="copyWrap">
         <p>Gold Cup: 42nd Edition. All Rights Reserved.</p>
+        <div className="creditPartners" aria-label="Development and consulting partners">
+          <div className="partnerItem">
+            <span className="partnerLabel">Website Developed By</span>
+            <img src="/images/optimized/Audace.png" alt="Audace Labs" className="partnerLogo audaceLogo" />
+          </div>
+          <div className="partnerItem">
+            <span className="partnerLabel">Consulting Partner</span>
+            <img src="/images/optimized/Global.png" alt="Global REiH" className="partnerLogo globalLogo" />
+          </div>
+        </div>
       </div>
 
       <style jsx>{`
@@ -192,7 +202,11 @@ export default function Footer() {
         .copyWrap {
           position: relative;
           z-index: 1;
-          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 24px;
+          text-align: left;
           padding: 26px 80px 88px;
           opacity: 0;
           transform: translateY(24px);
@@ -227,6 +241,48 @@ export default function Footer() {
           font-size: 12px;
           color: rgba(255, 251, 251, 0.96);
           letter-spacing: 0.02em;
+        }
+
+        .copyWrap > p {
+          margin: 0;
+          white-space: nowrap;
+        }
+
+        .creditPartners {
+          position: static;
+          transform: none;
+          display: flex;
+          align-items: center;
+          gap: 32px;
+        }
+
+        .partnerItem {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          white-space: nowrap;
+        }
+
+        .partnerLabel {
+          font-family: var(--font-manrope);
+          font-size: 12px;
+          line-height: 1;
+          color: rgba(255, 251, 251, 0.72);
+          letter-spacing: 0.01em;
+        }
+
+        .partnerLogo {
+          display: block;
+          width: auto;
+          object-fit: contain;
+        }
+
+        .audaceLogo {
+          height: 20px;
+        }
+
+        .globalLogo {
+          height: 28px;
         }
 
         .isVisible .watermark {
@@ -283,7 +339,39 @@ export default function Footer() {
           }
 
           .copyWrap {
-            padding: 16px 16px 48px;
+            display: block;
+            text-align: center;
+            padding: 16px 16px 72px;
+          }
+
+          .copyWrap > p {
+            white-space: normal;
+          }
+
+          .creditPartners {
+            position: static;
+            transform: none;
+            margin-top: 12px;
+            justify-content: center;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+          }
+
+          .partnerItem {
+            gap: 8px;
+            justify-content: center;
+            white-space: normal;
+            flex-wrap: wrap;
+            text-align: center;
+          }
+
+          .audaceLogo {
+            height: 18px;
+          }
+
+          .globalLogo {
+            height: 24px;
           }
 
           .watermarkWrap {
@@ -323,7 +411,38 @@ export default function Footer() {
           }
 
           .copyWrap {
-            padding: 18px 18px 38px;
+            display: block;
+            text-align: center;
+            padding: 18px 18px 52px;
+          }
+
+          .copyWrap > p {
+            white-space: normal;
+          }
+
+          .creditPartners {
+            position: static;
+            transform: none;
+            margin-top: 12px;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            width: 100%;
+          }
+
+          .partnerItem {
+            justify-content: center;
+            flex-wrap: wrap;
+            white-space: normal;
+            text-align: center;
+          }
+
+          .audaceLogo {
+            height: 18px;
+          }
+
+          .globalLogo {
+            height: 24px;
           }
 
           .watermarkWrap {
