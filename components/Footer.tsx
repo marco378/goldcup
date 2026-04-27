@@ -82,7 +82,7 @@ export default function Footer() {
           </div>
           <div className="partnerItem">
             <span className="partnerLabel">Consulting Partner</span>
-            <img src="/images/optimized/Global.png" alt="Global REiH" className="partnerLogo globalLogo" />
+            <img src="/images/optimized/New Global logo.png" alt="Global REiH" className="partnerLogo globalLogo" />
           </div>
         </div>
       </div>
