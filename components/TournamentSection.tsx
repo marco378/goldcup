@@ -1,6 +1,7 @@
 'use client'
 
 import { Fragment, useEffect, useRef, useState } from 'react'
+import { TOURNAMENT_GROUPS, type GroupKey } from '@/data/tournament'
 
 // Figma asset – swap with a permanent /public/images/ path when ready
 const HERO_BG = './images/optimized/backdummy.jpg'
@@ -14,36 +15,22 @@ const STAGES: StageInfo[] = [
   { label: 'Grand Final', w: 157 },
 ]
 
-const GROUPS = ['GROUP A', 'GROUP B', 'GROUP C', 'GROUP D']
+const GROUP_KEYS: GroupKey[] = ['A', 'B', 'C', 'D']
+const GROUPS = GROUP_KEYS.map(group => `GROUP ${group}`)
 
 type TableRow = { rank: string; team: string; p: number; w: number; l: number; nrr: string; pts: string }
 
-const GROUP_DATA: TableRow[][] = [
-  [
-    { rank: '01', team: 'Royal Club XI',    p: 3, w: 3, l: 0, nrr: '+1.67', pts: '06' },
-    { rank: '02', team: 'City Warriors',    p: 3, w: 2, l: 1, nrr: '+0.54', pts: '04' },
-    { rank: '03', team: 'Thunder Strikers', p: 3, w: 1, l: 2, nrr: '-0.23', pts: '02' },
-    { rank: '04', team: 'Golden Eagles',    p: 3, w: 0, l: 3, nrr: '-1.98', pts: '00' },
-  ],
-  [
-    { rank: '01', team: 'Lahore Lions',     p: 3, w: 3, l: 0, nrr: '+2.10', pts: '06' },
-    { rank: '02', team: 'Karachi Kings',    p: 3, w: 2, l: 1, nrr: '+0.88', pts: '04' },
-    { rank: '03', team: 'Multan Sultans',   p: 3, w: 1, l: 2, nrr: '-0.45', pts: '02' },
-    { rank: '04', team: 'Peshawar Zalmi',   p: 3, w: 0, l: 3, nrr: '-2.53', pts: '00' },
-  ],
-  [
-    { rank: '01', team: 'Northern Hawks',   p: 3, w: 3, l: 0, nrr: '+1.92', pts: '06' },
-    { rank: '02', team: 'Southern Stars',   p: 3, w: 2, l: 1, nrr: '+0.31', pts: '04' },
-    { rank: '03', team: 'Eastern Blaze',    p: 3, w: 1, l: 2, nrr: '-0.67', pts: '02' },
-    { rank: '04', team: 'Western Wolves',   p: 3, w: 0, l: 3, nrr: '-1.56', pts: '00' },
-  ],
-  [
-    { rank: '01', team: 'Capital Colts',    p: 3, w: 3, l: 0, nrr: '+2.34', pts: '06' },
-    { rank: '02', team: 'Frontier Force',   p: 3, w: 2, l: 1, nrr: '+0.72', pts: '04' },
-    { rank: '03', team: 'Desert Falcons',   p: 3, w: 1, l: 2, nrr: '-0.18', pts: '02' },
-    { rank: '04', team: 'Valley Vipers',    p: 3, w: 0, l: 3, nrr: '-2.88', pts: '00' },
-  ],
-]
+const GROUP_DATA: TableRow[][] = GROUP_KEYS.map(group =>
+  TOURNAMENT_GROUPS[group].map((team, index) => ({
+    rank: String(index + 1).padStart(2, '0'),
+    team,
+    p: 0,
+    w: 0,
+    l: 0,
+    nrr: '-',
+    pts: '00',
+  }))
+)
 
 const MATCH_STATS = [
   { value: 24, label: 'Group Stage' },

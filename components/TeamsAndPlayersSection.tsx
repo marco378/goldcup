@@ -1,29 +1,22 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { TOURNAMENT_GROUPS, type GroupKey } from '@/data/tournament'
 
-const GROUPS = ['GROUP A', 'GROUP B', 'GROUP C', 'GROUP D']
+const GROUP_KEYS: GroupKey[] = ['A', 'B', 'C', 'D']
+const GROUPS = GROUP_KEYS.map(group => `GROUP ${group}`)
 
 type FilterTab = 'ALL' | 'BATSMAN' | 'BOWLERS' | 'ALL ROUNDERS' | 'WICKETKEEPERS'
 
-const teams = [
-  { name: 'Royal Club XI',   style: 'Batting',   group: 'GROUP A', players: ['Arjun Rao', 'Vikram Shah', 'Rohit Nair'],       roles: ['Bat', 'Bowl', 'AR']  },
-  { name: 'Northern Stars',  style: 'Bowling',   group: 'GROUP A', players: ['Pradeep Kumar', 'Suresh Yadav', 'Arjun Singh'], roles: ['Bowl', 'Bowl', 'Bat'] },
-  { name: 'Meerut Titans',   style: 'All-Round', group: 'GROUP A', players: ['Karan Mehta', 'Dev Sharma', 'Anil Patel'],      roles: ['AR', 'Bat', 'Bowl']  },
-  { name: 'Golden Eagles',   style: 'Batting',   group: 'GROUP A', players: ['Ramesh Gupta', 'Mohan Das', 'Vijay Rao'],       roles: ['Bat', 'AR', 'Bowl']  },
-  { name: 'Thunder XI',      style: 'Bowling',   group: 'GROUP B', players: ['Ravi Kumar', 'Sanjay Shah', 'Deepak Nair'],     roles: ['Bowl', 'Bat', 'AR']  },
-  { name: 'Warrior Squad',   style: 'All-Round', group: 'GROUP B', players: ['Ankit Singh', 'Sunil Mehta', 'Rakesh Das'],     roles: ['AR', 'Bowl', 'Bat']  },
-  { name: 'Falcon FC',       style: 'Batting',   group: 'GROUP B', players: ['Yash Patel', 'Nikhil Das', 'Rohit Singh'],      roles: ['Bat', 'Bat', 'Bowl'] },
-  { name: 'Desert Kings',    style: 'Bowling',   group: 'GROUP B', players: ['Imran Khan', 'Salman Mir', 'Farhan Ali'],       roles: ['Bowl', 'AR', 'Bowl'] },
-  { name: 'Northern Hawks',  style: 'All-Round', group: 'GROUP C', players: ['Dev Raj', 'Vikas Nair', 'Suresh Gupta'],        roles: ['AR', 'Bat', 'Bowl']  },
-  { name: 'Southern Stars',  style: 'Batting',   group: 'GROUP C', players: ['Arun Mehta', 'Kiran Das', 'Rahul Rao'],         roles: ['Bat', 'AR', 'Bat']   },
-  { name: 'Eastern Blaze',   style: 'Bowling',   group: 'GROUP C', players: ['Manoj Sharma', 'Praveen Nair', 'Sanjay Patel'], roles: ['Bowl', 'Bowl', 'Bat'] },
-  { name: 'Western Wolves',  style: 'All-Round', group: 'GROUP C', players: ['Tarun Singh', 'Rajan Kumar', 'Vijay Das'],      roles: ['AR', 'Bat', 'Bowl']  },
-  { name: 'Capital Colts',   style: 'Batting',   group: 'GROUP D', players: ['Ashok Rao', 'Naveen Shah', 'Dinesh Nair'],      roles: ['Bat', 'AR', 'Bowl']  },
-  { name: 'Frontier Force',  style: 'Bowling',   group: 'GROUP D', players: ['Zaheer Abbas', 'Usman Ali', 'Kamran Mir'],      roles: ['Bowl', 'Bowl', 'AR'] },
-  { name: 'Desert Falcons',  style: 'All-Round', group: 'GROUP D', players: ['Ravi Das', 'Mohan Singh', 'Sunil Rao'],         roles: ['AR', 'Bat', 'Bowl']  },
-  { name: 'Valley Vipers',   style: 'Batting',   group: 'GROUP D', players: ['Alok Mehta', 'Girish Patel', 'Deepak Kumar'],   roles: ['Bat', 'Bowl', 'Bat'] },
-]
+const teams = GROUP_KEYS.flatMap(group =>
+  TOURNAMENT_GROUPS[group].map(name => ({
+    name,
+    style: 'Squad',
+    group: `GROUP ${group}`,
+    players: ['Roster TBA'],
+    roles: ['TBA'],
+  }))
+)
 
 const players = [
   { name: 'Kartik Malhotra', team: 'Meerut Titans',  num: 45, group: 'GROUP A', role: 'BATSMAN',      runs: '2,434', avg: '68.2', hundreds: '8' },
@@ -495,13 +488,16 @@ export default function TeamsAndPlayersSection() {
         }
         .teamCardTop {
           display: flex;
-          align-items: center;
+          align-items: flex-start;
           justify-content: space-between;
+          gap: 14px;
         }
         .teamInfo {
           display: flex;
-          align-items: center;
+          align-items: flex-start;
           gap: 14px;
+          min-width: 0;
+          flex: 1;
         }
         .teamAvatar {
           width: 42px;
@@ -514,15 +510,17 @@ export default function TeamsAndPlayersSection() {
           display: flex;
           flex-direction: column;
           gap: 4px;
+          min-width: 0;
         }
         .teamName {
           font-family: var(--font-coluna), 'Coluna', sans-serif;
-          font-size: 24px;
+          font-size: 22px;
           font-style: normal;
           font-weight: 700;
-          line-height: 1;
-          letter-spacing: 0.01em;
+          line-height: 0.98;
+          letter-spacing: 0.02em;
           color: rgba(255, 255, 255, 0.9);
+          overflow-wrap: anywhere;
         }
         .teamStyle {
           font-family: var(--font-manrope), 'Manrope', sans-serif;
@@ -543,6 +541,7 @@ export default function TeamsAndPlayersSection() {
           text-transform: uppercase;
           color: #a27836;
           white-space: nowrap;
+          flex-shrink: 0;
         }
         .cardDivider {
           width: 100%;

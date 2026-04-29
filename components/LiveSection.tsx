@@ -1,8 +1,9 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { TOURNAMENT_FIXTURES, type Fixture, type FixturePhase } from '@/data/tournament'
 
-type FilterKey = 'ALL' | 'GROUP' | 'QF' | 'SF' | 'FINAL'
+type FilterKey = 'ALL' | FixturePhase
 
 const FILTERS: { key: FilterKey; label: string }[] = [
   { key: 'ALL', label: 'ALL MATCHES' },
@@ -12,17 +13,20 @@ const FILTERS: { key: FilterKey; label: string }[] = [
   { key: 'FINAL', label: 'FINALS' },
 ]
 
-const MATCHES = [
-  { date: '10th May 2026', teams: ['Royal Club XI', 'City Warriors'], venue: 'District Sports Complex', time: '9:00 AM', status: 'COMPLETED', result: 'Royal Club XI won by 42 runs', phase: 'GROUP' },
-  { date: '11th May 2026', teams: ['Northern Hawks', 'South Stars'], venue: 'Central Cricket Ground', time: '10:00 AM', status: 'COMPLETED', result: 'Northern Hawks won by 6 wkts', phase: 'GROUP' },
-  { date: '12th May 2026', teams: ['East Eagles', 'West Wolves'], venue: 'District Sports Complex', time: '2:00 PM', status: 'COMPLETED', result: 'East Eagles won by 18 runs', phase: 'GROUP' },
-  { date: '14th May 2026', teams: ['Royal Club XI', 'Northern Hawks'], venue: 'Central Cricket Ground', time: '9:00 AM', status: 'LIVE', result: '', phase: 'GROUP' },
-  { date: '15th May 2026', teams: ['City Warriors', 'South Stars'], venue: 'District Sports Complex', time: '2:00 PM', status: 'UPCOMING', result: '', phase: 'GROUP' },
-  { date: '18th May 2026', teams: ['TBD', 'TBD'], venue: 'Central Cricket Ground', time: '9:00 AM', status: 'UPCOMING', result: '', phase: 'QF' },
-  { date: '19th May 2026', teams: ['TBD', 'TBD'], venue: 'District Sports Complex', time: '2:00 PM', status: 'UPCOMING', result: '', phase: 'QF' },
-  { date: '22nd May 2026', teams: ['TBD', 'TBD'], venue: 'Central Cricket Ground', time: '9:00 AM', status: 'UPCOMING', result: '', phase: 'SF' },
-  { date: '25th May 2026', teams: ['TBD', 'TBD'], venue: 'Grand Final Arena', time: '11:00 AM', status: 'UPCOMING', result: '', phase: 'FINAL' },
-]
+const MATCHES = TOURNAMENT_FIXTURES
+
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+function formatDate(date: string) {
+  const [year, month, day] = date.split('-').map(Number)
+  return `${day} ${MONTHS[month - 1]} ${year}`
+}
+
+function getFixtureLabel(match: Fixture) {
+  if (match.label) return match.label
+  if (match.group) return `Group ${match.group}`
+  return match.phase
+}
 
 function useInView(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null)
@@ -46,6 +50,8 @@ export default function TournamentSection() {
   useEffect(() => { setMounted(true) }, [])
 
   const filtered = MATCHES.filter(m => activeFilter === 'ALL' || m.phase === activeFilter)
+  const featuredMatch = MATCHES.find(m => m.status === 'LIVE') ?? MATCHES.find(m => m.status === 'UPCOMING') ?? MATCHES[0]
+  const isLive = featuredMatch.status === 'LIVE'
 
   return (
     <div className="page">
@@ -62,10 +68,10 @@ export default function TournamentSection() {
       {/* ── LIVE MATCH CARD ── */}
       <section className={`liveSection ${mounted ? 'liveSectionVisible' : ''}`}>
         <div className="liveHeader">
-          <p className="matchLabel">Match 14 — Group B</p>
+          <p className="matchLabel">{getFixtureLabel(featuredMatch)} — {formatDate(featuredMatch.date)}</p>
           <div className="liveBadge">
-            <span className="liveDot" />
-            <span className="liveText">LIVE NOW</span>
+            {isLive && <span className="liveDot" />}
+            <span className="liveText">{isLive ? 'LIVE NOW' : 'NEXT MATCH'}</span>
           </div>
         </div>
 
@@ -79,23 +85,23 @@ export default function TournamentSection() {
               <div className="teamBlock">
                 <img src="/images/team-logo-placeholder.svg" alt="" className="teamLogo" />
                 <div className="teamInfo">
-                  <p className="teamName">Royal Club XI</p>
-                  <p className="teamStatus">Batting</p>
+                  <p className="teamName">{featuredMatch.teams[0]}</p>
+                  <p className="teamStatus">{featuredMatch.status === 'UPCOMING' ? 'Scheduled' : 'Playing'}</p>
                 </div>
               </div>
 
               {/* Score */}
               <div className="scoreBlock">
-                <p className="score">187/4</p>
-                <p className="overs">32.65 Overs</p>
+                <p className="score">{featuredMatch.time ?? 'TBD'}</p>
+                <p className="overs">{featuredMatch.venue}</p>
               </div>
 
               {/* Team 2 */}
               <div className="teamBlock">
                 <img src="/images/team-logo-placeholder.svg" alt="" className="teamLogo" />
                 <div className="teamInfo">
-                  <p className="teamName">City Warriors</p>
-                  <p className="teamStatus">Fielding</p>
+                  <p className="teamName">{featuredMatch.teams[1]}</p>
+                  <p className="teamStatus">{featuredMatch.status === 'UPCOMING' ? 'Scheduled' : 'Playing'}</p>
                 </div>
               </div>
             </div>
@@ -146,12 +152,12 @@ export default function TournamentSection() {
               className={`tableRow ${scheduleRef.inView ? 'tableRowVisible' : ''}`}
               style={{ transitionDelay: `${i * 60}ms` }}
             >
-              <span className="colDate rowText">{m.date}</span>
+              <span className="colDate rowText">{formatDate(m.date)}</span>
               <span className="colTeam rowText">
                 {m.teams[0]} <span className="vsGold">vs</span> {m.teams[1]}
               </span>
               <span className="colVenue rowText">{m.venue}</span>
-              <span className="colTime rowText">{m.time}</span>
+              <span className="colTime rowText">{m.time ?? 'TBD'}</span>
               <span className="colStatus">
                 {m.status === 'COMPLETED' && (
                   <span className="statusCompleted">
@@ -252,12 +258,10 @@ export default function TournamentSection() {
 
         /* ── LIVE MATCH ── */
         .liveSection {
-          max-width: 1280px;
+          max-width: 1000px;
+          width: calc(100% - 140px);
           margin: 60px auto 0;
-          padding: 0 70px;
-          width: 680px;
           padding: 0;
-          margin: 60px auto 0;
           opacity: 0;
           transform: translateY(40px);
           transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s,
@@ -273,8 +277,9 @@ export default function TournamentSection() {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          width: 680px;
+          width: 100%;
           margin: 0 auto 12px;
+          gap: 18px;
         }
 
         .matchLabel {
@@ -323,7 +328,7 @@ export default function TournamentSection() {
 
         .matchCard {
           position: relative;
-          width: 680px;
+          width: 100%;
           height: 305px;
           margin: 0 auto;
           border-radius: 14px;
@@ -355,15 +360,16 @@ export default function TournamentSection() {
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          gap: 49px;
+          gap: 42px;
           padding: 0 40px;
         }
 
         .teamsRow {
-          display: flex;
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) minmax(140px, auto) minmax(0, 1fr);
           align-items: center;
-          gap: 124px;
-          width: 529px;
+          gap: 32px;
+          width: 100%;
         }
 
         .teamBlock {
@@ -371,7 +377,8 @@ export default function TournamentSection() {
           flex-direction: column;
           align-items: center;
           gap: 19px;
-          width: 96px;
+          min-width: 0;
+          width: 100%;
         }
 
         .teamLogo {
@@ -387,17 +394,20 @@ export default function TournamentSection() {
           align-items: center;
           gap: 4px;
           width: 100%;
+          min-width: 0;
         }
 
         .teamName {
           font-family: var(--font-coluna), 'Barlow Condensed', sans-serif;
-          font-size: 24px;
+          font-size: clamp(18px, 2vw, 24px);
           font-style: normal;
           font-weight: 700;
-          line-height: 1;
+          line-height: 0.96;
           letter-spacing: -0.48px;
           color: rgba(255, 255, 255, 0.9);
-          white-space: nowrap;
+          max-width: 100%;
+          white-space: normal;
+          overflow-wrap: anywhere;
           margin: 0;
           text-align: center;
         }
@@ -418,12 +428,13 @@ export default function TournamentSection() {
           flex-direction: column;
           align-items: center;
           gap: 1px;
-          width: 89px;
+          min-width: 0;
+          width: 100%;
         }
 
         .score {
           font-family: var(--font-coluna), 'Barlow Condensed', sans-serif;
-          font-size: 60px;
+          font-size: clamp(44px, 5vw, 60px);
           font-style: normal;
           font-weight: 700;
           line-height: 1;
@@ -448,7 +459,7 @@ export default function TournamentSection() {
           color: rgba(255, 255, 255, 0.8);
           margin: 0;
           text-align: center;
-          white-space: nowrap;
+          max-width: 220px;
         }
 
         /* Watch Live Button */
@@ -592,6 +603,7 @@ export default function TournamentSection() {
           font-size: 14px;
           font-weight: 600;
           line-height: 1.2;
+          padding-right: 18px;
           color: rgba(255, 255, 255, 0.5);
         }
 
