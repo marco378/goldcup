@@ -166,29 +166,29 @@ export default function WallOfFameSection() {
         }
         .featuredCard {
           display: grid;
-          grid-template-columns: 481px 1fr;
+          grid-template-columns: minmax(0, 1.04fr) minmax(420px, 0.96fr);
           border: 1px solid rgba(255, 255, 255, 0.2);
           border-radius: 16px;
           overflow: hidden;
           background: #0e0e0e;
-          min-height: 451px;
-          max-width: 987px;
-          max-width: 987px;
-  margin: 0 auto;
+          min-height: 520px;
+          max-width: 1180px;
+          margin: 0 auto;
         }
         .featuredImage {
-          background: 
-          url("./images/optimized/DhoniFinal.png") center/cover no-repeat,  
-          linear-gradient(180deg, #1a1a1a 0%, #111 100%);
-          min-height: 451px;
-          
+          background:
+            linear-gradient(180deg, rgba(0, 0, 0, 0) 68%, rgba(0, 0, 0, 0.2) 100%),
+            url("/images/optimized/DHoni4.jpeg") center/cover no-repeat,
+            #171717;
+          min-height: 520px;
+          margin: 0;
         }
         .featuredContent {
-          padding: 43px 44px 43px 40px;
+          padding: 56px 52px;
           display: flex;
           flex-direction: column;
           justify-content: center;
-          gap: 35px;
+          gap: 32px;
         }
         .featuredBlock {
           display: flex;
@@ -385,9 +385,11 @@ export default function WallOfFameSection() {
           }
           .featuredCard {
             grid-template-columns: 1fr;
+            min-height: 0;
           }
           .featuredImage {
-            min-height: 450px;
+            aspect-ratio: 698 / 504;
+            min-height: 0;
           }
           .featuredContent {
             padding: 24px 20px;
@@ -429,10 +431,12 @@ export default function WallOfFameSection() {
             padding: 0 40px 60px;
           }
           .featuredCard {
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
+            min-height: 0;
           }
           .featuredImage {
-            min-height: 380px;
+            aspect-ratio: 698 / 504;
+            min-height: 0;
           }
           .legacySection {
             flex-direction: column;
