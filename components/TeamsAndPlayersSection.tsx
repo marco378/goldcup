@@ -504,12 +504,12 @@ export default function TeamsAndPlayersSection() {
           flex: 1;
         }
         .teamAvatar {
-          width: 42px;
-          height: 42px;
+          width: 56px;
+          height: 56px;
           border-radius: 50%;
           background: #2a2a2a;
           object-fit: contain;
-          padding: 5px;
+          padding: 7px;
           flex-shrink: 0;
         }
         .teamNameBlock {
