@@ -17,6 +17,16 @@ export type Fixture = {
 
 export const TOURNAMENT_NAME = 'Dev Bhoomi Gold Cup Cricket Association Society'
 
+export const TEAM_LOGOS: Record<string, string> = {
+  'Sahgal Cricket Club': '/images/optimized/TemsLogo/SCC.jpeg',
+  'Delhi & District Cricket Association': '/images/optimized/TemsLogo/DDCA.jpeg',
+  'Jharkhand Cricket Association': '/images/optimized/TemsLogo/JSCA.jpeg',
+  'Reserve Bank of India': '/images/optimized/TemsLogo/RBI.jpeg',
+  'Goa Cricket Association': '/images/optimized/TemsLogo/GCA.jpeg',
+  'Kerala Cricket Association': '/images/optimized/TemsLogo/KCA.jpeg',
+  'Punjab Cricket Association': '/images/optimized/TemsLogo/PCA.jpg',
+}
+
 export const TOURNAMENT_GROUPS: Record<GroupKey, string[]> = {
   A: [
     'Uttar Pradesh Cricket Association',
@@ -332,4 +342,3 @@ export const TOURNAMENT_FIXTURES: Fixture[] = [
     label: 'Final',
   },
 ]
-

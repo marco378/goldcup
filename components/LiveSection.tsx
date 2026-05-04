@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { TOURNAMENT_FIXTURES, type Fixture, type FixturePhase } from '@/data/tournament'
+import { TEAM_LOGOS, TOURNAMENT_FIXTURES, type Fixture, type FixturePhase } from '@/data/tournament'
 
 type FilterKey = 'ALL' | FixturePhase
 
@@ -83,7 +83,11 @@ export default function TournamentSection() {
             <div className="teamsRow">
               {/* Team 1 */}
               <div className="teamBlock">
-                <img src="/images/team-logo-placeholder.svg" alt="" className="teamLogo" />
+                <img
+                  src={TEAM_LOGOS[featuredMatch.teams[0]] ?? '/images/team-logo-placeholder.svg'}
+                  alt=""
+                  className="teamLogo"
+                />
                 <div className="teamInfo">
                   <p className="teamName">{featuredMatch.teams[0]}</p>
                   <p className="teamStatus">{featuredMatch.status === 'UPCOMING' ? 'Scheduled' : 'Playing'}</p>
@@ -98,7 +102,11 @@ export default function TournamentSection() {
 
               {/* Team 2 */}
               <div className="teamBlock">
-                <img src="/images/team-logo-placeholder.svg" alt="" className="teamLogo" />
+                <img
+                  src={TEAM_LOGOS[featuredMatch.teams[1]] ?? '/images/team-logo-placeholder.svg'}
+                  alt=""
+                  className="teamLogo"
+                />
                 <div className="teamInfo">
                   <p className="teamName">{featuredMatch.teams[1]}</p>
                   <p className="teamStatus">{featuredMatch.status === 'UPCOMING' ? 'Scheduled' : 'Playing'}</p>
@@ -382,10 +390,15 @@ export default function TournamentSection() {
         }
 
         .teamLogo {
-          width: 59px;
-          height: 59px;
+          width: 72px;
+          height: 72px;
           display: block;
           flex-shrink: 0;
+          border-radius: 50%;
+          object-fit: contain;
+          padding: 8px;
+          background: rgba(255, 255, 255, 0.92);
+          box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
         }
 
         .teamInfo {
@@ -892,8 +905,9 @@ export default function TournamentSection() {
           }
 
           .teamLogo {
-            width: 44px;
-            height: 44px;
+            width: 52px;
+            height: 52px;
+            padding: 6px;
           }
 
           .teamName {

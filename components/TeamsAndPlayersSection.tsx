@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { TOURNAMENT_GROUPS, type GroupKey } from '@/data/tournament'
+import { TEAM_LOGOS, TOURNAMENT_GROUPS, type GroupKey } from '@/data/tournament'
 
 const GROUP_KEYS: GroupKey[] = ['A', 'B', 'C', 'D']
 const GROUPS = GROUP_KEYS.map(group => `GROUP ${group}`)
@@ -148,7 +148,11 @@ export default function TeamsAndPlayersSection() {
             >
               <div className="teamCardTop">
                 <div className="teamInfo">
-                  <div className="teamAvatar" />
+                  <img
+                    src={TEAM_LOGOS[team.name] ?? '/images/team-logo-placeholder.svg'}
+                    alt=""
+                    className="teamAvatar"
+                  />
                   <div className="teamNameBlock">
                     <span className="teamName">{team.name}</span>
                     <span className="teamStyle">{team.style}</span>
@@ -504,6 +508,8 @@ export default function TeamsAndPlayersSection() {
           height: 42px;
           border-radius: 50%;
           background: #2a2a2a;
+          object-fit: contain;
+          padding: 5px;
           flex-shrink: 0;
         }
         .teamNameBlock {

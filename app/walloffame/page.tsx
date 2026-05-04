@@ -2,9 +2,12 @@ import Navbar from '@/components/Navbar'
 import WallOfFameSection from '@/components/WallOfFameSection'
 import AlumniRegisterBanner from '@/components/AlumniRegisterBanner'
 import AlumniRegisterTab from '@/components/AlumniRegisterTab'
+import ApprovedAlumniSection from '@/components/ApprovedAlumniSection'
 import CTABanner from '@/components/CTABanner'
 import Footer from '@/components/Footer'
 import HomePageShell from '@/components/HomePageShell'
+
+export const dynamic = 'force-dynamic'
 
 export const metadata = {
   title: 'Wall of Fame – Gold Cup 42nd Edition',
@@ -19,6 +22,7 @@ export default function WallOfFamePage() {
         <AlumniRegisterTab />
         <WallOfFameSection />
         <AlumniRegisterBanner />
+        <ApprovedAlumniSection />
         <CTABanner />
         <Footer />
       </main>

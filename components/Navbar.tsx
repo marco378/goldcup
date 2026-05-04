@@ -94,8 +94,10 @@ export default function Navbar() {
             <div className="drawerLinks">
               {[
                 { href: '/',                label: 'Home' },
+                { href: '/about',           label: 'About' },
                 { href: '/tournament',      label: 'Live Section' },
                 { href: '/teamsandplayers', label: 'Teams' },
+                { href: '/TournamentSection', label: 'Tournament Structure' },
                 { href: '/media',           label: 'News & Updates' },
                 { href: '/sponsors',        label: 'Sponsors' },
                 { href: '/walloffame',      label: 'Wall of Fame' },
