@@ -509,7 +509,7 @@ export default function TeamsAndPlayersSection() {
           border-radius: 50%;
           background: #2a2a2a;
           object-fit: contain;
-          padding: 7px;
+          padding: 0px;
           flex-shrink: 0;
         }
         .teamNameBlock {

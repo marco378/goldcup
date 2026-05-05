@@ -18,13 +18,21 @@ export type Fixture = {
 export const TOURNAMENT_NAME = 'Dev Bhoomi Gold Cup Cricket Association Society'
 
 export const TEAM_LOGOS: Record<string, string> = {
-  'Sahgal Cricket Club': '/images/optimized/TemsLogo/SCC.jpeg',
-  'Delhi & District Cricket Association': '/images/optimized/TemsLogo/DDCA.jpeg',
-  'Jharkhand Cricket Association': '/images/optimized/TemsLogo/JSCA.jpeg',
+  
+  'Himachal Pradesh Cricket Association': '/images/optimized/TemsLogo/HPCA.jpeg',
+  'Cricket Association of Uttrakhand': '/images/optimized/TemsLogo/CAOU.jpeg',
+  'L.B. Shastri Cricket Club': '/images/optimized/TemsLogo/LBS.jpeg',
+  'Indian Railways': '/images/optimized/TemsLogo/IRCTC.jpeg',
+  'Sahgal Cricket Club': '/images/optimized/TemsLogo/SCC1.jpeg',
+  'Delhi & District Cricket Association': '/images/optimized/TemsLogo/DDCA (1).jpeg',
+  'Jharkhand Cricket Association': '/images/optimized/TemsLogo/JSCA (1).jpeg',
   'Reserve Bank of India': '/images/optimized/TemsLogo/RBI.jpeg',
-  'Goa Cricket Association': '/images/optimized/TemsLogo/GCA.jpeg',
+  'Goa Cricket Association': '/images/optimized/TemsLogo/GCA (1).jpeg',
   'Kerala Cricket Association': '/images/optimized/TemsLogo/KCA.jpeg',
-  'Punjab Cricket Association': '/images/optimized/TemsLogo/PCA.jpg',
+  'Punjab Cricket Association': '/images/optimized/TemsLogo/PCA.jpeg',
+  'Nepal Cricket Association': '/images/optimized/TemsLogo/CAN.jpeg',
+  'Tripura Cricket Association': '/images/optimized/TemsLogo/TCA.jpeg',
+
 }
 
 export const TOURNAMENT_GROUPS: Record<GroupKey, string[]> = {
