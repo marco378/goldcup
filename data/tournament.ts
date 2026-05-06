@@ -32,6 +32,9 @@ export const TEAM_LOGOS: Record<string, string> = {
   'Punjab Cricket Association': '/images/optimized/TemsLogo/PCA.jpeg',
   'Nepal Cricket Association': '/images/optimized/TemsLogo/CAN.jpeg',
   'Tripura Cricket Association': '/images/optimized/TemsLogo/TCA.jpeg',
+  'A & S Kolkata Bengal': '/images/optimized/TemsLogo/ASCA.png',
+  'Uttar Pradesh Cricket Association': '/images/optimized/TemsLogo/UPCA.png',
+  'Odisha Cricket Association': '/images/optimized/TemsLogo/OCA1.png',
 
 }
 
@@ -45,7 +48,7 @@ export const TOURNAMENT_GROUPS: Record<GroupKey, string[]> = {
   B: [
     'Delhi & District Cricket Association',
     'Cricket Association of Uttrakhand',
-    'L.B. Shastri Cricket Club',
+    'Odisha Cricket Association',
     'Indian Railways',
   ],
   C: [
@@ -57,7 +60,7 @@ export const TOURNAMENT_GROUPS: Record<GroupKey, string[]> = {
   D: [
     'Goa Cricket Association',
     'Kerala Cricket Association',
-    'Odisha Cricket Association',
+    'L.B. Shastri Cricket Club',
     'Nepal Cricket Association',
   ],
 }
@@ -102,7 +105,7 @@ export const TOURNAMENT_FIXTURES: Fixture[] = [
   {
     id: 'group-b-2026-05-24-1',
     date: '2026-05-24',
-    teams: ['Cricket Association of Uttrakhand', 'L.B. Shastri Cricket Club'],
+    teams: ['Cricket Association of Uttrakhand', 'Odisha Cricket Association'],
     venue: 'Maharana Pratap Sports College',
     phase: 'GROUP',
     group: 'B',
@@ -138,7 +141,7 @@ export const TOURNAMENT_FIXTURES: Fixture[] = [
   {
     id: 'group-b-2026-05-26-1',
     date: '2026-05-26',
-    teams: ['L.B. Shastri Cricket Club', 'Indian Railways'],
+    teams: ['Odisha Cricket Association', 'Indian Railways'],
     venue: 'Maharana Pratap Sports College',
     phase: 'GROUP',
     group: 'B',
@@ -165,7 +168,7 @@ export const TOURNAMENT_FIXTURES: Fixture[] = [
   {
     id: 'group-b-2026-05-27-2',
     date: '2026-05-27',
-    teams: ['L.B. Shastri Cricket Club', 'Delhi & District Cricket Association'],
+    teams: ['Odisha Cricket Association', 'Delhi & District Cricket Association'],
     venue: 'Rajiv Gandhi International Stadium, Dehradun',
     phase: 'GROUP',
     group: 'B',
@@ -219,7 +222,7 @@ export const TOURNAMENT_FIXTURES: Fixture[] = [
   {
     id: 'group-d-2026-05-30-2',
     date: '2026-05-30',
-    teams: ['Goa Cricket Association', 'Odisha Cricket Association'],
+    teams: ['Goa Cricket Association', 'L.B. Shastri Cricket Club'],
     venue: 'Rajiv Gandhi International Stadium, Dehradun',
     phase: 'GROUP',
     group: 'D',
@@ -228,7 +231,7 @@ export const TOURNAMENT_FIXTURES: Fixture[] = [
   {
     id: 'group-d-2026-05-31-1',
     date: '2026-05-31',
-    teams: ['Odisha Cricket Association', 'Kerala Cricket Association'],
+    teams: ['L.B. Shastri Cricket Club', 'Kerala Cricket Association'],
     venue: 'Maharana Pratap Sports College',
     phase: 'GROUP',
     group: 'D',
@@ -237,7 +240,7 @@ export const TOURNAMENT_FIXTURES: Fixture[] = [
   {
     id: 'group-d-2026-05-31-2',
     date: '2026-05-31',
-    teams: ['Nepal Cricket Association', 'Goa Cricket Association'],
+    teams: ['Nepal Cricket Association', 'L.B. Shastri Cricket Club'],
     venue: 'Rajiv Gandhi International Stadium, Dehradun',
     phase: 'GROUP',
     group: 'D',
