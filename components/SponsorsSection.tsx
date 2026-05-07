@@ -38,6 +38,15 @@ const FEATURES = [
 
 const LATEST_LOGOS = Array(13).fill('News')
 
+const BANK_DETAILS = [
+  { label: 'Account Name', value: 'Devbhoomi Gold Cup Cricket Association Society' },
+  { label: 'Bank Name', value: 'Yes Bank' },
+  { label: 'Account Number', value: '011594600001710' },
+  { label: 'IFSC Code', value: 'YESB0000115' },
+  { label: 'SWIFT Code', value: 'YESBINBBDEL' },
+  { label: 'Branch', value: 'Yes Bank Ltd., Ground Floor, 56, Rajpur Road, Dehradun 248001' },
+]
+
 export default function SponsorsSection() {
   const [ctaVisible, setCtaVisible] = useState(false)
   const ctaRef = useRef<HTMLElement | null>(null)
@@ -140,6 +149,46 @@ export default function SponsorsSection() {
           </div>
         ))}
       </div>
+
+      {/* ── SUPPORT DETAILS ── */}
+      <section className="supportSection">
+        <div className="supportIntro">
+          <p className="supportEyebrow">Sponsorship Contributions</p>
+          <h2 className="supportTitle">Support Uttarakhand Gold Cup</h2>
+          <p className="supportBody">
+            Thank you for supporting the Uttarakhand Gold Cup initiative. Your sponsorship and
+            contributions help support tournament operations, player development, event execution,
+            and community sports initiatives.
+          </p>
+        </div>
+
+        <div className="paymentPanel">
+          <div className="paymentHeader">
+            <p className="paymentKicker">Sponsorship Payment Options</p>
+            <h3 className="paymentTitle">Bank Transfer</h3>
+          </div>
+
+          <div className="bankDetails">
+            {BANK_DETAILS.map((detail) => (
+              <div key={detail.label} className="bankDetail">
+                <p className="bankLabel">{detail.label}</p>
+                <p className="bankValue">{detail.value}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="paymentNote">
+            <p className="noteLabel">Note</p>
+            <p className="noteText">
+              After completing the transfer, please email the transaction details to{' '}
+              <a href="mailto:goldcupteam@uttarakhandgoldcup.com" className="noteLink">
+                goldcupteam@uttarakhandgoldcup.com
+              </a>
+              . An official confirmation and receipt/invoice will be shared upon verification.
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* ── CTA BANNER ── */}
       <section ref={ctaRef} className={`ctaSection${ctaVisible ? ' isVisible' : ''}`}>
@@ -476,6 +525,159 @@ export default function SponsorsSection() {
           flex-shrink: 0;
         }
 
+        /* ── SUPPORT DETAILS ── */
+        .supportSection {
+          max-width: 1100px;
+          margin: 0 auto 100px;
+          padding: 0 10px;
+          display: grid;
+          grid-template-columns: 0.85fr 1.15fr;
+          gap: 40px;
+          align-items: start;
+        }
+
+        .supportIntro {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          padding-top: 10px;
+        }
+
+        .supportEyebrow,
+        .paymentKicker,
+        .bankLabel,
+        .noteLabel {
+          font-family: var(--font-manrope), sans-serif;
+          font-size: 12px;
+          font-weight: 600;
+          line-height: 1;
+          letter-spacing: 2.4px;
+          text-transform: uppercase;
+          background: linear-gradient(181deg, #8D5C18 -20.65%, #F8E5AC 99.5%);
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          color: transparent;
+          display: inline-block;
+          margin: 0;
+        }
+
+        .supportTitle {
+          font-family: var(--font-coluna), 'Barlow Condensed', sans-serif;
+          font-size: 58px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 1;
+          letter-spacing: -1.1px;
+          background: linear-gradient(186.8deg, #fffbf2 53.3%, #999691 135%);
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          color: transparent;
+          margin: 0;
+        }
+
+        .supportBody {
+          font-family: var(--font-manrope), sans-serif;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 1.55;
+          letter-spacing: -0.14px;
+          color: rgba(255, 251, 242, 0.78);
+          margin: 0;
+          max-width: 415px;
+        }
+
+        .paymentPanel {
+          border: 1px solid rgba(248, 229, 172, 0.28);
+          border-radius: 8px;
+          background: linear-gradient(180deg, rgba(255, 251, 242, 0.055), rgba(255, 251, 242, 0.02));
+          box-shadow: 0 26px 58px rgba(0, 0, 0, 0.22);
+          padding: 30px;
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+        }
+
+        .paymentHeader {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .paymentTitle {
+          font-family: var(--font-coluna), 'Barlow Condensed', sans-serif;
+          font-size: 38px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 1;
+          letter-spacing: -0.6px;
+          color: #fffbf2;
+          margin: 0;
+        }
+
+        .bankDetails {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 14px;
+        }
+
+        .bankDetail {
+          min-height: 86px;
+          border: 1px solid rgba(255, 255, 255, 0.16);
+          border-radius: 7px;
+          padding: 16px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 8px;
+        }
+
+        .bankDetail:first-child,
+        .bankDetail:last-child {
+          grid-column: 1 / -1;
+        }
+
+        .bankValue {
+          font-family: var(--font-manrope), sans-serif;
+          font-size: 15px;
+          font-weight: 500;
+          line-height: 1.35;
+          letter-spacing: -0.12px;
+          color: #fffbf2;
+          margin: 0;
+          overflow-wrap: anywhere;
+        }
+
+        .paymentNote {
+          border-left: 4px solid #f8e5ac;
+          padding: 2px 0 2px 16px;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .noteText {
+          font-family: var(--font-manrope), sans-serif;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 1.55;
+          letter-spacing: -0.14px;
+          color: rgba(255, 251, 242, 0.8);
+          margin: 0;
+        }
+
+        .noteLink {
+          color: #f8e5ac;
+          font-weight: 700;
+          text-decoration: none;
+          overflow-wrap: anywhere;
+        }
+
+        .noteLink:hover {
+          text-decoration: underline;
+        }
+
         /* ── CTA BANNER ── */
         .ctaSection {
           padding: 0 60px 80px;
@@ -801,6 +1003,51 @@ export default function SponsorsSection() {
           .logoStrip {
             padding: 0 18px 40px;
           }
+
+          .supportSection {
+            grid-template-columns: 1fr;
+            gap: 22px;
+            margin: 0 auto 50px;
+            padding: 0 18px;
+          }
+
+          .supportTitle {
+            font-size: 36px;
+            letter-spacing: -0.5px;
+          }
+
+          .supportBody {
+            font-size: 13px;
+            max-width: none;
+          }
+
+          .paymentPanel {
+            padding: 18px;
+            gap: 20px;
+          }
+
+          .paymentTitle {
+            font-size: 30px;
+          }
+
+          .bankDetails {
+            grid-template-columns: 1fr;
+          }
+
+          .bankDetail:first-child,
+          .bankDetail:last-child {
+            grid-column: auto;
+          }
+
+          .bankDetail {
+            min-height: auto;
+            padding: 14px;
+          }
+
+          .bankValue,
+          .noteText {
+            font-size: 13px;
+          }
         }
 
         @media (min-width: 640px) and (max-width: 1100px) {
@@ -880,6 +1127,17 @@ export default function SponsorsSection() {
 
           .ctaTitle {
             font-size: 46px;
+          }
+
+          .supportSection {
+            grid-template-columns: 1fr;
+            gap: 30px;
+            padding: 0 24px;
+            margin: 0 auto 70px;
+          }
+
+          .supportBody {
+            max-width: 620px;
           }
         }
       `}</style>
