@@ -46,6 +46,7 @@ export default function TeamsAndPlayersSection() {
   const [activeFilter, setActiveFilter] = useState<FilterTab>('ALL')
   const [searchQuery, setSearchQuery] = useState('')
   const [showCount, setShowCount] = useState(8)
+  const [playingLegacy, setPlayingLegacy] = useState(false)
 
   const setFilter = (f: FilterTab) => { setActiveFilter(f); setShowCount(8) }
   const setSearch = (q: string)    => { setSearchQuery(q);  setShowCount(8) }
@@ -112,6 +113,37 @@ export default function TeamsAndPlayersSection() {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* ── Legacy Video ── */}
+      <div className="legacyVideoSection">
+        <div className="videoContainer">
+          <div className="videoWrapper" onClick={() => setPlayingLegacy(!playingLegacy)}>
+            <div className="videoThumb" />
+            <div className="videoOverlay" />
+            
+            {!playingLegacy && (
+              <div className="playBtnWrap">
+                <div className="playBtn">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+              </div>
+            )}
+
+            {playingLegacy && (
+              <video
+                autoPlay
+                controls
+                className="videoPlayer"
+              >
+                <source src="/images/optimized/Videos/Legacy.mp4" type="video/mp4" />
+              </video>
+            )}
+          </div>
+        </div>
+        
       </div>
 
       {/* ── The Sixteen Squads ── */}
@@ -364,13 +396,135 @@ export default function TeamsAndPlayersSection() {
           line-height: 1;
           color: #fff;
         }
-        .statLabel {
+.statLabel {
           font-family: var(--font-manrope), 'Manrope', sans-serif;
           font-size: 18px;
           font-weight: 400;
           line-height: 1;
-          
+           
           color: #fff;
+        }
+
+        /* ── Legacy Video ── */
+        .legacyVideoSection {
+          padding: 0 128px 80px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 32px;
+        }
+        .videoContainer {
+          width: 100%;
+          max-width: 1000px;
+        }
+        .videoWrapper {
+          position: relative;
+          aspect-ratio: 16 / 9;
+          border-radius: 16px;
+          overflow: hidden;
+          border: 1px solid #8d5c18;
+          cursor: pointer;
+          background: #111;
+          box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
+          transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+        }
+        .videoWrapper:hover {
+          transform: translateY(-6px);
+          box-shadow: 0 32px 64px rgba(0, 0, 0, 0.5);
+          border-color: rgba(248, 229, 172, 0.7);
+        }
+.videoThumb {
+          position: absolute;
+          inset: 0;
+          background-image: url('/images/optimized/Videos/Legacythumbnail.png');
+          background-size: cover;
+          background-position: center;
+          filter: brightness(0.55);
+        }
+        .videoWrapper:hover .videoThumb {
+          transform: scale(1.05);
+        }
+        .videoOverlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.3) 100%);
+        }
+        .playBtnWrap {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .playBtn {
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          background: rgba(201, 168, 76, 0.9);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: transform 0.35s ease, background 0.35s ease;
+          box-shadow: 0 8px 32px rgba(201, 168, 76, 0.4);
+        }
+        .videoWrapper:hover .playBtn {
+          transform: scale(1.12);
+          background: rgba(248, 229, 172, 1);
+          box-shadow: 0 12px 40px rgba(201, 168, 76, 0.6);
+        }
+        .videoPlayer {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          z-index: 2;
+        }
+        .videoCaption {
+          text-align: center;
+          max-width: 560px;
+        }
+        .captionHeading {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 24px;
+          width: 100%;
+        }
+        .capDecorBar {
+          width: 80px;
+          height: 2px;
+          border-radius: 1px;
+          background: linear-gradient(207deg, #8d5c18 20%, #f8e5ac 99%);
+          flex-shrink: 0;
+        }
+        .captionHeading h3 {
+          margin: 0;
+        }
+        .videoCaption h3 {
+          font-family: var(--font-coluna), 'Coluna', sans-serif;
+          font-size: clamp(36px, 5vw, 56px);
+          font-style: normal;
+          font-weight: 700;
+          line-height: 1.1;
+          letter-spacing: 1px;
+          color: #fff;
+          margin: 0;
+          display: inline-block;
+        }
+        .goldLine {
+          background: linear-gradient(181deg, #8D5C18 -20.65%, #F8E5AC 50%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+        .videoCaption p {
+          font-family: var(--font-manrope), 'Manrope', sans-serif;
+          font-size: 17px;
+          font-weight: 400;
+          line-height: 1.6;
+          color: rgba(255, 255, 255, 0.75);
+          margin: 0;
         }
 
         /* ── Squads Section ── */
@@ -820,6 +974,34 @@ export default function TeamsAndPlayersSection() {
           .heroSection {
             padding: 80px 16px 48px;
           }
+          .legacyVideoSection {
+            padding: 0 16px 56px;
+            gap: 24px;
+          }
+          .videoWrapper {
+            border-radius: 12px;
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
+          }
+          .captionHeading {
+            gap: 16px;
+          }
+          .capDecorBar {
+            width: 40px;
+          }
+          .videoCaption h3 {
+            font-size: clamp(26px, 7vw, 36px);
+          }
+          .videoCaption p {
+            font-size: 14px;
+            padding: 0 8px;
+          }
+          .videoCaption p {
+            font-size: 15px;
+          }
+          .playBtn {
+            width: 64px;
+            height: 64px;
+          }
           .heroTitle {
             font-size: clamp(40px, 10vw, 60px);
           }
@@ -889,6 +1071,22 @@ export default function TeamsAndPlayersSection() {
         @media (min-width: 640px) and (max-width: 1024px) {
           .heroSection {
             padding: 80px 40px 60px;
+          }
+          .legacyVideoSection {
+            padding: 0 40px 60px;
+            gap: 28px;
+          }
+          .videoContainer {
+            max-width: 100%;
+          }
+          .captionHeading {
+            gap: 20px;
+          }
+          .capDecorBar {
+            width: 60px;
+          }
+          .videoCaption h3 {
+            font-size: clamp(30px, 5vw, 42px);
           }
           .statsRow {
             gap: 32px;
