@@ -267,7 +267,7 @@ export const TOURNAMENT_FIXTURES: Fixture[] = [
   {
     id: 'group-d-2026-06-02-1',
     date: '2026-06-02',
-    teams: ['Odisha Cricket Association', 'Nepal Cricket Association'],
+    teams: ['L.B. Shastri Cricket Club', 'Nepal Cricket Association'],
     venue: 'Maharana Pratap Sports College',
     phase: 'GROUP',
     group: 'D',

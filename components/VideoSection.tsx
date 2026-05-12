@@ -67,7 +67,7 @@ export default function VideoSection() {
               controls
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 2, pointerEvents: 'auto' }}
             >
-              <source src="/videos/highlight.mp4" type="video/mp4" />
+              <source src="images/optimized/Videos/HomepageVideo.mp4" type="video/mp4" />
             </video>
           )}
         </div>
