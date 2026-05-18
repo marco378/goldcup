@@ -99,7 +99,15 @@ export default function SponsorsSection() {
             <div className="logoGrid">
               {Array(t.logos).fill(null).map((_, i) => (
                 <div key={i} className="logoBox">
-                  <span className="logoBoxLabel">LOGO 1</span>
+                  {t.tier === 'TIER 1' && i === 0 ? (
+                    <img
+                      src="/images/optimized/nxtgen.png"
+                      alt="Next Gen Academy"
+                      className="tierLogoImage"
+                    />
+                  ) : (
+                    <span className="logoBoxLabel">LOGO 1</span>
+                  )}
                 </div>
               ))}
             </div>
@@ -377,11 +385,18 @@ export default function SponsorsSection() {
         .logoBox {
           border: 1px solid rgba(255, 255, 255, 0.5);
           border-radius: 2px;
-          padding: 10px 15px;
+          padding: 1px 1px;
           display: flex;
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
+        }
+
+        .tierLogoImage {
+          display: block;
+          width: auto;
+          height: 22px;
+          object-fit: contain;
         }
 
         .logoBoxLabel {

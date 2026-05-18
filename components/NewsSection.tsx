@@ -20,19 +20,25 @@ function useInView(threshold = 0.15) {
 
 const featuredCards = [
   {
-    badge: 'REPORTS',
-    title: 'Match Reports',
-    description: 'Full post-match analysis from every fixture: statistics, standout performances, and key talking points.',
+    badge: 'ABITFAR',
+    title: '42वां उत्तराखंड गोल्ड कप: देवभूमि में सजेगा दिग्गज क्रिकेटरों का मेला',
+    description: 'नेक्स्ट जेन एकेडमी की साझेदारी से AI शिक्षा की नई शुरुआत पर विशेष रिपोर्ट।',
+    image: '/images/news/abitfar.png',
+    link: 'https://abitfar.com/42nd-uttarakhand-gold-cup-a-gala-of-legendary-cricketers-set-to-unfold-in-the-land-of-the-gods-a-new-era-of-ai-education-to-begin-through-partnership-with-next-gen-academy/',
   },
   {
-    badge: 'REPORTS',
-    title: 'Match Reports',
-    description: 'Full post-match analysis from every fixture: statistics, standout performances, and key talking points.',
+    badge: 'HARSHITA TIMES',
+    title: '42nd Uttarakhand Gold Cup : 22 मई से देहरादून में, 16 टीमें दिखाएंगी दम',
+    description: 'टूर्नामेंट कवरेज और मुख्य जानकारी के साथ मीडिया अपडेट।',
+    image: '/images/news/harshitatimes.png',
+    link: 'https://harshitatimes.com/2026/05/17/42nd-uttarakhand-gold-cup/',
   },
   {
-    badge: 'REPORTS',
-    title: 'Match Reports',
-    description: 'Full post-match analysis from every fixture: statistics, standout performances, and key talking points.',
+    badge: 'VALLEY OF UTTARAKHAND',
+    title: '42वां उत्तराखंड गोल्ड कप: 22 मई से देहरादून में सजेगा क्रिकेट का महाकुंभ',
+    description: '16 टीमों की भागीदारी और आयोजन को लेकर विस्तृत समाचार।',
+    image: '/images/news/valley.png',
+    link: 'https://valleyofuttarakhand.com/2026/05/17/42nd-uttarakhand-gold-cup/',
   },
 ]
 
@@ -68,14 +74,17 @@ export default function NewsSection() {
       <div className="featuredWrap">
         <div className="featuredGrid">
           {featuredCards.map((card, i) => (
-            <div
+            <a
               key={i}
+              href={card.link}
+              target="_blank"
+              rel="noreferrer"
               className={`featuredCard ${mounted ? 'cardVisible' : ''}`}
               style={mounted ? { transitionDelay: `${i * 100}ms` } : {}}
             >
               <div className="cardImage">
                 <img
-                  src="/images/optimized/video-thumb.jpg"
+                  src={card.image}
                   alt=""
                   className="cardImg"
                   aria-hidden="true"
@@ -89,7 +98,7 @@ export default function NewsSection() {
                   <p className="cardDesc">{card.description}</p>
                 </div>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>
@@ -201,6 +210,7 @@ export default function NewsSection() {
         }
 
         .featuredCard {
+          text-decoration: none;
           flex: 1;
           min-width: 0;
           position: relative;

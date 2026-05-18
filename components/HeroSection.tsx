@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from './HeroSection.module.css'
+import SponsorStrip from './SponsorStrip'
 
 export default function HeroSection() {
   return (
@@ -17,6 +18,7 @@ export default function HeroSection() {
       </div>
       <div className={styles.heroOverlay} />
       <div className={styles.heroBottomFade} />
+      <SponsorStrip />
 
       <div className={styles.heroDeco}>
         <div className={`${styles.heroDecoCircle} ${styles.c1}`} />
