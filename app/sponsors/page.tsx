@@ -3,6 +3,7 @@ import SponsorsSection from '@/components/SponsorsSection'
 import Footer from '@/components/Footer'
 import HomePageShell from '@/components/HomePageShell'
 import CTABanner from '@/components/CTABanner'
+import SponsorStrip from '@/components/SponsorStrip'
 
 export const metadata = {
   title: 'Sponsors – Gold Cup 42nd Edition',
@@ -14,6 +15,9 @@ export default function SponsorsPage() {
     <HomePageShell>
       <main style={{ background: '#000', minHeight: '100vh' }}>
         <Navbar />
+        <div className="aboutSponsorSlot">
+          <SponsorStrip overlay={false} />
+        </div>
         <SponsorsSection />
         
         <Footer />

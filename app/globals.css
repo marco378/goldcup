@@ -77,3 +77,19 @@ button {
   font: inherit;
   color: inherit;
 }
+
+.aboutSponsorSlot {
+  padding-top: 120px;
+}
+
+@media (max-width: 639px) {
+  .aboutSponsorSlot {
+    padding-top: 92px;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 900px) {
+  .aboutSponsorSlot {
+    padding-top: 82px;
+  }
+}

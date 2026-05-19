@@ -142,7 +142,7 @@ export default function NewsSection() {
           display: flex;
           flex-direction: column;
           align-items: center;
-          padding: 150px 98px 45px;
+          padding: 40px 98px 45px;
           opacity: 0;
           transform: translateY(24px);
           transition: opacity 0.7s ease, transform 0.7s ease;
@@ -453,7 +453,7 @@ export default function NewsSection() {
         /* RESPONSIVE */
         @media (max-width: 639px) {
           .heroBlock {
-            padding: 60px 18px 24px;
+            padding: 36px 18px 24px;
           }
 
           .heroHeading {
@@ -503,7 +503,7 @@ export default function NewsSection() {
 
         @media (min-width: 640px) and (max-width: 900px) {
           .heroBlock {
-            padding: 80px 40px 30px;
+            padding: 36px 40px 30px;
           }
 
           .heroHeading {

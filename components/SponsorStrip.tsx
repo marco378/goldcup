@@ -1,11 +1,15 @@
 'use client'
 
-export default function SponsorStrip() {
+type SponsorStripProps = {
+  overlay?: boolean
+}
+
+export default function SponsorStrip({ overlay = true }: SponsorStripProps) {
   const message = 'Proud Title Sponsor of Uttarakhand Gold Cup 2026'
   const tickerItems = Array.from({ length: 8 }, (_, i) => i)
 
   return (
-    <section className="sponsorStrip" aria-label="Title sponsor announcement">
+    <section className={`sponsorStrip ${overlay ? 'overlay' : 'inline'}`} aria-label="Title sponsor announcement">
       <div className="tickerWindow">
         <div className="tickerTrack">
           {tickerItems.map((item, i) => (
@@ -23,10 +27,6 @@ export default function SponsorStrip() {
 
       <style jsx>{`
         .sponsorStrip {
-          position: absolute;
-          top: 100px;
-          left: 0;
-          right: 0;
           z-index: 3;
           width: 100%;
           border-top: 1px solid rgba(141, 92, 24, 0.45);
@@ -35,6 +35,15 @@ export default function SponsorStrip() {
             linear-gradient(90deg, rgba(10, 32, 58, 0.25) 0%, rgba(141, 92, 24, 0.18) 50%, rgba(10, 32, 58, 0.25) 100%);
           backdrop-filter: blur(10px);
           -webkit-backdrop-filter: blur(10px);
+        }
+        .sponsorStrip.overlay {
+          position: absolute;
+          top: 100px;
+          left: 0;
+          right: 0;
+        }
+        .sponsorStrip.inline {
+          position: relative;
         }
 
         .tickerWindow {
@@ -104,8 +113,8 @@ export default function SponsorStrip() {
         }
 
         @media (max-width: 639px) {
-          .sponsorStrip {
-            top: 62px;
+          .sponsorStrip.overlay {
+            top: 92px;
           }
 
           .tickerWindow {
@@ -118,8 +127,8 @@ export default function SponsorStrip() {
           }
 
           .sponsorLogo {
-            width: 18px;
-            height: 18px;
+            width: 78px;
+            height: 78px;
           }
 
           .sponsorText {
@@ -129,7 +138,7 @@ export default function SponsorStrip() {
         }
 
         @media (min-width: 640px) and (max-width: 900px) {
-          .sponsorStrip {
+          .sponsorStrip.overlay {
             top: 82px;
           }
 
@@ -138,8 +147,8 @@ export default function SponsorStrip() {
           }
 
           .sponsorLogo {
-            width: 20px;
-            height: 20px;
+            width: 78px;
+            height: 78px;
           }
         }
       `}</style>

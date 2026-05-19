@@ -6,6 +6,7 @@ import ApprovedAlumniSection from '@/components/ApprovedAlumniSection'
 import CTABanner from '@/components/CTABanner'
 import Footer from '@/components/Footer'
 import HomePageShell from '@/components/HomePageShell'
+import SponsorStrip from '@/components/SponsorStrip'
 
 export const dynamic = 'force-dynamic'
 
@@ -19,6 +20,9 @@ export default function WallOfFamePage() {
     <HomePageShell>
       <main style={{ background: '#000', minHeight: '100vh' }}>
         <Navbar />
+        <div className="aboutSponsorSlot">
+          <SponsorStrip overlay={false} />
+        </div>
         <AlumniRegisterTab />
         <WallOfFameSection />
         <AlumniRegisterBanner />

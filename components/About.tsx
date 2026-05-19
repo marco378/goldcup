@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 
+
 /* ── IntersectionObserver helper ── */
 function useVisible(threshold = 0.1) {
   const ref = useRef<HTMLElement | null>(null)
@@ -313,7 +314,7 @@ export default function About() {
             HERO
         ══════════════════════════════ */
         .hero {
-          padding: 150px 20px 80px;
+          padding: 28px 20px 80px;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -862,7 +863,7 @@ export default function About() {
         ══════════════════════════════ */
         @media (max-width: 639px) {
           .hero {
-            padding: 100px 20px 60px;
+            padding: 40px 20px 60px;
           }
           .heroTitle { font-size: 36px; letter-spacing: -0.72px; }
           .heroSub   { font-size: 15px; }
@@ -927,7 +928,7 @@ export default function About() {
             TABLET 640 – 1024px
         ══════════════════════════════ */
         @media (min-width: 640px) and (max-width: 1024px) {
-          .hero { padding: 120px 40px 60px; }
+          .hero { padding: 32px 40px 60px; }
           .heroTitle { font-size: 58px; }
           .pillsRow  { gap: 36px; }
 

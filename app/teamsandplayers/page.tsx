@@ -3,6 +3,7 @@ import TeamsAndPlayersSection from '@/components/TeamsAndPlayersSection'
 import CTABanner from '@/components/CTABanner'
 import Footer from '@/components/Footer'
 import HomePageShell from '@/components/HomePageShell'
+import SponsorStrip from '@/components/SponsorStrip'
 
 export const metadata = {
   title: 'Teams & Players – Gold Cup 42nd Edition',
@@ -14,6 +15,9 @@ export default function TeamsAndPlayersPage() {
     <HomePageShell>
       <main style={{ background: '#000', minHeight: '100vh' }}>
         <Navbar />
+        <div className="aboutSponsorSlot">
+          <SponsorStrip overlay={false} />
+        </div>
         <TeamsAndPlayersSection />
         <CTABanner />
         <Footer />

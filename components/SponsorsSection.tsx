@@ -67,7 +67,7 @@ export default function SponsorsSection() {
 
       {/* ── HERO ── */}
       <section className="hero">
-        <h1 className="heroTitle">Gold Cup: Presented by [Brand Name]</h1>
+        <h1 className="heroTitle">Gold Cup: Presented by NxtGen Academy</h1>
         <p className="heroSub">
           For 42 years, Gold Cup has delivered one of the most credible stages in domestic cricket.
           Partnering with us means your brand stands alongside that legacy, in front of players,
