@@ -15,8 +15,8 @@ export default function SponsorStrip({ overlay = true }: SponsorStripProps) {
           {tickerItems.map((item, i) => (
             <div className="tickerItem" aria-hidden={i !== 0} key={item}>
               <img
-                src="/images/optimized/nxtgenstrip.png"
-                alt={i === 0 ? 'Next Gen Academy logo' : ''}
+                src="/images/optimized/nxtgennew.png"
+                alt={i === 0 ? 'NEXT Gen Academy logo' : ''}
                 className="sponsorLogo"
               />
               <p className="sponsorText">{message}</p>

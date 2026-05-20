@@ -36,7 +36,10 @@ const FEATURES = [
   { label: 'PRINT', desc: 'Collateral & programme features' },
 ]
 
-const LATEST_LOGOS = Array(13).fill('News')
+const LATEST_LOGOS = [
+  { name: 'NEXT Gen Academy', image: '/images/optimized/nxtgennew.png' },
+
+]
 
 const BANK_DETAILS = [
   { label: 'Account Name', value: 'Devbhoomi Gold Cup Cricket Association Society' },
@@ -67,7 +70,7 @@ export default function SponsorsSection() {
 
       {/* ── HERO ── */}
       <section className="hero">
-        <h1 className="heroTitle">Gold Cup: Presented by NxtGen Academy</h1>
+        <h1 className="heroTitle">Gold Cup: Presented by NXT Gen Academy</h1>
         <p className="heroSub">
           For 42 years, Gold Cup has delivered one of the most credible stages in domestic cricket.
           Partnering with us means your brand stands alongside that legacy, in front of players,
@@ -97,20 +100,28 @@ export default function SponsorsSection() {
             </div>
             {/* Right: logo placeholders */}
             <div className="logoGrid">
-              {Array(t.logos).fill(null).map((_, i) => (
-                <div key={i} className="logoBox">
-                  {t.tier === 'TIER 1' && i === 0 ? (
+              {t.tier === 'TIER 1' || t.tier === 'TIER 2' || t.tier === 'TIER 3' ? (
+                <>
+                  <div className="logoBox logoBoxPrimary">
                     <img
-                      src="/images/optimized/nxtgen.png"
-                      alt="Next Gen Academy"
-                      className="tierLogoImage"
+                      src="/images/optimized/nxtgennew.png"
+                      alt="NEXT Gen Academy"
+                      className="tierLogoImage tierLogoImagePrimary"
                     />
-                  ) : (
-                    <span className="logoBoxLabel">LOGO 1</span>
-                  )}
+                  </div>
+                  
+                </>
+                
+              ) : (
+                <div className="logoBox">
+                  <span className="logoBoxLabel">SLOT OPEN</span>
                 </div>
-              ))}
+              )}
+              
+              
             </div>
+            
+            
           </div>
         ))}
       </section>
@@ -153,7 +164,7 @@ export default function SponsorsSection() {
       <div className="logoStrip">
         {LATEST_LOGOS.map((l, i) => (
           <div key={i} className="logoStripBox">
-            <span className="logoBoxLabel">{l}</span>
+            <img src={l.image} alt={l.name} className="tierLogoImage tierLogoImageStrip" />
           </div>
         ))}
       </div>
@@ -226,7 +237,7 @@ export default function SponsorsSection() {
 
         /* ── HERO ── */
         .hero {
-          padding: 150px 0 0;
+          padding: 20px 0 0;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -399,6 +410,14 @@ export default function SponsorsSection() {
           object-fit: contain;
         }
 
+        .logoBoxPrimary {
+          padding: 8px 12px;
+        }
+
+        .tierLogoImagePrimary {
+          height:46px;
+        }
+
         .logoBoxLabel {
           font-family: var(--font-manrope), sans-serif;
           font-size: 16px;
@@ -533,11 +552,16 @@ export default function SponsorsSection() {
         .logoStripBox {
           border: 1px solid rgba(255, 255, 255, 0.5);
           border-radius: 2px;
-          padding: 17px 21px;
+          padding: 10px 10px;
           display: flex;
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
+        }
+
+        .tierLogoImageStrip {
+          height: 112px;
+          width: auto;
         }
 
         /* ── SUPPORT DETAILS ── */
@@ -918,7 +942,7 @@ export default function SponsorsSection() {
 
         @media (max-width: 639px) {
           .hero {
-            padding: 80px 0 0;
+            padding: 20px 0 0;
           }
 
           .heroTitle {
@@ -975,6 +999,14 @@ export default function SponsorsSection() {
             width: 100%;
           }
 
+          .logoBoxPrimary {
+            padding: 8px 10px;
+          }
+
+          .tierLogoImagePrimary {
+            height: 36px;
+          }
+
           .brandSection {
             padding: 0 18px;
             margin: 40px auto 0;
@@ -1017,6 +1049,10 @@ export default function SponsorsSection() {
 
           .logoStrip {
             padding: 0 18px 40px;
+          }
+
+          .tierLogoImageStrip {
+            height: 40px;
           }
 
           .supportSection {

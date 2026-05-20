@@ -72,6 +72,21 @@ export default function Footer() {
         <p className="addressLine">Address: 2nd Floor, Sarvjeet Complex, Raipur, Dehradun (UK)</p>
         <p className="addressLine">Contact No: +91 9760378007, +91 9411109317</p>
       </div>
+      <div className="addressWrap">
+        <div className="sponsorLine">
+          <span className="partnerLabel">
+            Gold Cup 2026 - Sponsored by 
+          </span>
+          <img
+            src="/images/optimized/nxtgennew.png"
+            alt="Nxt Gen Academy"
+            className="sponsorInlineLogo"
+          />
+          <span className="partnerLabel">
+           (An AI Learning Program operated by Audace Ltd.)
+          </span>
+        </div>
+      </div>
 
       <div className="copyWrap">
         <p>Gold Cup: 42nd Edition. All Rights Reserved.</p>
@@ -271,6 +286,25 @@ export default function Footer() {
           letter-spacing: 0.01em;
         }
 
+        .sponsorLine {
+
+
+          display: flex;
+          padding-Top: 10px;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          flex-wrap: wrap;
+        }
+
+        .sponsorInlineLogo {
+          display: block;
+          width: auto;
+          height: 25px;
+          object-fit: contain;
+          flex-shrink: 0;
+        }
+
         .partnerLogo {
           display: block;
           width: auto;
@@ -331,6 +365,10 @@ export default function Footer() {
           .addressWrap {
             padding: 0 16px 8px;
             gap: 4px;
+          }
+
+          .sponsorInlineLogo {
+            height: 17px;
           }
 
           .addressLine {

@@ -12,7 +12,7 @@ export default function AboutPage() {
       <main style={{ background: '#000', minHeight: '100vh' }}>
         <Navbar />
         <div className="aboutSponsorSlot">
-          <SponsorStrip overlay={false} />
+          <SponsorStrip overlay={false}  />
         </div>
         <About />
         <CTABanner />
