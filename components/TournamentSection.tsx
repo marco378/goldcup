@@ -134,6 +134,17 @@ export default function TournamentSection() {
           <p className="heroSub">Gold Cup: 42nd Edition</p>
           <h1 className="heroTitle">THE ROAD TO GLORY</h1>
           <p className="heroTagline">Every match is a stepping stone. Only the best reach the end.</p>
+          <h4 className="heroTagline heroSponsor"> 
+             
+  Gold Cup 2026 - Sponsored by
+
+  <img
+    src="/images/optimized/nxtgennew.png"
+    alt="NEXT Gen Academy logo"
+    className="sponsorHeroLogo"
+  />
+
+</h4>
         </div>
       </div>
 
@@ -237,6 +248,26 @@ export default function TournamentSection() {
           color: transparent;
           -webkit-text-fill-color: transparent;
         }
+          .heroSponsor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+
+  font-family: var(--font-manrope);
+  font-size: 18px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.9);
+
+  margin-top: 1px;
+}
+
+.sponsorHeroLogo {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+}
 
         /* ─── Hero ─────────────────────────────────────────────── */
         .hero {
@@ -271,7 +302,7 @@ export default function TournamentSection() {
           flex-direction: column;
           align-items: center;
           gap: 12px;
-          padding-top: 150px;
+          padding-top: 90px;
           text-align: center;
           padding-left: 20px;
           padding-right: 20px;

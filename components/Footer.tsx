@@ -287,8 +287,6 @@ export default function Footer() {
         }
 
         .sponsorLine {
-
-
           display: flex;
           padding-Top: 10px;
           align-items: center;

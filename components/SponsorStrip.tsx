@@ -5,7 +5,7 @@ type SponsorStripProps = {
 }
 
 export default function SponsorStrip({ overlay = true }: SponsorStripProps) {
-  const message = 'Proud Title Sponsor of Uttarakhand Gold Cup 2026'
+  const message = 'Proud Sponsor of Uttarakhand Gold Cup 2026'
   const tickerItems = Array.from({ length: 8 }, (_, i) => i)
 
   return (

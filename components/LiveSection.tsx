@@ -63,6 +63,15 @@ export default function TournamentSection() {
           31 matches. Four phases. One trophy. Know the fixtures,<br />
           because great cricket waits for no one.
         </p>
+        <h3 className="heroSponsor">
+  Gold Cup 2026 - Sponsored by
+
+  <img
+    src="/images/optimized/nxtgennew.png"
+    alt="NEXT Gen Academy logo"
+    className="sponsorHeroLogo"
+  />
+</h3>
       </section>
 
       {/* ── LIVE MATCH CARD ── */}
@@ -198,6 +207,7 @@ export default function TournamentSection() {
           <div className="ctaContent">
             <h2 className="ctaTitle">Be Part of Cricket History</h2>
             <p className="ctaSub">42 editions. 100+ alumni. Counting.</p>
+            
             <div className="ctaActions">
               <a href="/sponsors" className="btnPrimary">
                 <span className="btnLabel btnLabelDark">Partner with Us</span>
@@ -215,10 +225,30 @@ export default function TournamentSection() {
           background: transparent;
           min-height: 100vh;
         }
+                .heroSponsor {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
+          flex-wrap: wrap;
+
+          font-family: var(--font-manrope);
+          font-size: 18px;
+          font-weight: 500;
+          color: rgba(255,255,255,0.9);
+
+          margin-top: 18px;
+        }
+
+        .sponsorHeroLogo {
+          height: 42px;
+          width: auto;
+          object-fit: contain;
+        }
 
         /* ── HERO ── */
         .hero {
-          padding: 150px 0 0;
+          padding: 15px 0 0;
           display: flex;
           flex-direction: column;
           align-items: center;
