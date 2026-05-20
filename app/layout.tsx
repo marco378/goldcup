@@ -14,8 +14,13 @@ const manrope = Manrope({
 })
 
 export const metadata: Metadata = {
-  title: 'Gold Cup',
-  description: 'Gold Cup 42nd Edition',
+  title: 'Uttarakhand Gold Cup – Official Cricket Tournament',
+  description:
+    'Official Uttarakhand Gold Cup 42nd Edition website. Fixtures, teams, schedules, standings and live updates.',
+  icons: {
+    icon: '/images/optimized/FinalLogo.png',
+    apple: '/images/optimized/FinalLogo.png',
+  },
 }
 
 export default function RootLayout({
