@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { TEAM_LOGOS, TOURNAMENT_FIXTURES, type Fixture, type FixturePhase } from '@/data/tournament'
+import { LIVE_MATCH_STREAMS } from '@/data/liveMatches'
 
 type FilterKey = 'ALL' | FixturePhase
 
@@ -50,7 +51,12 @@ export default function TournamentSection() {
   useEffect(() => { setMounted(true) }, [])
 
   const filtered = MATCHES.filter(m => activeFilter === 'ALL' || m.phase === activeFilter)
-  const featuredMatch = MATCHES.find(m => m.status === 'LIVE') ?? MATCHES.find(m => m.status === 'UPCOMING') ?? MATCHES[0]
+  const liveMatches = MATCHES.filter(m => m.status === 'LIVE')
+  const nextUpcomingMatch = MATCHES.find(m => m.status === 'UPCOMING')
+  const matchesToShow = liveMatches.length > 0
+    ? liveMatches.slice(0, 2)
+    : [nextUpcomingMatch ?? MATCHES[0]]
+  const featuredMatch = liveMatches[0] ?? nextUpcomingMatch ?? MATCHES[0]
   const isLive = featuredMatch.status === 'LIVE'
 
   return (
@@ -84,59 +90,59 @@ export default function TournamentSection() {
           </div>
         </div>
 
-        <div className="matchCard">
-          <img src="/images/optimized/tournament-live-bgFinal.jpg" alt="" className="matchCardBg" />
-          <div className="matchCardOverlay" />
+        <div className={`liveCards ${matchesToShow.length > 1 ? 'liveCardsTwo' : ''}`}>
+          {matchesToShow.map(match => (
+            <div key={match.id} className="matchCard">
+              <img src="/images/optimized/tournament-live-bgFinal.jpg" alt="" className="matchCardBg" />
+              <div className="matchCardOverlay" />
 
-          <div className="matchCardContent">
-            <div className="teamsRow">
-              {/* Team 1 */}
-              <div className="teamBlock">
-                <img
-                  src={TEAM_LOGOS[featuredMatch.teams[0]] ?? '/images/team-logo-placeholder.svg'}
-                  alt=""
-                  className="teamLogo"
-                />
-                <div className="teamInfo">
-                  <p className="teamName">{featuredMatch.teams[0]}</p>
-                  <p className="teamStatus">{featuredMatch.status === 'UPCOMING' ? 'Scheduled' : 'Playing'}</p>
+              <div className="matchCardContent">
+                <div className="teamsRow">
+                  <div className="teamBlock">
+                    <img
+                      src={TEAM_LOGOS[match.teams[0]] ?? '/images/team-logo-placeholder.svg'}
+                      alt=""
+                      className="teamLogo"
+                    />
+                    <div className="teamInfo">
+                      <p className="teamName">{match.teams[0]}</p>
+                      <p className="teamStatus">{match.status === 'UPCOMING' ? 'Scheduled' : 'Playing'}</p>
+                    </div>
+                  </div>
+
+                  <div className="scoreBlock">
+                    <p className="score">{match.time ?? 'V/S'}</p>
+                    <p className="overs">{match.venue}</p>
+                  </div>
+
+                  <div className="teamBlock">
+                    <img
+                      src={TEAM_LOGOS[match.teams[1]] ?? '/images/team-logo-placeholder.svg'}
+                      alt=""
+                      className="teamLogo"
+                    />
+                    <div className="teamInfo">
+                      <p className="teamName">{match.teams[1]}</p>
+                      <p className="teamStatus">{match.status === 'UPCOMING' ? 'Scheduled' : 'Playing'}</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
 
-              {/* Score */}
-              <div className="scoreBlock">
-                <p className="score">{featuredMatch.time ?? 'LIVE'}</p>
-                <p className="overs">{featuredMatch.venue}</p>
-              </div>
-
-              {/* Team 2 */}
-              <div className="teamBlock">
-                <img
-                  src={TEAM_LOGOS[featuredMatch.teams[1]] ?? '/images/team-logo-placeholder.svg'}
-                  alt=""
-                  className="teamLogo"
-                />
-                <div className="teamInfo">
-                  <p className="teamName">{featuredMatch.teams[1]}</p>
-                  <p className="teamStatus">{featuredMatch.status === 'UPCOMING' ? 'Scheduled' : 'Playing'}</p>
-                </div>
+                <a
+                  className="watchLiveBtn"
+                  href={LIVE_MATCH_STREAMS[match.id] ?? '#'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src="/images/watch-live-btn.svg" alt="" className="watchLiveBtnShape" aria-hidden="true" />
+                  <span className="watchLiveBtnLabel">
+                    <img src="/images/icon-signal.svg" alt="" width={18} height={18} />
+                    Watch Live
+                  </span>
+                </a>
               </div>
             </div>
-
-            {/* Watch Live Button */}
-            <a
-              className="watchLiveBtn"
-              href="https://www.youtube.com/live/gaFiE5MGh_4?si=-uyrmslTphoFiErl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src="/images/watch-live-btn.svg" alt="" className="watchLiveBtnShape" aria-hidden="true" />
-              <span className="watchLiveBtnLabel">
-                <img src="/images/icon-signal.svg" alt="" width={18} height={18} />
-                Watch Live
-              </span>
-            </a>
-          </div>
+          ))}
         </div>
       </section>
 
@@ -377,6 +383,71 @@ export default function TournamentSection() {
           border-radius: 14px;
           overflow: hidden;
           border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .liveCards {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 18px;
+        }
+
+        .liveCardsTwo {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        /* Desktop touchups when two live cards are shown */
+        .liveCardsTwo .matchCard {
+          height: 320px;
+        }
+
+        .liveCardsTwo .matchCardContent {
+          gap: 18px;
+          padding: 20px 26px;
+          justify-content: center;
+        }
+
+        .liveCardsTwo .teamsRow {
+          grid-template-columns: minmax(0, 1fr) minmax(130px, 0.9fr) minmax(0, 1fr);
+          gap: 12px;
+          width: 100%;
+        }
+
+        .liveCardsTwo .teamBlock {
+          gap: 14px;
+          min-width: 0;
+        }
+
+        .liveCardsTwo .teamLogo {
+          width: 58px;
+          height: 58px;
+          padding: 6px;
+        }
+
+        .liveCardsTwo .teamName {
+          font-size: clamp(13px, 1.05vw, 20px);
+          line-height: 1.08;
+          letter-spacing: -0.12px;
+          max-width: 100%;
+          margin: 0 auto;
+          overflow-wrap: normal;
+          word-break: normal;
+          white-space: normal;
+          text-wrap: balance;
+        }
+
+        .liveCardsTwo .teamStatus {
+          font-size: 13px;
+          line-height: 1.2;
+        }
+
+        .liveCardsTwo .score {
+          font-size: clamp(24px, 2.8vw, 40px);
+        }
+
+        .liveCardsTwo .overs {
+          font-size: 14px;
+          line-height: 1.15;
+          max-width: 100%;
         }
 
         .matchCardBg {
@@ -923,6 +994,10 @@ export default function TournamentSection() {
             min-height: 180px;
           }
 
+          .liveCardsTwo {
+            grid-template-columns: 1fr;
+          }
+
           .matchCardContent {
             gap: 20px;
             padding: 16px;
@@ -1055,6 +1130,10 @@ export default function TournamentSection() {
             min-height: 220px;
           }
 
+          .liveCardsTwo {
+            grid-template-columns: 1fr;
+          }
+
           .teamsRow {
             gap: 20px;
             width: 100%;
@@ -1081,6 +1160,12 @@ export default function TournamentSection() {
 
           .ctaTitle {
             font-size: 46px;
+          }
+        }
+
+        @media (max-width: 1200px) {
+          .liveCardsTwo {
+            grid-template-columns: 1fr;
           }
         }
 
