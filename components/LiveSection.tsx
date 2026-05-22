@@ -105,7 +105,7 @@ export default function TournamentSection() {
 
               {/* Score */}
               <div className="scoreBlock">
-                <p className="score">{featuredMatch.time ?? 'TBD'}</p>
+                <p className="score">{featuredMatch.time ?? 'LIVE'}</p>
                 <p className="overs">{featuredMatch.venue}</p>
               </div>
 
