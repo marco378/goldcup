@@ -75,7 +75,7 @@ export default function TournamentSection() {
       </section>
 
       {/* ── LIVE MATCH CARD ── */}
-      <section className={`liveSection ${mounted ? 'liveSectionVisible' : ''}`}>
+      <section id="live-section" className={`liveSection ${mounted ? 'liveSectionVisible' : ''}`}>
         <div className="liveHeader">
           <p className="matchLabel">{getFixtureLabel(featuredMatch)} — {formatDate(featuredMatch.date)}</p>
           <div className="liveBadge">
@@ -124,13 +124,18 @@ export default function TournamentSection() {
             </div>
 
             {/* Watch Live Button */}
-            <button className="watchLiveBtn">
+            <a
+              className="watchLiveBtn"
+              href="https://www.youtube.com/live/gaFiE5MGh_4?si=-uyrmslTphoFiErl"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <img src="/images/watch-live-btn.svg" alt="" className="watchLiveBtnShape" aria-hidden="true" />
               <span className="watchLiveBtnLabel">
                 <img src="/images/icon-signal.svg" alt="" width={18} height={18} />
                 Watch Live
               </span>
-            </button>
+            </a>
           </div>
         </div>
       </section>
