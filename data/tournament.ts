@@ -73,7 +73,7 @@ export const TOURNAMENT_FIXTURES: Fixture[] = [
     venue: 'Maharana Pratap Sports College',
     phase: 'GROUP',
     group: 'A',
-    status: 'LIVE',
+    status: 'COMPLETED',
   },
   {
     id: 'group-a-2026-05-22-2',
@@ -82,7 +82,7 @@ export const TOURNAMENT_FIXTURES: Fixture[] = [
     venue: 'Rajiv Gandhi International Stadium, Dehradun',
     phase: 'GROUP',
     group: 'A',
-    status: 'LIVE',
+    status: 'COMPLETED',
   },
   {
     id: 'group-a-2026-05-23-1',
@@ -91,16 +91,16 @@ export const TOURNAMENT_FIXTURES: Fixture[] = [
     venue: 'Maharana Pratap Sports College',
     phase: 'GROUP',
     group: 'A',
-    status: 'UPCOMING',
+    status: 'LIVE',
   },
   {
     id: 'group-a-2026-05-23-2',
     date: '2026-05-23',
     teams: ['Uttar Pradesh Cricket Association', 'Himachal Pradesh Cricket Association'],
-    venue: 'Rajiv Gandhi',
+    venue: 'Rajiv Gandhi I',
     phase: 'GROUP',
     group: 'A',
-    status: 'UPCOMING',
+    status: 'LIVE',
   },
   {
     id: 'group-b-2026-05-24-1',
