@@ -97,7 +97,7 @@ export const TOURNAMENT_FIXTURES: Fixture[] = [
     id: 'group-a-2026-05-23-2',
     date: '2026-05-23',
     teams: ['Uttar Pradesh Cricket Association', 'Himachal Pradesh Cricket Association'],
-    venue: 'Rajiv Gandhi I',
+    venue: 'Rajiv Gandhi International Stadium, Dehradun',
     phase: 'GROUP',
     group: 'A',
     status: 'LIVE',
