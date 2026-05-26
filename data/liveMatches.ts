@@ -1,4 +1,4 @@
 export const LIVE_MATCH_STREAMS: Record<string, string> = {
-  'group-a-2026-05-25-1': 'https://www.youtube.com/live/u4utYZ2Tce0?si=1zlBn0pEMGTVJtcX',
-  'group-a-2026-05-25-2': 'https://www.youtube.com/live/aEXKccWKK8I?si=ArqGBq2zKLgEz8QI',
+  'group-a-2026-05-26-1': 'https://www.youtube.com/live/AL_JlX6ZAQQ?si=JgDSKn2suLaDwTs6',
+  'group-a-2026-05-26-2': 'https://www.youtube.com/live/3ZSKYBUwIqI?si=2iYkVR5DfQnA-gjQ',
 }
