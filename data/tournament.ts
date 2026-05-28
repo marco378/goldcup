@@ -163,7 +163,7 @@ export const TOURNAMENT_FIXTURES: Fixture[] = [
     venue: 'Maharana Pratap Sports College',
     phase: 'GROUP',
     group: 'B',
-    status: 'LIVE',
+    status: 'COMPLETED',
   },
   {
     id: 'group-b-2026-05-27-2',
@@ -172,7 +172,7 @@ export const TOURNAMENT_FIXTURES: Fixture[] = [
     venue: 'Rajiv Gandhi International Stadium, Dehradun',
     phase: 'GROUP',
     group: 'B',
-    status: 'LIVE',
+    status: 'COMPLETED',
   },
   {
     id: 'group-c-2026-05-28-1',
@@ -181,7 +181,7 @@ export const TOURNAMENT_FIXTURES: Fixture[] = [
     venue: 'Maharana Pratap Sports College',
     phase: 'GROUP',
     group: 'C',
-    status: 'UPCOMING',
+    status: 'LIVE',
   },
   {
     id: 'group-c-2026-05-28-2',
@@ -190,7 +190,7 @@ export const TOURNAMENT_FIXTURES: Fixture[] = [
     venue: 'Rajiv Gandhi International Stadium, Dehradun',
     phase: 'GROUP',
     group: 'C',
-    status: 'UPCOMING',
+    status: 'LIVE',
   },
   {
     id: 'group-c-2026-05-29-1',
