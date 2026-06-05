@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import './globals.css'
 import localFont from 'next/font/local'
 import { Manrope } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
 
 const coluna = localFont({
   src: './fonts/Coluna.otf',
@@ -34,7 +33,6 @@ export default function RootLayout({
       <body className={`${coluna.variable} ${manrope.variable} is-loading`}>
         <div className="globalGlow" aria-hidden="true" />
         {children}
-        <Analytics />
       </body>
     </html>
   )
