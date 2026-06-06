@@ -35,6 +35,7 @@ export const TEAM_LOGOS: Record<string, string> = {
   'A & S Kolkata Bengal': '/images/optimized/TemsLogo/ASCA.png',
   'Uttar Pradesh Cricket Association': '/images/optimized/TemsLogo/UPCA.png',
   'Odisha Cricket Association': '/images/optimized/TemsLogo/OCA1.png',
+  'Comptroller and Auditor General (CAG)': '/images/optimized/TemsLogo/CAG.png',
 
 }
 
