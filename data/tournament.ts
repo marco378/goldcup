@@ -346,7 +346,7 @@ export const TOURNAMENT_FIXTURES: Fixture[] = [
   {
     id: 'final-2026-06-07',
     date: '2026-06-07',
-    teams: ['Finalist 1', 'Finalist 2'],
+    teams: ['Punjab Cricket Association', 'Comptroller and Auditor General (CAG)'],
     venue: 'Rajiv Gandhi International Stadium, Dehradun',
     phase: 'FINAL',
     status: 'UPCOMING',
